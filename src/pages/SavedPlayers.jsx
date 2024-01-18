@@ -1,4 +1,9 @@
-export default function savedPlayers() {
-    return <h1>Saved Players </h1>
-   
+import React from 'react'
+
+const SavedPlayers = () => {
+  return (
+    <div>SavedPlayers</div>
+  )
 }
+
+export default SavedPlayers

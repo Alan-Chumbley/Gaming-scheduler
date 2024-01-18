@@ -1,4 +1,9 @@
-export default function SavedSessions() {
-    return <h1>Saved Sessions </h1>
-   
+import React from 'react'
+
+const SavedSessions = () => {
+  return (
+    <div>SavedSessions</div>
+  )
 }
+
+export default SavedSessions
