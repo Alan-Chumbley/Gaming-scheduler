@@ -7,9 +7,14 @@ export default function Navbar(){
             
             GameSync</Link>
         <ul>
-        <CustomLink to="/savedSession"> Saved Sessions</CustomLink>
-        <CustomLink to="/calender"> Calender</CustomLink>
+        <CustomLink to="/player1"> Player1</CustomLink>
+        <CustomLink to="/player2"> Player2</CustomLink>
+        <CustomLink to="/recommedation"> Recomendation</CustomLink>
+        <CustomLink to="/savedsessions"> Saved Sessions</CustomLink>
+        <CustomLink to="/savedplayers"> Saved Players</CustomLink>
+        <CustomLink to="/summary"> Summary</CustomLink>
         <CustomLink to="/wishlist"> Wishlist</CustomLink>
+        
             
         
         </ul>
