@@ -1,4 +1,9 @@
-export default function Recommendations() {
-    return <h1>Recommendations </h1>
-   
+import React from 'react'
+
+const Recommendation = () => {
+  return (
+    <div>Recommendation</div>
+  )
 }
+
+export default Recommendation

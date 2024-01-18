@@ -1,4 +1,9 @@
-export default function summary() {
-    return <h1>Summary </h1>
-   
+import React from 'react'
+
+const Summary = () => {
+  return (
+    <div>Summary</div>
+  )
 }
+
+export default Summary
