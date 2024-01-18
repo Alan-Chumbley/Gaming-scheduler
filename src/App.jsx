@@ -24,7 +24,6 @@ function App() {
   <Route path='/player2' element ={<Player2 />} />
   <Route path='/recommendation' element ={<Recommendations />} />
   <Route path='/savedplayers' element ={<SavedPlayers />} />
-  
   <Route path='/savedsessions' element ={<SavedSessions />} />
   <Route path='/summary' element ={<Summary />} />
   <Route path='/wishlist' element ={<Wishlist />} />
