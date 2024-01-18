@@ -5,10 +5,11 @@ export default function Navbar(){
     return <nav className="nav">
         <Link to="/" className="site-title">
             
-            Gaming Scheduler</Link>
+            GameSync</Link>
         <ul>
-        <CustomLink to="/about"> About</CustomLink>
+        <CustomLink to="/savedSession"> Saved Sessions</CustomLink>
         <CustomLink to="/calender"> Calender</CustomLink>
+        <CustomLink to="/wishlist"> Wishlist</CustomLink>
             
         
         </ul>
