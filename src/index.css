@@ -65,6 +65,12 @@ a:hover {
   --mainSoft: "abolition-soft", sans-serif; 
   --sub: "bdr-mono", sans-serif; /* example: Monday */
   --smallText: "din-2014", sans-serif; /* example: game session scheduler */
+  --white: #ffffff;
+  --black: #000000;
+  --cyan: #00E2FC;
+  --grey: #BFCCD8;
+  --red: #FF304D;
+  --darkGrey: #312323;
 }
 
 * {
@@ -72,4 +78,3 @@ a:hover {
   padding: 0;
   margin: 0;
 }
-
