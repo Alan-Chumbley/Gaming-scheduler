@@ -12,6 +12,7 @@ export default function Navbar(){
         <CustomLink to="/player2"> Player2</CustomLink>
         <CustomLink to="/recommendation"> Recommendation</CustomLink>
         <CustomLink to="/savedplayers"> Saved Players</CustomLink>
+        <CustomLink to="/sessions"> Saved Sessions</CustomLink>
         <CustomLink to="/summary"> Summary</CustomLink>
         <CustomLink to="/wishlist"> Wishlist</CustomLink>
         

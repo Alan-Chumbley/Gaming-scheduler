@@ -1,4 +1,5 @@
 import React from 'react'
+import './SavedPlayers.css'
 
 const SavedPlayers = () => {
   return (
