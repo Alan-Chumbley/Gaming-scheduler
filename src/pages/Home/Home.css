@@ -57,6 +57,11 @@ input:focus {
     padding-left: 5px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .genreBtn {
     background-color: var(--red) !important;
     opacity: 0.8;
@@ -71,14 +76,17 @@ input:focus {
     margin: 5px;
     border: none;
     cursor: pointer;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .button-container button {
-        flex: 1;
+    flex: 1;
         width: calc(25% - 10px);
     }
+
+.genreBtn:hover {
+    background-color: var(--pink) !important;
+    color: var(--darkGrey);
+}
+
+.genreBtn:active {
+    background-color: yellow !important;
+}
+
+

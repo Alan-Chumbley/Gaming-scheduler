@@ -17,8 +17,9 @@ function EntryForm() {
     }
 
     const handleClick = (setState) => ({ target }) => {
-        setState(target.firstChild.data)
-        console.log(target.firstChild.data);
+        setState(target.firstChild.data);
+        target.setAttribute();
+        console.log(target.className);
     }
 
     const handleSubmit = ({ target }) => {
