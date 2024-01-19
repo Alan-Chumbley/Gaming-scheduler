@@ -11,7 +11,7 @@ const days = [
     "Saturday",
     "Sunday",
 ];
-const dayRows = days.map((day) => <DayRow day={day} />);
+const dayRows = days.map((day) => <DayRow day={day} key={day} />);
 
 const PlayerCalendar = () => {
     return (
