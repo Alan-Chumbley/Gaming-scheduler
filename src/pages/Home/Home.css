@@ -1,0 +1,84 @@
+@import '../../index.css';
+
+:root {
+    --pink: #FAB4BE;
+}
+
+
+h2 {
+    color: var(--cyan);
+    font-family: var(--main);
+    font-size: 38px;
+}
+
+
+h3 {
+    color: var(--cyan);
+    font-family: var(--smallText);
+}
+
+
+p {
+    font-family: var(--smallText);
+    color: var(--grey);
+}
+
+.explanation {
+    font-size: small;
+}
+
+input {
+    width: 100%;
+    background-color: var(--red);
+    opacity: 0.8;
+    border-radius: 27px;
+    height: 45px;
+    padding: 5px 20px 0 20px !important;
+    text-transform: uppercase;
+    font-family: var(--sub) !important;
+    font-size: small !important;
+    font-weight: 20 !important;
+    letter-spacing: 1pt;
+    align-content: center;
+}
+
+input:focus {
+    background-color: var(--pink);
+    outline: 0ch;
+    color: var(--darkGrey);
+}
+
+#game-title, #genre-quest {
+    padding-top: 40px;
+}
+
+.inputTitle {
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+
+.genreBtn {
+    background-color: var(--red) !important;
+    opacity: 0.8;
+    border-radius: 27px;
+    padding: 7px 24px 4px 24px !important;
+    font-family: var(--sub);
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 200;
+    color: #ffffff;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-container button {
+        flex: 1;
+        width: calc(25% - 10px);
+    }
