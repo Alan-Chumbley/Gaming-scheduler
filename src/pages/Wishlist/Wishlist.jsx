@@ -3,7 +3,7 @@ import './Wishlist.css'
 
 const Wishlist = () => {
   return (
-    <div className='container mx-auto wishlist'>
+    <div className='wishlist'>
 
       {/* background overlay */}
       <div className='overlay'></div>
