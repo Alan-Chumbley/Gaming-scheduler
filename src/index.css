@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --main: "abolition", sans-serif; /* example: Player 1 */
   --mainSoft: "abolition-soft", sans-serif; 
