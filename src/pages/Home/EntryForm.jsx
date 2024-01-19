@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import ActionBtn from '../../components/Buttons/ActionBtn';
 
 function EntryForm() {
 
@@ -18,7 +19,7 @@ function EntryForm() {
 
     const handleClick = (setState) => ({ target }) => {
         setState(target.firstChild.data);
-        target.setAttribute();
+        target.classList.toggle('selected genreBtn');
         console.log(target.className);
     }
 
@@ -49,14 +50,14 @@ function EntryForm() {
 
 
     return (
-        <div>
+        <div id="container">
             <div id="squad-alias">
                 <div className="flex items-end inputTitle">
                     <h2 className="text-4xl">Squad Alias</h2>
                     <p className="pl-3 italic explanation">name your gaming team</p>
                 </div>
                 
-                <input type='text' value={team} onChange={handleChange(setTeam)} maxlength="58" />
+                <input type='text' value={team} onChange={handleChange(setTeam)} maxLength="58" />
             </div>
 
             <div id="game-title">
@@ -64,7 +65,7 @@ function EntryForm() {
                     <h2 className="text-4xl">Game Title</h2>
                     <p className="pl-3 italic explanation">type the game title if known</p>
                 </div>
-                <input type='text' value={game} onChange={handleChange(setGame)} maxlength="58"  />
+                <input type='text' value={game} onChange={handleChange(setGame)} maxLength="58"  />
             </div>
 
             <div id="genre-quest">
@@ -75,7 +76,8 @@ function EntryForm() {
                 <ul>{genresBtns}</ul>
             </div>
 
-            <button onClick={handleSubmit}>Let's Go</button>
+            <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
+
         </div>
     );
 }

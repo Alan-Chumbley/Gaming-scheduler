@@ -85,8 +85,42 @@ input:focus {
     color: var(--darkGrey);
 }
 
-.genreBtn:active {
-    background-color: yellow !important;
+.genreBtn.selected {
+    background-color: yellow;
 }
 
+#bigBtn {
+    opacity: 0.7;
+    padding: 15px 100px 12px 100px !important;
+    color: var(--darkGrey) !important;
+    font-family: var(--sub) !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+    margin: 30px 0;
+    align-self: center;
+    justify-self: center;
+    position: relative;
+}
+
+#bigBtn:hover {
+    opacity: 1;
+}
+
+#bigBtn:hover:after {
+    display: inline-block;
+    content: url(./../../assets/play.svg);
+    width: 12px !important;
+    margin-left: 10px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+#squad-alias, #game-title {
+    width: 100%;
+}
 
