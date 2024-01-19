@@ -25,6 +25,8 @@ module.exports = {
         grey: '#BFCCD8',
         red: '#FF304D',
         darkGrey: '#312323',
+        blue: '#009FFA',
+        overlay: 'rgba(1,43,67, 0.88)',
       }
     },
   },
