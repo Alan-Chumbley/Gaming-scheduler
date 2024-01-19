@@ -26,6 +26,7 @@ module.exports = {
         red: '#FF304D',
         darkGrey: '#312323',
         blue: '#009FFA',
+        select: 'rgba(0, 226, 252, 0.7)',
         overlay: 'rgba(1,43,67, 0.88)',
       }
     },
