@@ -26,10 +26,8 @@ module.exports = {
                 red: "#FF304D",
                 darkGrey: "#312323",
                 blue: "#009FFA",
+                pinkHover: "#fab4be",
                 overlay: "rgba(1,43,67, 0.88)",
-            },
-            width: {
-                38: "9.5rem",
             },
         },
     },

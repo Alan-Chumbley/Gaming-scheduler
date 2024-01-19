@@ -7,7 +7,6 @@ const Player1 = () => {
     return (
         <>
             <PlayerInputContainer />
-            <ActionBtn name="Add Player 2" />
         </>
     );
 };

@@ -3,8 +3,9 @@ import React from "react";
 const TimeSlotButton = (props) => {
     return (
         <button
-            className="bg-red w-5 h-5 rounded-md hover:bg-cyan active:bg-cyan"
+            className={props.className}
             id={props.id}
+            onClick={props.handleToggle}
         ></button>
     );
 };
