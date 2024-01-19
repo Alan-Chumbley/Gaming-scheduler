@@ -33,11 +33,13 @@ input {
     opacity: 0.8;
     border-radius: 27px;
     height: 45px;
-    padding: 0 20px !important;
+    padding: 5px 20px 0 20px !important;
     text-transform: uppercase;
     font-family: var(--sub) !important;
     font-size: small !important;
     font-weight: 20 !important;
+    letter-spacing: 1pt;
+    align-content: center;
 }
 
 input:focus {
@@ -59,12 +61,24 @@ input:focus {
     background-color: var(--red) !important;
     opacity: 0.8;
     border-radius: 27px;
-    padding: 6px 24px 6px 24px !important;
+    padding: 7px 24px 4px 24px !important;
     font-family: var(--sub);
-    font-size: 12px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 200;
     color: #ffffff;
     padding: 10px;
     margin: 5px;
     border: none;
     cursor: pointer;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-container button {
+        flex: 1;
+        width: calc(25% - 10px);
     }

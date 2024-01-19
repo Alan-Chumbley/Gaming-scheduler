@@ -5,7 +5,7 @@
 :root {
   --main: "abolition", sans-serif; /* example: Player 1 */
   --mainSoft: "abolition-soft", sans-serif; 
-  --sub: "bdr-mono", sans-serif; /* example: Monday */
+  --sub: "video", serif; /* example: Monday */
   --smallText: "din-2014", sans-serif; /* example: game session scheduler */
   --white: #ffffff;
   --black: #000000;

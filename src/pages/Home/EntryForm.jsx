@@ -55,7 +55,7 @@ function EntryForm() {
                     <p className="pl-3 italic explanation">name your gaming team</p>
                 </div>
                 
-                <input type='text' value={team} onChange={handleChange(setTeam)} maxlength="70" />
+                <input type='text' value={team} onChange={handleChange(setTeam)} maxlength="58" />
             </div>
 
             <div id="game-title">
@@ -63,7 +63,7 @@ function EntryForm() {
                     <h2 className="text-4xl">Game Title</h2>
                     <p className="pl-3 italic explanation">type the game title if known</p>
                 </div>
-                <input type='text' value={game} onChange={handleChange(setGame)} maxlength="70"  />
+                <input type='text' value={game} onChange={handleChange(setGame)} maxlength="58"  />
             </div>
 
             <div id="genre-quest">
