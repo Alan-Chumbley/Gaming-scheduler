@@ -1,5 +1,65 @@
 @import '../../index.css';
 
-h3 {
-    color: cyan;
+:root {
+    --pink: #FAB4BE;
 }
+
+
+h2 {
+    color: var(--cyan);
+    font-family: var(--main);
+    font-size: 38px;
+}
+
+
+h3 {
+    color: var(--cyan);
+    font-family: var(--smallText);
+}
+
+
+p {
+    font-family: var(--smallText);
+    color: var(--grey);
+}
+
+.explanation {
+    font-size: small;
+}
+
+input {
+    width: 100%;
+    background-color: var(--red);
+    opacity: 0.8;
+    border-radius: 27px;
+    height: 45px;
+    padding: 0 20px !important;
+    text-transform: uppercase;
+    font-family: var(--sub) !important;
+    font-size: small !important;
+    font-weight: 20 !important;
+}
+
+input:focus {
+    background-color: var(--pink);
+    outline: 0ch;
+    color: var(--darkGrey);
+}
+
+#game-title, #genre-quest {
+    padding-top: 40px;
+}
+
+.inputTitle {
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+
+.genreBtn {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+  }

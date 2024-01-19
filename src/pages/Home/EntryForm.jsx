@@ -36,7 +36,7 @@ function EntryForm() {
     }
 
 
-    const genresBtns = genres.map(genre => <button onClick={handleClick(setGenre)}>{genre}</button>);
+    const genresBtns = genres.map(genre => <button key={genre} type="button" className="genreBtn" onClick={handleClick(setGenre)}>{genre}</button>);
 
 
     function saveToLS(object){
@@ -50,20 +50,27 @@ function EntryForm() {
     return (
         <div>
             <div id="squad-alias">
-                <h2>Squad Alias</h2>
-                <p>name your gaming team</p>
-                <input type='text' value={team} onChange={handleChange(setTeam)} />
+                <div className="flex items-end inputTitle">
+                    <h2 className="text-4xl">Squad Alias</h2>
+                    <p className="pl-3 italic explanation">name your gaming team</p>
+                </div>
+                
+                <input type='text' value={team} onChange={handleChange(setTeam)} maxlength="70" />
             </div>
 
             <div id="game-title">
-                <h2>GameTitle</h2>
-                <p>type the game title if known</p>
-                <input type='text'  value={game} onChange={handleChange(setGame)}  />
+                <div className="flex items-end inputTitle">
+                    <h2 className="text-4xl">Game Title</h2>
+                    <p className="pl-3 italic explanation">type the game title if known</p>
+                </div>
+                <input type='text' value={game} onChange={handleChange(setGame)} maxlength="70"  />
             </div>
 
             <div id="genre-quest">
-                <h2>Genre Quest</h2>
-                <p>select one in case you look for a recommendation</p>
+                <div className="flex items-end inputTitle">
+                    <h2 className="text-4xl">Genre Quest</h2>
+                    <p className="pl-3 italic  explanation">select one in case you look for a recommendation</p>
+                </div>
                 <ul>{genresBtns}</ul>
             </div>
 
