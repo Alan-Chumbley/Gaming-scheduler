@@ -81,26 +81,26 @@ function EntryForm() {
     return (
         <div id="container">
             <div id="squad-alias">
-                <div className="flex items-end inputTitle">
-                    <h2 className="text-4xl">Squad Alias</h2>
-                    <p className="pl-3 italic explanation">name your gaming team</p>
+                <div className="sm:block md:block lg:flex items-end inputTitle">
+                    <h2 className="sm:text-3xl md:text-4xl">Squad Alias</h2>
+                    <p className="italic explanation md:pl-2">name your gaming team</p>
                 </div>
                 
                 <input type='text' value={team} onChange={handleChange(setTeam)} maxLength="58" />
             </div>
 
             <div id="game-title">
-                <div className="flex items-end inputTitle">
-                    <h2 className="text-4xl">Game Title</h2>
-                    <p className="pl-3 italic explanation">type the game title if known</p>
+                <div className="sm:block md:block lg:flex md:items-end inputTitle">
+                    <h2 className="sm:text-3xl md:text-4xl">Game Title</h2>
+                    <p className="italic explanation md:pl-2">type the game title if known</p>
                 </div>
                 <input type='text' value={game} onChange={handleChange(setGame)} maxLength="58"  />
             </div>
 
             <div id="genre-quest">
-                <div className="flex items-end inputTitle">
-                    <h2 className="text-4xl">Genre Quest</h2>
-                    <p className="pl-3 italic  explanation">select one in case you look for a recommendation</p>
+                <div className="sm:block md:block lg:flex items-end inputTitle">
+                    <h2 className="sm:text-3xl md:text-4xl">Genre Quest</h2>
+                    <p className="italic explanation md:pl-2">select one for a recommendation</p>
                 </div>
                 <ul id='genresBtn'>{genresBtns}</ul>
             </div>

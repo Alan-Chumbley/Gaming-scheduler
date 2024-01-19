@@ -62,6 +62,7 @@ input:focus {
     justify-content: space-between;
 }
 
+
 .genreBtn {
     background-color: var(--red) !important;
     opacity: 0.8;
@@ -118,10 +119,37 @@ input:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
 }
 
 #squad-alias, #game-title {
     width: 100%;
 }
 
+
+
+@media only screen and (max-width: 1536px) {
+
+    .genreBtn {
+        flex: 1;
+            width: calc(30% - 10px);
+        }
+
+        .button-container {
+            margin-left: -2%;
+        }
+        
+        .hero-container {
+            margin-right: -2%;
+        }
+
+}
+
+
+@media only screen and (max-width: 1432px) {
+
+    .genreBtn {
+        flex: 1;
+            width: calc(50% - 10px);
+        }
+
+}
