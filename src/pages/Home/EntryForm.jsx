@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
 function EntryForm() {
@@ -12,16 +12,44 @@ function EntryForm() {
     const [game, setGame] = useState('');
     const [genre, setGenre] = useState('');
 
+    let genresBtns;
 
     const handleChange = (setState) => ({ target }) => {
         setState(target.value);
     }
 
+
+
+
     const handleClick = (setState) => ({ target }) => {
-        setState(target.firstChild.data);
-        target.classList.toggle('selected genreBtn');
-        console.log(target.className);
+        const selectedBtn = target.firstChild.data;
+
+        const buttons = document.querySelector('#genresBtn');
+        const btnChildren = buttons.children;
+
+        for(let i=0; i < btnChildren.length; i++){
+            btnChildren[i].classList.remove('selectedBtn');
+        }
+
+        target.classList.add('selectedBtn');
+
+        setState(selectedBtn);
+        
     }
+
+
+    useEffect(() => {
+        console.log('Updated state:', genre);
+    }, [genre]);
+
+
+
+
+
+
+
+
+
 
     const handleSubmit = ({ target }) => {
         console.log(team);
@@ -37,8 +65,9 @@ function EntryForm() {
         saveToLS(newTeam);
     }
 
+    genresBtns = genres.map(genre => <button key={genre} type="button" className="genreBtn" onClick={handleClick(setGenre)}>{genre}</button>);
 
-    const genresBtns = genres.map(genre => <button key={genre} type="button" className="genreBtn" onClick={handleClick(setGenre)}>{genre}</button>);
+
 
 
     function saveToLS(object){
@@ -73,10 +102,10 @@ function EntryForm() {
                     <h2 className="text-4xl">Genre Quest</h2>
                     <p className="pl-3 italic  explanation">select one in case you look for a recommendation</p>
                 </div>
-                <ul>{genresBtns}</ul>
+                <ul id='genresBtn'>{genresBtns}</ul>
             </div>
 
-            <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
+            <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />            
 
         </div>
     );

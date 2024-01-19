@@ -85,8 +85,9 @@ input:focus {
     color: var(--darkGrey);
 }
 
-.genreBtn.selected {
-    background-color: yellow;
+.selectedBtn {
+    background-color: var(--pink) !important;
+    color: var(--darkGrey);
 }
 
 #bigBtn {
