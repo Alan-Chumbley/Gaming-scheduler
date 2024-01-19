@@ -2,7 +2,7 @@ import React from "react";
 
 const PlayerNameInput = () => {
     return (
-        <div className="flex m-20 pl-40 mb-15">
+        <div className="flex mx-20 pl-40 my-10">
             <h1 className="font-main text-5xl text-nowrap uppercase">
                 Player 1 Name
             </h1>

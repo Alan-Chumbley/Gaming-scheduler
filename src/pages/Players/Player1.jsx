@@ -1,11 +1,9 @@
-import React from 'react'
-import './Player.css'
-import PlayerInputContainer from '../../components/PlayerInputContainer'
+import React from "react";
+import "./Player.css";
+import PlayerInputContainer from "../../components/PlayerInputComponents/PlayerInputContainer";
 
 const Player1 = () => {
-  return (
-    <PlayerInputContainer/>
-  )
-}
+    return <PlayerInputContainer />;
+};
 
-export default Player1
+export default Player1;
