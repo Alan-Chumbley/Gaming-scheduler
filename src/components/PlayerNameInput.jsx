@@ -2,11 +2,16 @@ import React from "react";
 
 const PlayerNameInput = () => {
     return (
-        <div className="flex bg-red">
-            <h1 className="font-main text-4xl ml-40">PLAYER 1 NAME</h1>
-            <form className="pl-14 flex">
-                <input type="text" placeholder="John Doe"/>
-            </form>
+        <div className="flex m-20 pl-40 mb-15">
+            <h1 className="font-main text-5xl text-nowrap uppercase">
+                Player 1 Name
+            </h1>
+            <input
+                type="text"
+                className="ml-14 h-100"
+                value={name}
+                placeholder="John Doe"
+            />
         </div>
     );
 };

@@ -5,7 +5,7 @@ import PlayerCalendar from './PlayerCalendar'
 
 const PlayerInputContainer = () => {
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12">
+    <div className="flex flex-col">
         <PlayerNameInput />
         <PlayerCalendar />
     </div>
