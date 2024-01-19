@@ -2,7 +2,7 @@ import React from "react";
 
 const HourRow = () => {
     return (
-        <div className="flex mx-20 pl-40 mt-4 justify-between">
+        <div className="flex mx-20 ml-60 mt-4 justify-between">
             <h2 className="font-sub">1 </h2>
             <h2 className="font-sub">2 </h2>
             <h2 className="font-sub">3 </h2>

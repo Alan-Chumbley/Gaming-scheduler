@@ -10,7 +10,7 @@ const PlayerNameInput = () => {
                 type="text"
                 className="ml-14 h-100"
                 value={name}
-                placeholder="John Doe"
+                placeholder="E.G. Tony Stark"
             />
         </div>
     );

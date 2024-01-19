@@ -19,7 +19,8 @@ const PlayerCalendar = () => {
                 </p>
             </div>
             <HourRow />
-            <DayRow />
+            <DayRow day="Monday" />
+            <DayRow day="Tuesday" />
         </>
     );
 };
