@@ -56,10 +56,15 @@ input:focus {
 }
 
 .genreBtn {
-    background-color: #3498db;
+    background-color: var(--red) !important;
+    opacity: 0.8;
+    border-radius: 27px;
+    padding: 6px 24px 6px 24px !important;
+    font-family: var(--sub);
+    font-size: 12px;
     color: #ffffff;
     padding: 10px;
-    margin-right: 5px;
+    margin: 5px;
     border: none;
     cursor: pointer;
-  }
+    }
