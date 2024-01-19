@@ -2,7 +2,9 @@ import React from 'react'
 
 const PlayerInputContainer = () => {
   return (
-    <div>PlayerInputContainer</div>
+    <div className="container bg-red mx-auto">
+        hi
+    </div>
   )
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
 import './Player.css'
+import PlayerInputContainer from '../../components/PlayerInputContainer'
 
 const Player1 = () => {
   return (
-    <div>Player1</div>
+    <PlayerInputContainer/>
   )
 }
 
