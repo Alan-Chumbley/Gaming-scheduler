@@ -28,11 +28,15 @@ function EntryForm() {
     const [genre, setGenre] = useState("");
 
     let genresBtns;
+    let errorEl;
 
     /* ************************************** HANDLING EVENTS *************************************** */
 
     // INPUT (GAME TITLE AND SQUAD ALIAS)
     const handleChange = (setState) => ({ target }) => {
+        errorEl = document.querySelector('#error-msg');
+        errorEl.setAttribute('hidden', true);
+
         setState(target.value);
         const inputBtn = document.querySelector('#game-input').value;
         toggleBtns(inputBtn ? 'disable' : 'enable'); // if input has value: disable buttons, otherwise enable
@@ -40,6 +44,9 @@ function EntryForm() {
 
     // GENRE QUEST: BUTTONS
     const handleClick = (setState) => ({ target }) => {
+        errorEl = document.querySelector('#error-msg');
+        errorEl.setAttribute('hidden', true);
+
         let selectedBtn = target.firstChild.data;
         const buttons = document.querySelector('#genresBtn');
         const btnChildren = buttons.children;
@@ -60,6 +67,12 @@ function EntryForm() {
 
     // SUBMIT (LETS GO BUTTON)
     const handleSubmit = ({ target }) => {
+
+        errorEl = document.querySelector('#error-msg');
+
+        if (!team && !game && !genre || !game && !genre || !team){
+            errorEl.removeAttribute('hidden');
+        }
 
         const newTeam = {
             teamName: team,
@@ -119,7 +132,10 @@ function EntryForm() {
         }
     }
 
-    const sendToLink = () => genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
+    const sendToLink = () => !team ? null : genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
+
+    const handleErrors = () => !team && !game && !genre ? 'Complete the form to unlock the next level!' : !game && !genre ? 'Type your game title or pick a genre to venture forth!' : !team ? 'Summon your team! Add a team name to proceed.' : null;
+
 
     /* *************************************** RENDER *************************************** */
 
@@ -160,6 +176,7 @@ function EntryForm() {
                 <ul id="genresBtn">{genresBtns}</ul>
             </div>
             <Link to={sendToLink()} ><ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" /></Link>
+            <p id='error-msg' className='italic' hidden>{handleErrors()}</p>
         </div>
     );
 }
