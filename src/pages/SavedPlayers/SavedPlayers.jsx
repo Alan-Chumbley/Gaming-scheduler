@@ -1,11 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './SavedPlayers.css'
 import OutlineBtn from '../../components/Buttons/OutlineBtn';
+import Modal from '../../components/Modal/Modal';
 
 const SavedPlayers = () => {
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+
+  const openModal = (playerName) => {
+    setSelectedPlayer(playerName);
+  };
+
+  const closeModal = () => {
+    setSelectedPlayer(null);
+  };
+
+  const handleRemovePlayer = (playerName) => {
+    // Retrieve players from local storage
+    const playerData = localStorage.getItem('Players');
+    const players = JSON.parse(playerData) || [];
+
+    // Filter out the player to be removed
+    const updatedPlayers = players.filter((player) => player.name !== playerName);
+
+    // Update local storage with the updated player list
+    localStorage.setItem('Players', JSON.stringify(updatedPlayers));
+
+    // Close the modal after removing the player
+    closeModal();
+  };
+
   const playerData = localStorage.getItem('Players');
   const players = JSON.parse(playerData) || [];
-  console.log(players);
 
   return (
     <div className='players'>
@@ -17,10 +42,22 @@ const SavedPlayers = () => {
       <h1 className='font-main text-red text-center mt-10 pageTitle'>Saved Players</h1>
       <p className='font-smallText text-center mt-4'>Click on the chosen player to load their schedule</p>
 
-      {/* squad buttons */}
+      {/* Squad buttons and Modal Component */}
       <div className='w-100 flex flex-col justify-center mt-20'>
         {players.map((player, index) => (
-          <OutlineBtn key={index} id={player.id} name={player.name} onClick={() => {}} />
+          <div key={index}>
+            <OutlineBtn id={player.id} name={player.name} onClick={() => openModal(player.name)} />
+            {/* Modal Component for each player */}
+            {selectedPlayer === player.name && (
+              <Modal
+                isOpen={selectedPlayer === player.name}
+                onClose={closeModal}
+                playerName={selectedPlayer}
+                onRemovePlayer={handleRemovePlayer}
+                availability={player.availability}
+              />
+            )}
+          </div>
         ))}
       </div>
 
