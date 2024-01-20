@@ -44,11 +44,12 @@ input {
 
 input:focus {
     background-color: var(--pink);
-    outline: 0ch;
+    outline: 0;
     color: var(--darkGrey);
 }
 
-#game-title, #genre-quest {
+#game-title,
+#genre-quest {
     padding-top: 40px;
 }
 
@@ -57,28 +58,92 @@ input:focus {
     padding-left: 5px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .genreBtn {
+    padding: 7px 24px 4px 24px !important;
+    margin: 7px 5px;
+    border-radius: 27px;
+    border: none;
     background-color: var(--red) !important;
     opacity: 0.8;
-    border-radius: 27px;
-    padding: 7px 24px 4px 24px !important;
     font-family: var(--sub);
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 200;
-    color: #ffffff;
-    padding: 10px;
-    margin: 5px;
-    border: none;
     cursor: pointer;
+    flex: 1;
+    width: calc(25% - 10px);
+}
+
+.genreBtn:hover,
+.selectedBtn {
+    background-color: var(--pink) !important;
+    color: var(--darkGrey);
+}
+
+#bigBtn {
+    opacity: 0.7;
+    padding: 15px 100px 12px 100px !important;
+    color: var(--darkGrey) !important;
+    font-family: var(--sub) !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+    margin: 30px 0;
+    position: relative;
+}
+
+#bigBtn:hover {
+    opacity: 1;
+}
+
+#bigBtn:hover:after {
+    display: inline-block;
+    content: url(./../../assets/play.svg);
+    width: 12px !important;
+    margin-left: 10px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#squad-alias,
+#game-title {
+    width: 100%;
+}
+
+.main-container {
+    margin-top: 7%;
+}
+
+@media only screen and (max-width: 1536px) {
+
+    .genreBtn {
+        width: calc(30% - 10px);
     }
 
     .button-container {
-        display: flex;
-        justify-content: space-between;
+        margin-left: -2%;
     }
 
-    .button-container button {
-        flex: 1;
-        width: calc(25% - 10px);
+    .hero-container {
+        margin-right: -2%;
     }
+
+}
+
+
+@media only screen and (max-width: 1432px) {
+
+    .genreBtn {
+        width: calc(50% - 10px);
+    }
+
+}
+
