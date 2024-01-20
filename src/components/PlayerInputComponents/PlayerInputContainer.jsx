@@ -5,7 +5,8 @@ import { useState } from "react";
 
 const PlayerInputContainer = () => {
     const [playerName, setPlayerName] = useState();
-
+    // const [availability, setAvailability] = useState();
+    
     const saveToLS = (data) => {
         localStorage.setItem(data.name, JSON.stringify(data));
     };
@@ -18,6 +19,17 @@ const PlayerInputContainer = () => {
     const handleAddPlayer = () => {
         console.log(playerName);
 
+        const availability = []
+
+        let mondayRow = document.querySelector('#MondayRow')
+        console.log( mondayRow);
+        // mondayRow.children.forEach(button => {
+        //     if (button.classList.contain('active')) {
+        //         availability.push(button.id)
+        //     }
+        // });
+        console.log(availability);
+        
         const playerData = {
             name: playerName,
             availability: [],
