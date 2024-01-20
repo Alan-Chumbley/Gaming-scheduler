@@ -35,8 +35,8 @@ const DayRow = (props) => {
                     <TimeSlotButton
                         className={
                             isActive
-                                ? "bg-cyan w-5 h-5 rounded-md hover:bg-red"
-                                : "bg-red w-5 h-5 rounded-md hover:bg-cyan"
+                                ? "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
+                                : "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
                         }
                         id={props.day + hour}
                         key={props.day + hour}
