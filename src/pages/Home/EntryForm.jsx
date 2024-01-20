@@ -134,7 +134,7 @@ function EntryForm() {
         }
     }
 
-    const sendToLink = () => !team ? null : genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
+    const sendToLink = () => !team ? null : genre ? '/recommendation' : game ? '/player1' : null;
 
     const handleErrors = () => !team && !game && !genre ? 'Complete the form to unlock the next level!' : !game && !genre ? 'Type your game title or pick a genre to venture forth!' : !team ? 'Summon your team! Add a team name to proceed.' : null;
 
