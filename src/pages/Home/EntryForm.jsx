@@ -23,14 +23,8 @@ function EntryForm() {
     // INPUT (GAME TITLE AND SQUAD ALIAS)
     const handleChange = (setState) => ({ target }) => {
         setState(target.value);
-
         const inputBtn = document.querySelector('#game-input').value;
-
-        if (inputBtn) {
-            toggleBtns('disable');
-        } else {
-            toggleBtns('enable');
-        }
+        toggleBtns(inputBtn ? 'disable' : 'enable'); // if input has value: disable buttons, otherwise enable
     }
 
     // GENRE QUEST: BUTTONS
@@ -107,16 +101,7 @@ function EntryForm() {
         }
     }
 
-    const sendToLink = () => {
-        let linkTo;
-
-        if(genre){
-            linkTo = './../Recommendation/Recommendation.jsx'
-        } else if(game){
-            linkTo = './../Players/Player1.jsx'
-        }
-        return linkTo;
-    }
+    const sendToLink = () => genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
 
     /* *************************************** RENDER *************************************** */
 
