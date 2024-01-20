@@ -14,9 +14,23 @@ const SavedPlayers = () => {
     setSelectedPlayer(null);
   };
 
+  const handleRemovePlayer = (playerName) => {
+    // Retrieve players from local storage
+    const playerData = localStorage.getItem('Players');
+    const players = JSON.parse(playerData) || [];
+
+    // Filter out the player to be removed
+    const updatedPlayers = players.filter((player) => player.name !== playerName);
+
+    // Update local storage with the updated player list
+    localStorage.setItem('Players', JSON.stringify(updatedPlayers));
+
+    // Close the modal after removing the player
+    closeModal();
+  };
+
   const playerData = localStorage.getItem('Players');
   const players = JSON.parse(playerData) || [];
-  console.log(players);
 
   return (
     <div className='players'>
@@ -35,7 +49,12 @@ const SavedPlayers = () => {
             <OutlineBtn id={player.id} name={player.name} onClick={() => openModal(player.name)} />
             {/* Modal Component for each player */}
             {selectedPlayer === player.name && (
-              <Modal isOpen={selectedPlayer === player.name} onClose={closeModal} playerName={selectedPlayer} />
+              <Modal
+                isOpen={selectedPlayer === player.name}
+                onClose={closeModal}
+                playerName={selectedPlayer}
+                onRemovePlayer={handleRemovePlayer}
+              />
             )}
           </div>
         ))}
