@@ -6,9 +6,9 @@ import Logo from './assets/logo.png';
 import './Navbar.css'
 
 const navigation = [
-  { name: 'Saved Players', href: '/savedplayers', current: false },
-  { name: 'Saved Sessions', href: '/sessions', current: false },
-  { name: 'Wishlist', href: '/wishlist', current: false },
+  { name: 'Saved Players', to: '/savedplayers', current: false },
+  { name: 'Saved Sessions', to: '/sessions', current: false },
+  { name: 'Wishlist', to: '/wishlist', current: false },
 ]
 
 function classNames(...classes) {
@@ -48,9 +48,9 @@ export default function Example() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white font-main' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium font-main text-white'
@@ -58,7 +58,7 @@ export default function Example() {
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -67,19 +67,20 @@ export default function Example() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
+            <div className="space-y-1 px-2 pb-3 pt-2 flex flex-col justify-start">
               {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-900 text-white font-main' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium font-main'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
+                <Disclosure.Button>
+                  <NavLink
+                    key={item.name}
+                    to={item.to}
+                    className={classNames(
+                      item.current ? 'bg-gray-900 text-white font-main' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'block rounded-md px-3 py-2 text-base font-medium font-main'
+                    )}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </NavLink>
                 </Disclosure.Button>
               ))}
             </div>
