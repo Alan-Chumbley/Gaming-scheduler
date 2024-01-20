@@ -1,9 +1,12 @@
 import React from 'react'
 import './Player.css'
+import PlayerInputContainer from "../../components/PlayerInputComponents/PlayerInputContainer";
 
 const Player2 = () => {
   return (
-    <div>Player2</div>
+    <>
+      <PlayerInputContainer playerNum="Player 2" button="Generate Schedule"/>
+    </>
   )
 }
 

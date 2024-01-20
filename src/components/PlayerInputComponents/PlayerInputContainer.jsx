@@ -4,7 +4,7 @@ import PlayerCalendar from "./PlayerCalendar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const PlayerInputContainer = () => {
+const PlayerInputContainer = (props) => {
     //** Variables **//
     const [playerName, setPlayerName] = useState("");
     const navigate = useNavigate();
@@ -68,13 +68,14 @@ const PlayerInputContainer = () => {
             <PlayerNameInput
                 handleInputChange={handleInputChange}
                 value={playerName}
+                playerNum={props.playerNum}
             />
             <PlayerCalendar />
             <button
                 className="self-end text-black uppercase rounded-full border-cyan outline-2 bg-cyan/70 mx-20 mt-5 px-5 py-1 flex hover:bg-cyan/100"
                 onClick={handleAddPlayer}
             >
-                Add Player 2
+                {props.button}
             </button>
         </div>
     );
