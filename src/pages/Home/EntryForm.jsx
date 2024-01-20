@@ -22,23 +22,40 @@ function EntryForm() {
     // INPUT (GAME TITLE AND SQUAD ALIAS)
     const handleChange = (setState) => ({ target }) => {
         setState(target.value);
+
+        const inputBtn = document.querySelector('#game-input').value;
+
+        if (inputBtn) {
+            toggleBtns('disable');
+        } else {
+            toggleBtns('enable');
+        }
     }
 
     // GENRE QUEST: BUTTONS
     const handleClick = (setState) => ({ target }) => {
-        const selectedBtn = target.firstChild.data;
-
+        let selectedBtn = target.firstChild.data;
         const buttons = document.querySelector('#genresBtn');
         const btnChildren = buttons.children;
 
-        for (let i = 0; i < btnChildren.length; i++) {
-            btnChildren[i].classList.remove('selectedBtn');
+        if(!target.classList.contains('selectedBtn')){
+            for (let i = 0; i < btnChildren.length; i++) {
+                btnChildren[i].classList.remove('selectedBtn');
+            }
+            target.classList.add('selectedBtn');
+            toggleInput('disable');
+            setState(selectedBtn);
+        } else {
+            target.classList.remove('selectedBtn');
+            toggleInput('enable');
+            setState(null);
         }
-
-        target.classList.add('selectedBtn');
-
-        setState(selectedBtn);
     }
+
+    useEffect(() => {
+        console.log(`current genre: ${genre}`);
+    }, [genre]);
+
 
     // SUBMIT (LETS GO BUTTON)
     const handleSubmit = ({ target }) => {
@@ -64,9 +81,38 @@ function EntryForm() {
         localStorage.setItem('Teams', JSON.stringify(storedData));
     }
 
+    function toggleBtns(state) {
+        const buttons = document.querySelector('#genresBtn');
+        const btnChildren = buttons.children;
+
+        if (state === 'disable') {
+            for (let i = 0; i < btnChildren.length; i++) {
+                btnChildren[i].classList.remove('selected');
+                btnChildren[i].classList.add('disabled');
+                btnChildren[i].setAttribute('disabled', true);
+            }
+        } else {
+            for (let i = 0; i < btnChildren.length; i++) {
+                btnChildren[i].classList.remove('disabled');
+                btnChildren[i].removeAttribute('disabled');
+            }
+        }
+    }
+
+    function toggleInput(state){
+        const gameInput = document.querySelector('#game-input');
+
+        if(state === 'disable'){
+            gameInput.setAttribute('disabled', true);
+            gameInput.classList.add('disabled');
+        } else {
+            gameInput.removeAttribute('disabled');
+            gameInput.classList.remove('disabled');
+        }
+    }
 
 
-    /* *************************************** RENDER *************************************** */    
+    /* *************************************** RENDER *************************************** */
 
     return (
         <div id="container">
@@ -84,7 +130,7 @@ function EntryForm() {
                     <h2 className="sm:text-3xl md:text-4xl">Game Title</h2>
                     <p className="italic explanation md:pl-2">type the game title if known</p>
                 </div>
-                <input type='text' value={game} onChange={handleChange(setGame)} maxLength="58" />
+                <input type='text' id="game-input" value={game} onChange={handleChange(setGame)} maxLength="58" />
             </div>
 
             <div id="genre-quest">
