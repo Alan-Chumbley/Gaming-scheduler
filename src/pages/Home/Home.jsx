@@ -5,7 +5,7 @@ import Logo from '../../assets/logo.png';
 
 const Home = () => {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="main-container flex flex-col md:flex-row">
       <div className="w-full sm:p-12 md:w-1/2 p-5 lg:p-20 hero-container">
         <img src={Logo} alt='GameSync logo' />
         <h3 className="sm:pl-5 sm:text-sm md:text-sm md:pl-1 lg:text-lg pb-10 uppercase">Game Session Scheduler</h3>

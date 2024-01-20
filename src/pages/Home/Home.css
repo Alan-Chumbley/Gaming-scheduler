@@ -44,11 +44,12 @@ input {
 
 input:focus {
     background-color: var(--pink);
-    outline: 0ch;
+    outline: 0;
     color: var(--darkGrey);
 }
 
-#game-title, #genre-quest {
+#game-title,
+#genre-quest {
     padding-top: 40px;
 }
 
@@ -62,30 +63,23 @@ input:focus {
     justify-content: space-between;
 }
 
-
 .genreBtn {
+    padding: 7px 24px 4px 24px !important;
+    margin: 7px 5px;
+    border-radius: 27px;
+    border: none;
     background-color: var(--red) !important;
     opacity: 0.8;
-    border-radius: 27px;
-    padding: 7px 24px 4px 24px !important;
     font-family: var(--sub);
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 200;
-    color: #ffffff;
-    padding: 10px;
-    margin: 5px;
-    border: none;
     cursor: pointer;
     flex: 1;
-        width: calc(25% - 10px);
-    }
-
-.genreBtn:hover {
-    background-color: var(--pink) !important;
-    color: var(--darkGrey);
+    width: calc(25% - 10px);
 }
 
+.genreBtn:hover,
 .selectedBtn {
     background-color: var(--pink) !important;
     color: var(--darkGrey);
@@ -99,8 +93,6 @@ input:focus {
     text-transform: uppercase !important;
     font-weight: 500 !important;
     margin: 30px 0;
-    align-self: center;
-    justify-self: center;
     position: relative;
 }
 
@@ -121,26 +113,28 @@ input:focus {
     align-items: center;
 }
 
-#squad-alias, #game-title {
+#squad-alias,
+#game-title {
     width: 100%;
 }
 
-
+.main-container {
+    margin-top: 7%;
+}
 
 @media only screen and (max-width: 1536px) {
 
     .genreBtn {
-        flex: 1;
-            width: calc(30% - 10px);
-        }
+        width: calc(30% - 10px);
+    }
 
-        .button-container {
-            margin-left: -2%;
-        }
-        
-        .hero-container {
-            margin-right: -2%;
-        }
+    .button-container {
+        margin-left: -2%;
+    }
+
+    .hero-container {
+        margin-right: -2%;
+    }
 
 }
 
@@ -148,8 +142,8 @@ input:focus {
 @media only screen and (max-width: 1432px) {
 
     .genreBtn {
-        flex: 1;
-            width: calc(50% - 10px);
-        }
+        width: calc(50% - 10px);
+    }
 
 }
+
