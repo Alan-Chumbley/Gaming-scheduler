@@ -54,6 +54,7 @@ const SavedPlayers = () => {
                 onClose={closeModal}
                 playerName={selectedPlayer}
                 onRemovePlayer={handleRemovePlayer}
+                availability={player.availability}
               />
             )}
           </div>
