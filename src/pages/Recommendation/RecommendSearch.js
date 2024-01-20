@@ -14,7 +14,7 @@ axios.post(AuthURL, "")
         //** API calls **//
 
         const gameURL = "https://api.igdb.com/v4/games"; // Your API call URL
-        let body = 'fields *'; // Edit your API call fields
+        let body = 'fields * ; search"FIFA"  '; // Edit your API call fields
 
         let config = {
             method: "post",
@@ -41,3 +41,5 @@ axios.post(AuthURL, "")
     });
 
 }
+
+console.log(RecommendSearch());

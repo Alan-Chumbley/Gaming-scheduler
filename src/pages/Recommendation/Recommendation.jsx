@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import GameCard from '../../components/GameCard/GameCard';
 import './Recommendation.css'; // Import your CSS file
 
-const Recommendation = () => {
+const Recommendation = ( data) => {
+  console.log("Jung Spongebob",data);
   // set state for game info
   const [data, setData] = useState({});
 
@@ -41,6 +42,7 @@ const Recommendation = () => {
               <p>{data.text}</p>
             </div>
           </>
+          
     
       </div>
     </div>

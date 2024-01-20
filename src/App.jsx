@@ -22,7 +22,7 @@ function App() {
       <Route path='/' element={<Home />}/>
       <Route path='/player1' element ={<Player1 />} />
       <Route path='/player1/player2' element ={<Player2 />} />
-      <Route path='/recommendation' element ={<Recommendation />} />
+      <Route path='/recommendation' element ={<Recommendation title={id[7].similar_games} image= {similar[0,3]}/>} />
       <Route path='/savedplayers' element ={<SavedPlayers />} />
       <Route path='/sessions' element ={<Sessions />} />
       <Route path='/player1/player2/summary' element ={<Summary />} />
