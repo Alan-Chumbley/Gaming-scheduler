@@ -5,34 +5,34 @@ import { useState } from "react";
 
 const PlayerInputContainer = () => {
     const [playerName, setPlayerName] = useState();
-    // const [availability, setAvailability] = useState();
     
+    let storedPlayers = JSON.parse(localStorage.getItem("Players")) || [];
     const saveToLS = (data) => {
-        localStorage.setItem(data.name, JSON.stringify(data));
+        storedPlayers.push(data)
+        localStorage.setItem('Players', JSON.stringify(storedPlayers));
     };
 
     const handleInputChange = (event) => {
         setPlayerName(event.target.value);
-        console.log(playerName);
     };
 
     const handleAddPlayer = () => {
-        console.log(playerName);
+        const dayRowArray = ['#MondayRow', '#TuesdayRow', '#WednesdayRow', '#ThursdayRow', '#FridayRow', '#SaturdayRow', '#SundayRow']
+        const playerAvailability = []
 
-        const availability = []
-
-        let mondayRow = document.querySelector('#MondayRow')
-        console.log( mondayRow);
-        // mondayRow.children.forEach(button => {
-        //     if (button.classList.contain('active')) {
-        //         availability.push(button.id)
-        //     }
-        // });
-        console.log(availability);
+        for (let j = 0; j < dayRowArray.length; j++) {
+            const Row = document.querySelector(dayRowArray[j])
+            for (let i = 0; i < Row.children.length; i++) {
+                const button = Row.children[i]
+                if (button.classList.contains('active')) {
+                    playerAvailability.push(button.id)
+                }
+            }    
+        }
         
         const playerData = {
             name: playerName,
-            availability: [],
+            availability: playerAvailability,
         };
 
         saveToLS(playerData);
