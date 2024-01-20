@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
 
@@ -41,6 +42,8 @@ function EntryForm() {
     }
 
     // SUBMIT (LETS GO BUTTON)
+    const navigate = useNavigate();
+
     const handleSubmit = ({ target }) => {
 
         const newTeam = [{
@@ -50,6 +53,8 @@ function EntryForm() {
         }]
 
         saveToLS(newTeam); // save to local storage
+
+        navigate('/player1');
     }
 
     genresBtns = genres.map(genre => <button key={genre} type="button" className="genreBtn" onClick={handleClick(setGenre)}>{genre}</button>);  // create buttons for each genre
