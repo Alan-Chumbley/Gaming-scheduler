@@ -43,11 +43,11 @@ function EntryForm() {
     // SUBMIT (LETS GO BUTTON)
     const handleSubmit = ({ target }) => {
 
-        const newTeam = [{
+        const newTeam = {
             teamName: team,
             game: game,
             genre: genre,
-        }]
+        }
 
         saveToLS(newTeam); // save to local storage
     }
