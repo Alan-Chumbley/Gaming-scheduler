@@ -5,13 +5,13 @@ import { useState } from "react";
 
 const PlayerInputContainer = () => {
     //** Variables **//
-    const [playerName, setPlayerName] = useState();
+    const [playerName, setPlayerName] = useState("");
     let storedPlayers = JSON.parse(localStorage.getItem("Players")) || [];
 
     //** Save to Local Storage Function **/
     const saveToLS = (data) => {
-        storedPlayers.push(data)
-        localStorage.setItem('Players', JSON.stringify(storedPlayers));
+        storedPlayers.push(data);
+        localStorage.setItem("Players", JSON.stringify(storedPlayers));
     };
 
     //** Handler Functions **/
@@ -20,27 +20,43 @@ const PlayerInputContainer = () => {
     };
 
     const handleAddPlayer = () => {
-
-        const dayRowArray = ['#MondayRow', '#TuesdayRow', '#WednesdayRow', '#ThursdayRow', '#FridayRow', '#SaturdayRow', '#SundayRow']
-        const playerAvailability = []
+        const dayRowArray = [
+            "#MondayRow",
+            "#TuesdayRow",
+            "#WednesdayRow",
+            "#ThursdayRow",
+            "#FridayRow",
+            "#SaturdayRow",
+            "#SundayRow",
+        ];
+        const playerAvailability = [];
 
         // Loops through each row and each hour to check for toggled timeslots and stores into playerAvailability Array.
         for (let j = 0; j < dayRowArray.length; j++) {
-            const Row = document.querySelector(dayRowArray[j])
+            const Row = document.querySelector(dayRowArray[j]);
             for (let i = 0; i < Row.children.length; i++) {
-                const button = Row.children[i]
-                if (button.classList.contains('active')) {
-                    playerAvailability.push(button.id)
+                const button = Row.children[i];
+                if (button.classList.contains("active")) {
+                    playerAvailability.push(button.id);
                 }
-            }    
+            }
         }
-        
+
+        if (playerName === "") {
+            console.log("no name");
+            return
+        } else if (playerAvailability.length === 0) {
+            console.log("no avail time");
+            return
+        }
+
         const playerData = {
             name: playerName,
             availability: playerAvailability,
         };
 
         saveToLS(playerData);
+        console.log('saved');
     };
 
     //** Render components **/
