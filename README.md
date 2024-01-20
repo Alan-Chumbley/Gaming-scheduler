@@ -12,6 +12,7 @@ This is a group project that has been created with the goal of finding a solotio
 - Javascript 
 - React 
 
+
 ## Contributions
 - Leanne Goldsmith
 - Aleksandra Rydzkowska
