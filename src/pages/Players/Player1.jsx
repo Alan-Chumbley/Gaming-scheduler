@@ -1,10 +1,14 @@
-import React from 'react'
-import './Player.css'
+import React from "react";
+import "./Player.css";
+import PlayerInputContainer from "../../components/PlayerInputComponents/PlayerInputContainer";
+import ActionBtn from "../../components/Buttons/ActionBtn";
 
 const Player1 = () => {
-  return (
-    <div>Player1</div>
-  )
-}
+    return (
+        <>
+            <PlayerInputContainer />
+        </>
+    );
+};
 
-export default Player1
+export default Player1;

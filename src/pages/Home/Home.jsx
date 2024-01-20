@@ -1,7 +1,7 @@
-import React from 'react';
-import './Home.css';
-import EntryForm from './EntryForm';
-import Logo from '../../assets/logo.png';
+import React from "react";
+import "./Home.css";
+import EntryForm from "./EntryForm";
+import Logo from "../../assets/logo.png";
 
 const Home = () => {
   return (
@@ -16,4 +16,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;
