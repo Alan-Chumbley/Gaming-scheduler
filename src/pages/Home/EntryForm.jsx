@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
 function EntryForm() {
@@ -28,11 +28,15 @@ function EntryForm() {
     const [genre, setGenre] = useState("");
 
     let genresBtns;
+    let errorEl;
 
     /* ************************************** HANDLING EVENTS *************************************** */
 
     // INPUT (GAME TITLE AND SQUAD ALIAS)
     const handleChange = (setState) => ({ target }) => {
+        errorEl = document.querySelector('#error-msg');
+        errorEl.setAttribute('hidden', true);
+
         setState(target.value);
         const inputBtn = document.querySelector('#game-input').value;
         toggleBtns(inputBtn ? 'disable' : 'enable'); // if input has value: disable buttons, otherwise enable
@@ -40,11 +44,14 @@ function EntryForm() {
 
     // GENRE QUEST: BUTTONS
     const handleClick = (setState) => ({ target }) => {
+        errorEl = document.querySelector('#error-msg');
+        errorEl.setAttribute('hidden', true);
+
         let selectedBtn = target.firstChild.data;
         const buttons = document.querySelector('#genresBtn');
         const btnChildren = buttons.children;
 
-        if(!target.classList.contains('selectedBtn')){
+        if (!target.classList.contains('selectedBtn')) {
             for (let i = 0; i < btnChildren.length; i++) {
                 btnChildren[i].classList.remove('selectedBtn');
             }
@@ -61,13 +68,21 @@ function EntryForm() {
     // SUBMIT (LETS GO BUTTON)
     const handleSubmit = ({ target }) => {
 
-        const newTeam = {
-            teamName: team,
-            game: game,
-            genre: genre,
-        }
+        errorEl = document.querySelector('#error-msg');
 
-        saveToLS(newTeam); // save to local storage
+        if (!team && !game && !genre || !game && !genre || !team) {
+            errorEl.removeAttribute('hidden');
+        } else {
+
+            const newTeam = {
+                teamName: team,
+                game: game,
+                genre: genre,
+            }
+
+            saveToLS(newTeam); // save to local storage
+
+        }
     };
 
     genresBtns = genres.map((genre) => (
@@ -107,10 +122,10 @@ function EntryForm() {
         }
     }
 
-    function toggleInput(state){
+    function toggleInput(state) {
         const gameInput = document.querySelector('#game-input');
 
-        if(state === 'disable'){
+        if (state === 'disable') {
             gameInput.setAttribute('disabled', true);
             gameInput.classList.add('disabled');
         } else {
@@ -119,7 +134,10 @@ function EntryForm() {
         }
     }
 
-    const sendToLink = () => genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
+    const sendToLink = () => !team ? null : genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
+
+    const handleErrors = () => !team && !game && !genre ? 'Complete the form to unlock the next level!' : !game && !genre ? 'Type your game title or pick a genre to venture forth!' : !team ? 'Summon your team! Add a team name to proceed.' : null;
+
 
     /* *************************************** RENDER *************************************** */
 
@@ -160,6 +178,7 @@ function EntryForm() {
                 <ul id="genresBtn">{genresBtns}</ul>
             </div>
             <Link to={sendToLink()} ><ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" /></Link>
+            <p id='error-msg' className='italic' hidden>{handleErrors()}</p>
         </div>
     );
 }
