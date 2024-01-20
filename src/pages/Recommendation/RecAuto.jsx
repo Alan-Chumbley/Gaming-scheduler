@@ -1,23 +1,14 @@
-// import axios from "axios";
-// import React from "react";
+import React from 'react'
+import Recommendation from './Recommendation'
+import RecommendationItem from './RecommendationItem'
 
-// const baseURL = "https://api.igdb.com/v4/artworks;
 
-// export default function App() {
-//   const [post, setPost] = React.useState(null);
+export default function RecAuto(recs) {
+  // loop through recommendations to 
+    recs.map(recs =>{
+      return <RecommendationItem key={recs.id} rec={recs}
 
-//   React.useEffect(() => {
-//     axios.get(baseURL).then((response) => {
-//       setPost(response.data);
-//     });
-//   }, []);
-
-//   if (!post) return null;
-
-//   return (
-//     <div>
-//       <h1>{post.id}</h1>
-//       <p>{post.url}</p>
-//     </div>
-//   );
-// }
+    })
+    <div>RecAuto</div>
+  )
+}

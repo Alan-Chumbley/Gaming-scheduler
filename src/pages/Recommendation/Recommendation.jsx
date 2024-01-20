@@ -1,10 +1,11 @@
-import React from 'react'
+
 import './Recommendation.css'
 import RecommendationItem from './RecommendationItem';
+import React, {useState} from 'react';
 import GameCard from '../../components/GameCard/GameCard';
 
 const Recommendation = () => {
-  
+  const [similar, setsimilar] = useState(id : )
     return (
       <div className='Recommendations'>
   
