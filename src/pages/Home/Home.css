@@ -85,6 +85,14 @@ input:focus {
     color: var(--darkGrey);
 }
 
+.disabled, .disabledBtn:hover {
+    background-color: var(--red) !important;
+    color: white;
+    opacity: 0.4;
+}
+
+
+
 #bigBtn {
     opacity: 0.7;
     padding: 15px 100px 12px 100px !important;
