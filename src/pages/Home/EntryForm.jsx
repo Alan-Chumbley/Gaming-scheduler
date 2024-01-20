@@ -1,5 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import {Link} from "react-router-dom";
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
 
@@ -51,11 +52,6 @@ function EntryForm() {
             setState(null);
         }
     }
-
-    useEffect(() => {
-        console.log(`current genre: ${genre}`);
-    }, [genre]);
-
 
     // SUBMIT (LETS GO BUTTON)
     const handleSubmit = ({ target }) => {
@@ -111,6 +107,16 @@ function EntryForm() {
         }
     }
 
+    const sendToLink = () => {
+        let linkTo;
+
+        if(genre){
+            linkTo = './../Recommendation/Recommendation.jsx'
+        } else if(game){
+            linkTo = './../Players/Player1.jsx'
+        }
+        return linkTo;
+    }
 
     /* *************************************** RENDER *************************************** */
 
@@ -141,7 +147,7 @@ function EntryForm() {
                 <ul id='genresBtn'>{genresBtns}</ul>
             </div>
 
-            <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
+            <Link to={sendToLink()} ><ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" /></Link>
 
         </div>
     );
