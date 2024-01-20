@@ -102,6 +102,7 @@ function EntryForm() {
     function saveToLS(object) {
         storedData.push(object);
         localStorage.setItem("Teams", JSON.stringify(storedData));
+        localStorage.setItem("CurrentTeam", JSON.stringify(object)); // Kane: I added this to keep track of the current team
     }
 
     function toggleBtns(state) {
