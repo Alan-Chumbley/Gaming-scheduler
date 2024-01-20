@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import './Sessions.css'
+import OutlineBtn from '../../components/Buttons/OutlineBtn';
 
 const Sessions = () => {
+  const teamData = localStorage.getItem('Teams');
+  const squadNames = JSON.parse(teamData)[0].map(team => team.teamName);
+  console.log(squadNames)
+
   return (
     <div className='sessions'>
 
@@ -13,9 +18,12 @@ const Sessions = () => {
       <p className='font-smallText text-center mt-4'>Click on the chosen team to load the schedule</p>
 
       {/* squad buttons */}
-      <div>
-
+      <div className='w-100 flex justify-center mt-20'>
+        {squadNames.map((name, index) => (
+          <OutlineBtn key={index} name={name} onClick={() => {}} />
+        ))}
       </div>
+      
     </div>
   )
 }
