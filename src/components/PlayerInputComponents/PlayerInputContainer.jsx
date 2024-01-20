@@ -2,10 +2,12 @@ import React from "react";
 import PlayerNameInput from "./PlayerNameInput";
 import PlayerCalendar from "./PlayerCalendar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PlayerInputContainer = () => {
     //** Variables **//
     const [playerName, setPlayerName] = useState("");
+    const navigate = useNavigate();
     let storedPlayers = JSON.parse(localStorage.getItem("Players")) || [];
 
     //** Save to Local Storage Function **/
@@ -57,6 +59,7 @@ const PlayerInputContainer = () => {
 
         saveToLS(playerData);
         console.log('saved');
+        navigate("/players/player2")
     };
 
     //** Render components **/
