@@ -119,7 +119,7 @@ function EntryForm() {
         }
     }
 
-    const sendToLink = () => genre ? './../Recommendation/Recommendation.jsx' : game ? './../Players/Player1.jsx' : null;
+    const sendToLink = () => genre ? '/recommendation' : game ? '/player1' : null;
 
     /* *************************************** RENDER *************************************** */
 
