@@ -4,8 +4,8 @@ import OutlineBtn from '../../components/Buttons/OutlineBtn';
 
 const Sessions = () => {
   const teamData = localStorage.getItem('Teams');
-  const squadName = JSON.parse(teamData)[0][0].teamName;
-  console.log(squadName)
+  const squadNames = JSON.parse(teamData)[0].map(team => team.teamName);
+  console.log(squadNames)
 
   return (
     <div className='sessions'>
@@ -19,7 +19,9 @@ const Sessions = () => {
 
       {/* squad buttons */}
       <div className='w-100 flex justify-center mt-20'>
-        <OutlineBtn name={squadName} />
+        {squadNames.map((name, index) => (
+          <OutlineBtn key={index} name={name} onClick={() => {}} />
+        ))}
       </div>
       
     </div>
