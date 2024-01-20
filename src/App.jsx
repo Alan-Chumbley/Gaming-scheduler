@@ -20,12 +20,12 @@ function App() {
     <div className='container mx-auto'> 
     <Routes>
       <Route path='/' element={<Home />}/>
-      <Route path='/players/player1' element ={<Player1 />} />
-      <Route path='/players/player2' element ={<Player2 />} />
+      <Route path='/player1' element ={<Player1 />} />
+      <Route path='/player1/player2' element ={<Player2 />} />
       <Route path='/recommendation' element ={<Recommendation />} />
       <Route path='/savedplayers' element ={<SavedPlayers />} />
       <Route path='/sessions' element ={<Sessions />} />
-      <Route path='/summary' element ={<Summary />} />
+      <Route path='/player1/player2/summary' element ={<Summary />} />
       <Route path='/wishlist' element ={<Wishlist />} />
     </Routes>
     </div>

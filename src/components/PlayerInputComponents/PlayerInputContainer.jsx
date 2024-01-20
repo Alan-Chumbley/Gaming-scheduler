@@ -59,7 +59,7 @@ const PlayerInputContainer = (props) => {
 
         saveToLS(playerData);
         console.log('saved');
-        navigate("/players/player2")
+        navigate(props.navigate)
     };
 
     //** Render components **/
