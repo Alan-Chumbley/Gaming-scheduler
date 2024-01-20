@@ -1,7 +1,8 @@
 import React from 'react'
 import './Recommendation.css'
 import RecommendationItem from './RecommendationItem';
-{/*import leanne card.css */}
+import GameCard from '../../components/GameCard/GameCard';
+
 const Recommendation = () => {
   
     return (
@@ -20,8 +21,16 @@ const Recommendation = () => {
         </div>
         {/* Recommendations list */}
         <div className='recommendationList'>
-          {/*retrieve name and image */}
-          <RecommendationItem name="recommendation 1" image={}
+          
+          {/*GameCard add  */}
+          
+        <GameCard />
+
+          {/*loop through andretrieve name and image  using map. TO DO: from Rec auto gather api info. need API */}
+          {/* {RecAuto.map((recommend) => {
+            return 
+            <RecommendationItem name={recommend.name} image={PromiseRejectionEvent.image} />
+            })} */}
 
         </div>
 
