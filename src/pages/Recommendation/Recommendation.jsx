@@ -3,7 +3,7 @@ import './Recommendation.css'
 import RecommendationItem from './RecommendationItem';
 import React, {useState} from 'react';
 import GameCard from '../../components/GameCard/GameCard';
-
+import '../Home.css'
 const Recommendation = () => {
   const [similar, setsimilar] = useState(id : )
     return (
@@ -25,9 +25,9 @@ const Recommendation = () => {
           
           {/*GameCard add  */}
           
-        <GameCard />
+        <GameCard image={Data.image}/>
 
-          {/*loop through andretrieve name and image  using map. TO DO: from Rec auto gather api info. need API */}
+          {/*loop through andretrieve name and image  using map. TO DO: from Rec auto gather api info. need API. unsure if it goes in here or rec Auto*/}
           {/* {RecAuto.map((recommend) => {
             return 
             <RecommendationItem name={recommend.name} image={PromiseRejectionEvent.image} />
