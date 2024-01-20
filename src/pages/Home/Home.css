@@ -85,11 +85,18 @@ input:focus {
     color: var(--darkGrey);
 }
 
+.disabled, .disabled:hover {
+    background-color: var(--red) !important;
+    color: white;
+    opacity: 0.4;
+}
+
 #bigBtn {
     opacity: 0.7;
-    padding: 15px 100px 12px 100px !important;
+    padding: 17px 100px 12px 100px !important;
     color: var(--darkGrey) !important;
     font-family: var(--sub) !important;
+    font-size: 22px;
     text-transform: uppercase !important;
     font-weight: 500 !important;
     margin: 30px 0;
@@ -119,7 +126,13 @@ input:focus {
 }
 
 .main-container {
-    margin-top: 7%;
+    margin-top: 5%;
+}
+
+#error-msg {
+    font-family: var(--smallText);
+    color: var(--red);
+    margin-top: -20px;
 }
 
 @media only screen and (max-width: 1536px) {
