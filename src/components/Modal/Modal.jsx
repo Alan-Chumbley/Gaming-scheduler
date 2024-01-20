@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, playerName }) => {
     const modalContainerClasses = `fixed inset-0 overflow-hidden transition-opacity ${
       isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
     }`;
@@ -18,10 +18,12 @@ const Modal = ({ isOpen, onClose, children }) => {
           </button>
   
           {/* Modal Body Content */}
-          <div>{children}</div>
+          <div>
+            <p>{playerName}</p>
+          </div>
         </div>
       </div>
     );
-};
+  };
 
 export default Modal
