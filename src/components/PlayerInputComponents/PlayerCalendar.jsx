@@ -29,7 +29,7 @@ const PlayerCalendar = () => {
                     day's name to toggle all hours at once
                 </p>
             </div>
-            <HourRow />
+            <HourRow classList="flex mx-20 ml-60 mt-4 mb-2 justify-between"/>
             {dayRows}
         </>
     );

@@ -18,7 +18,7 @@ const DayRow = (props) => {
     const handleToggle = (e) => {
         console.log(e.target.id);
         let selectedButton = document.querySelector(`#${e.target.id}`);
-        if (selectedButton.classList.contains('inactive')) {
+        if (selectedButton.classList.contains("inactive")) {
             selectedButton.setAttribute(
                 "class",
                 "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
@@ -29,7 +29,7 @@ const DayRow = (props) => {
                 "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
             );
         }
-        
+
         // setActive(!isActive);
     };
 
@@ -43,7 +43,7 @@ const DayRow = (props) => {
                     {props.day}
                 </h2>
             </div>
-            <div className="flex w-full justify-between" id={props.day+'Row'}>
+            <div className="flex w-full justify-between" id={props.day + "Row"}>
                 {hours.map((hour) => (
                     <TimeSlotButton
                         className={
