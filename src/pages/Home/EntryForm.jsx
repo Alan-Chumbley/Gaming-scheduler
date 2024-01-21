@@ -7,18 +7,18 @@ function EntryForm() {
     /* ************************************** VARIABLES ********************************************** */
 
     const genres = [
-        "Action",
-        "Horror",
-        "Open World",
-        "Fantasy",
-        "Survival",
-        "Warfare",
-        "Thriller",
-        "Stealth",
-        "Drama",
-        "Mystery",
-        "Historical",
-        "Sci-Fi",
+        "action",
+        "indie",
+        "adventure",
+        "strategy",
+        "shooter",
+        "casual",
+        "simulation",
+        "puzzle",
+        "platform",
+        "sports",
+        "racing",
+        "fighting",
     ];
 
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];

@@ -110,7 +110,7 @@ input:focus {
 #bigBtn:hover:after {
     display: inline-block;
     content: url(./../../assets/play.svg);
-    width: 12px !important;
+    width: 16px !important;
     margin-left: 10px;
 }
 
@@ -123,10 +123,6 @@ input:focus {
 #squad-alias,
 #game-title {
     width: 100%;
-}
-
-.main-container {
-    margin-top: 5%;
 }
 
 #error-msg {
