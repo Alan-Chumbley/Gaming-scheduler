@@ -13,7 +13,7 @@ useEffect(() => {
     // console.log("Jung Spongebob",data.results);
     gameLibrary.push(...data.results)
     setgameLibrary(...data.results)
-    console.log("game librayr here" ,gameLibrary)
+    console.log("game library" ,gameLibrary)
   })
    
 }, [])
@@ -23,29 +23,16 @@ useEffect(() => {
   return (
     // same styling as other pages
     <div className='Recommendations'>
-     
-      <div>
-       {/**data coming from RecommendSearch but is still needing to be linked */}
-          <>
+    {/* map through gameLibrary data and produce gamecard */}
+          
           {gameLibrary.map((game) => {
-            return (
-<h1>{game.name} </h1>
-              
-            )
-            
-})}
-            {/* <div className='card'> */}
-              {/* add summary and game title */}
-              {/* <h2 className='recTitle' >{RecommendSearch.name}</h2> */}
-                {/*attach game image to gamecard */}
-            {/* <GameCard image={RecommendSearch.background_image} />
-              <p className='overview'>{data.text}</p>
-            </div> */}
-          </>
+            {/* refer back to gameCard and pass through props? */}
+<GameCard key ={game.slug} url={game.background_image} name={game.name} />
 
-    
+}))
+                
       </div>
-    </div>
+
   );
 };
 
