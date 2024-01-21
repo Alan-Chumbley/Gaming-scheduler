@@ -34,15 +34,16 @@ const Recommendation = ( data) => {
       <div>
        {/**data coming from RecommendSearch but is still needing to be linked */}
           <>
-            {/*attach game image to gamecard */}
-            <GameCard url={data.image} />
+          
             <div>
               {/* add summary and game title */}
               <h2>{data.title}</h2>
+                {/*attach game image to gamecard */}
+            <GameCard url={data.image} />
               <p>{data.text}</p>
             </div>
           </>
-          
+
     
       </div>
     </div>
