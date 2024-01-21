@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Summary.css'
 import SummaryCal from './SummaryCal'
 
 const Summary = () => {
+  useEffect(()=>{
+    const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"))
+    const sharedDates = currentTeam.player1.availability.filter(date => currentTeam.player2.availability.includes(date));
+    console.log(sharedDates);
+
+    for (let i = 0; i < sharedDates.length; i++) {
+      const selectTimeSlot = document.querySelector("#"+sharedDates[i])
+      selectTimeSlot.setAttribute(
+        "class",
+        "bg-cyan w-5 h-5 rounded-md active cursor-default"
+        );
+    }
+  }, [])
 
   return (
     <div className="main-container flex flex-col md:flex-row">

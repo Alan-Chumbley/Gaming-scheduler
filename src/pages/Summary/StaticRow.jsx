@@ -9,20 +9,9 @@ const StaticRow = (props) => {
         21, 22, 23, 24,
     ];
 
+    
     const handleToggle = (e) => {
-        console.log(e.target.id);
-        let selectedButton = document.querySelector(`#${e.target.id}`);
-        if (selectedButton.classList.contains("inactive")) {
-            selectedButton.setAttribute(
-                "class",
-                "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
-            );
-        } else {
-            selectedButton.setAttribute(
-                "class",
-                "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
-            );
-        }
+        return
     };
 
     return (
@@ -33,7 +22,7 @@ const StaticRow = (props) => {
             <div className="flex w-full justify-between" id={props.day + "Row"}>
                 {hours.map((hour) => (
                     <TimeSlotButton
-                        className={"bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"}
+                        className={"bg-red w-5 h-5 rounded-md cursor-default inactive"}
                         id={props.day + hour}
                         key={props.day + hour}
                         handleToggle={handleToggle}
