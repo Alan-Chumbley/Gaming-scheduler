@@ -26,6 +26,12 @@ const Recommendation = () => {
   const genreParsed = JSON.parse(genreTitle).genre;
   console.log(genreParsed);
 
+  console.log(genreData.results.length)
+  const genreLength = genreData.results.length;
+  console.log(genreLength)
+
+  
+
   // while the data is load the below will render
   if (loading) {
     return <p className='font-sub text-red text-center'>Loading...</p>;
