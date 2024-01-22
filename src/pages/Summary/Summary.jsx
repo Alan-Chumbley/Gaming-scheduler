@@ -37,7 +37,7 @@ const Summary = () => {
 
     //** Renders components */
     return (
-        <div className="main-container flex flex-col md:flex-row my-20">
+        <div className="main-container flex flex-col md:flex-row md:mt-5">
             <div className="md:pl-10 image-container my-10">
                 <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} />
             </div>
