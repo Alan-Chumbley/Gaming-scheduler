@@ -1,5 +1,5 @@
 import React from 'react'
-
+// import { RecommendSearch } from '../../pages/Recommendation/RecommendSearch'
 const GameCard = (props) => {
   return (
     <div className='rounded-xl relative'>
