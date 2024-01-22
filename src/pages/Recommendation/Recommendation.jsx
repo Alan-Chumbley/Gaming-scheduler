@@ -26,11 +26,14 @@ const Recommendation = () => {
   const genreParsed = JSON.parse(genreTitle).genre;
   console.log(genreParsed);
 
-  console.log(genreData.results.length)
-  const genreLength = genreData.results.length;
-  console.log(genreLength)
+   // Check if genreData and genreData.results exist before accessing them
+   if (!genreData || !genreData.results) {
+    return <p className='font-sub text-red text-center'>No data available</p>;
+  }
 
-  
+  // genres listed
+  const adventureGames = genreData.results[2]?.games || [];
+  console.log(adventureGames);
 
   // while the data is load the below will render
   if (loading) {
@@ -43,12 +46,18 @@ const Recommendation = () => {
       {/* title */}
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
 
-      {/* genre data */}
-      <p>Data: {JSON.stringify(genreData.results)}</p>
-
-
       {/* genre cards */}
-
+      <div className='game-cards-container'>
+        {adventureGames.map((game) => (
+          <GameCard
+            key={game.id}
+            url={game.url}
+            name={game.name}
+            description={game.description}
+            website={game.website}
+          />
+        ))}
+      </div>
 
       
       
