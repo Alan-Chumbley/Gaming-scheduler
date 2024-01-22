@@ -7,12 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Summary = () => {
     const navigate = useNavigate();
+    let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
     const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"));
     const sharedDates = currentTeam.player1.availability.filter((date) =>
         currentTeam.player2.availability.includes(date)
     );
-    console.log(sharedDates);
 
+    //** Toggles time slots that overlap with player 1 and 2 */
     useEffect(() => {
         for (let i = 0; i < sharedDates.length; i++) {
             const selectTimeSlot = document.querySelector("#" + sharedDates[i]);
@@ -23,6 +24,14 @@ const Summary = () => {
         }
     }, []);
 
+    //** Alek's local storage code to save a session under "Teams" to local storage */
+    function saveToLS(e) {
+      storedData.push(currentTeam);
+      localStorage.setItem("Teams", JSON.stringify(storedData));
+      e.target.setAttribute('disabled', true)
+  }
+
+    //** Renders components */
     return (
         <div className="main-container flex flex-col md:flex-row">
             <div className="w-full sm:p-12 md:w-1/3 p-5 lg:p-20 image-container">
@@ -52,7 +61,7 @@ const Summary = () => {
                 </p>
                 <SummaryCal />
                 <div className="w-full flex justify-end mt-10">
-                    <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 mr-4 uppercase text-cyan text-xl hover:text-black hover:bg-cyan">
+                    <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 mr-4 uppercase text-cyan text-xl hover:text-black hover:bg-cyan disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-cyan" onClick={saveToLS}>
                         {<FaHeart className="mr-3 mt-1" />}Save Session
                     </button>
                     <Link to="/">
