@@ -102,7 +102,7 @@ input:focus {
     width: 100%;
 }
 
-#error-msg {
+#error-msg-hp {
     font-family: var(--smallText);
     color: var(--red);
     margin-top: -20px;

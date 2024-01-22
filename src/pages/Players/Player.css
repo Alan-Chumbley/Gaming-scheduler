@@ -25,3 +25,10 @@ input:focus {
     outline: 0;
     color: var(--darkGrey);
 }
+
+
+#error-msg-pl {
+    font-family: var(--smallText);
+    color: var(--red);
+    margin-top: -20px;
+}
