@@ -3,10 +3,10 @@ import "./Summary.css";
 import SummaryCal from "./SummaryCal";
 import { FaHeart } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import tlou from "../../assets/tlou.jpg"
 
 const Summary = () => {
-    const navigate = useNavigate();
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
     const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"));
     const sharedDates = currentTeam.player1.availability.filter((date) =>
@@ -24,7 +24,7 @@ const Summary = () => {
         }
     }, []);
 
-    //** Alek's local storage code to save a session under "Teams" to local storage */
+    //** Aleks's local storage code to save a session under "Teams" to local storage */
     function saveToLS(e) {
       storedData.push(currentTeam);
       localStorage.setItem("Teams", JSON.stringify(storedData));
@@ -35,18 +35,7 @@ const Summary = () => {
     return (
         <div className="main-container flex flex-col md:flex-row">
             <div className="w-full sm:p-12 md:w-1/3 p-5 lg:p-20 image-container">
-                {/* <img src={Logo} alt='GameSync logo' /> */}
-                <h3 className="sm:pl-5 sm:text-sm md:text-sm md:pl-1 lg:text-lg pb-10 uppercase">
-                    Game Session Scheduler
-                </h3>
-                <p className="text-center md:text-left">
-                    Effortless gaming with friends. Simply choose your preferred
-                    games, input your weekly availability, and let us work our
-                    magic to craft a personalized schedule, not only
-                    streamlining your gaming sessions with friends but also
-                    providing estimated play durations, ensuring you make the
-                    most of your time conquering virtual realms together.
-                </p>
+                <img className="w-full bg-no-repeat bg-cover bg-center" src={tlou} alt={currentTeam.game + ", the selected game's cover"} />
             </div>
             <div className="w-full sm:p-12 md:w-2/3 p-5 lg:p-20 flex-col">
                 <h1 className="font-main text-6xl text-cyan pb-3">
@@ -56,8 +45,7 @@ const Summary = () => {
                     Your optimal gaming schedule for {currentTeam.game} is set!
                 </h2>
                 <p className="pb-6">
-                    Stick to the schedule and you'll conquer {currentTeam.game}{" "}
-                    in X TIME!
+                    Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!
                 </p>
                 <SummaryCal />
                 <div className="w-full flex justify-end mt-10">
