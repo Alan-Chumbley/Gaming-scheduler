@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import GameCard from '../../components/GameCard/GameCard';
 import './Recommendation.css'; // Import your CSS file
 
-const storedTeams = JSON.parse(localStorage.getItem('Teams'));
-const lastGenre = storedTeams[storedTeams.length-1]['genre'];
 const Recommendation = () => {
+  const storedTeams = JSON.parse(localStorage.getItem('Teams'));
+  const lastGenre = storedTeams[storedTeams.length-1]['genre'];
   // set state for game info
   const [data, setData] = useState({});
 

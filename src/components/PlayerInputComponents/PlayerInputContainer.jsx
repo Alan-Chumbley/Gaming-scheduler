@@ -6,15 +6,22 @@ import { useNavigate } from "react-router-dom";
 
 const PlayerInputContainer = (props) => {
     //** Variables **//
+    // localStorage.clear()
     const [playerName, setPlayerName] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const navigate = useNavigate();
     let storedPlayers = JSON.parse(localStorage.getItem("Players")) || [];
+    let currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"))
 
     //** Save to Local Storage Function **/
     const saveToLS = (data) => {
         storedPlayers.push(data);
         localStorage.setItem("Players", JSON.stringify(storedPlayers));
+
+        const playerNum = "player"+props.playerNum
+        currentTeam[playerNum] = data
+        console.log(currentTeam);
+        localStorage.setItem("CurrentTeam", JSON.stringify(currentTeam))
     };
 
     //** Handler Functions **/
@@ -78,7 +85,7 @@ const PlayerInputContainer = (props) => {
             <PlayerNameInput id='player-name-input'
                 handleInputChange={handleInputChange}
                 value={playerName}
-                playerNum={props.playerNum}
+                playerNum={'Player ' + props.playerNum}
             />
             <PlayerCalendar />
             <div className='flex flex-col items-center self-end mt-0 lg:mt-5'>

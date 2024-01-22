@@ -5,7 +5,7 @@ import PlayerInputContainer from "../../components/PlayerInputComponents/PlayerI
 const Player2 = () => {
   return (
     <>
-      <PlayerInputContainer playerNum="Player 2" button="Generate Schedule" navigate="/player1/player2/summary"/>
+      <PlayerInputContainer playerNum="2" button="Generate Schedule" navigate="/player1/player2/summary"/>
     </>
   )
 }
