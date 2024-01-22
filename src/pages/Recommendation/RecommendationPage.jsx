@@ -1,7 +1,7 @@
 import React from 'react'
 import GameCard from '../../components/GameCard/GameCard';
 // import { RecommendSearch } from './RecommendSearch'; 
-export default function RecommendationPage() {
+export default function RecommendationPage(props) {
   return (
     <>
     <div>
@@ -10,6 +10,21 @@ export default function RecommendationPage() {
       </h1>
       <div className='overlay'></div>
     </div>
+
+    <div className='card'> 
+    <div className='img-container'>
+      <GameCard />
+      {/*unsure what goes where*/}
+    <img alt={props.name} src={props.image} />
+      </div>
+    <strong> {props.slug} </strong>
+    <p> {props.description_raw}</p>
+        
+
+    </div> 
+
+
+
     </>
   )
 }
