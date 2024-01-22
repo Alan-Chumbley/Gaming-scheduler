@@ -12,16 +12,20 @@
 .game-cover {
     display: flex;
     position: relative;
-    height: 100% !important;
-    width: 100% !important;
+    height: 450px !important;
+    /* width: 100% !important; */
     object-fit: cover;
     border-radius: 20px;
     object-position: 50% 50%;
 } 
+
+#session-msg{
+    margin-left: -20px;
+}
 
 @media only screen and (max-width: 975px) {
 
     .hour-list {
         opacity:0;
     }
-    }
+    }   

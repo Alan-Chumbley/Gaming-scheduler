@@ -6,6 +6,7 @@ import { IoMdRefresh } from "react-icons/io";
 import { Link } from "react-router-dom";
 import tlou from "../../assets/tlou.jpg"
 import SaveBtn from "../../components/Buttons/SaveBtn";
+import StartAgainBtn from "../../components/Buttons/StartAgainBtn";
 
 const Summary = () => {
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
@@ -52,17 +53,15 @@ const Summary = () => {
                 </p>
                 <SummaryCal />
                 <div className="w-full flex justify-end mt-10">
-                    <SaveBtn onClick={saveToLS} />
-                    {/* <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 mr-4 uppercase text-cyan text-xl hover:text-black hover:bg-cyan disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-cyan" onClick={saveToLS}>
-                        {<FaHeart className="mr-3 mt-1" />}Save Session
-                    </button> */}
+                    <div id="button-msg">
+                    <SaveBtn name="Save Session" onClick={saveToLS} />
+                    <p className="text-smallText text-center text-cyan mt-2 hidden" id="session-msg">Session Saved!</p>
+                    </div>
                     <Link to="/">
-                        <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 uppercase text-cyan text-xl hover:text-black hover:bg-cyan">
-                            {<IoMdRefresh className="mr-3 mt-1" />}Start Again
-                        </button>
+                        <StartAgainBtn name="Start Again" />
                     </Link>
                 </div>
-                <p className="text-smallText text-end text-cyan mt-2 mr-[17rem] hidden" id="session-msg">Session Saved!</p>
+                
             </div>
         </div>
     );
