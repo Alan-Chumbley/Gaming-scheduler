@@ -35,7 +35,7 @@ const DayRow = (props) => {
 
     return (
         <div className="flex mt-2">
-            <div className="w-40">
+            <div className="w-40 md:min-w-40">
                 <h2
                     className="font-sub uppercase hover:text-pinkHover hover:cursor-pointer"
                     onClick={handleRowToggle}
