@@ -1,0 +1,27 @@
+@import '../../index.css';
+
+input {
+    width: 100%;
+    background-color: var(--red);
+    opacity: 0.8;
+    border-radius: 27px;
+    height: 45px;
+    padding: 5px 20px 0 20px !important;
+    text-transform: uppercase;
+    font-family: var(--sub) !important;
+    font-size: small !important;
+    font-weight: 20 !important;
+    letter-spacing: 1pt;
+    align-content: center;
+}
+
+input::placeholder {
+    color: white !important;
+    opacity: 0.5 !important;
+}
+
+input:focus {
+    background-color: var(--pink);
+    outline: 0;
+    color: var(--darkGrey);
+}
