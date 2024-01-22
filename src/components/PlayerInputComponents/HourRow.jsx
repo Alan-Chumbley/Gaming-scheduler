@@ -7,7 +7,9 @@ const HourRow = (props) => {
     ];
     
     const hourHeaders = hours.map((hour) => (
-        <div className="w-5 h-5 text-center" key={hour}>
+
+        <div className="hidden md:block w-5 h-5 text-center" key={hour}>
+
             <h2 className="font-sub">{hour}</h2>
         </div>
     ));

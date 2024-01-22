@@ -34,7 +34,7 @@ function EntryForm() {
 
     // INPUT (GAME TITLE AND SQUAD ALIAS)
     const handleChange = (setState) => ({ target }) => {
-        errorEl = document.querySelector('#error-msg');
+        errorEl = document.querySelector('#error-msg-hp');
         errorEl.setAttribute('hidden', true);
 
         setState(target.value);
@@ -44,7 +44,7 @@ function EntryForm() {
 
     // GENRE QUEST: BUTTONS
     const handleClick = (setState) => ({ target }) => {
-        errorEl = document.querySelector('#error-msg');
+        errorEl = document.querySelector('#error-msg-hp');
         errorEl.setAttribute('hidden', true);
 
         let selectedBtn = target.firstChild.data;
@@ -68,7 +68,7 @@ function EntryForm() {
     // SUBMIT (LETS GO BUTTON)
     const handleSubmit = ({ target }) => {
 
-        errorEl = document.querySelector('#error-msg');
+        errorEl = document.querySelector('#error-msg-hp');
 
         if (!team && !game && !genre || !game && !genre || !team) {
             errorEl.removeAttribute('hidden');
@@ -152,7 +152,7 @@ function EntryForm() {
                     </p>
                 </div>
                 <input
-                    type="text"
+                    type="text" placeholder="e.g. Avengers"
                     value={team}
                     onChange={handleChange(setTeam)}
                     maxLength="58"
@@ -166,7 +166,7 @@ function EntryForm() {
                         type the game title if known
                     </p>
                 </div>
-                <input type='text' id="game-input" value={game} onChange={handleChange(setGame)} maxLength="58" />
+                <input type='text'  placeholder="E.g. Elden Ring" id="game-input" value={game} onChange={handleChange(setGame)} maxLength="58" />
             </div>
 
             <div id="genre-quest">
@@ -179,7 +179,7 @@ function EntryForm() {
                 <ul id="genresBtn">{genresBtns}</ul>
             </div>
             <Link to={sendToLink()} ><ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" /></Link>
-            <p id='error-msg' className='italic' hidden>{handleErrors()}</p>
+            <p id='error-msg-hp' className='italic' hidden>{handleErrors()}</p>
         </div>
     );
 }

@@ -2,18 +2,26 @@ import React from "react";
 
 const PlayerNameInput = (props) => {
     return (
-        <div className="flex mx-20 pl-40 my-10">
-            <h1 className="font-main text-5xl text-nowrap uppercase">
-                {props.playerNum}
-            </h1>
-            <input
-                type="text"
-                className="ml-14 h-100"
-                value={props.playerName}
-                onChange={props.handleInputChange}
-                placeholder="E.G. Tony Stark"
-            />
+        <div className='flex flex-col items-center px-0 md:flex-row md:pt-20 md:pb-10'>
+
+            <div className="pb-10 pt-20 md:pt-0 md:pb-0">
+                <h1 className="font-main text-5xl text-nowrap uppercase whitespace-nowrap">
+                    {props.playerNum}
+                </h1>
+            </div>
+
+            <div className="w-8/12 md:w-full md:ml-14 md:mt-1">
+                <input
+                    type="text"
+                    className="w-full h-100 right-0"
+                    value={props.playerName}
+                    onChange={props.handleInputChange}
+                    placeholder="E.G. Tony Stark"
+                />
+            </div>
+
         </div>
+
     );
 };
 

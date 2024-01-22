@@ -21,12 +21,12 @@ const DayRow = (props) => {
         if (selectedButton.classList.contains("inactive")) {
             selectedButton.setAttribute(
                 "class",
-                "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
+                "bg-cyan w-5 h-5 rounded-md active checkbox"
             );
         } else {
             selectedButton.setAttribute(
                 "class",
-                "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
+                "bg-red w-5 h-5 rounded-md inactive checkbox"
             );
         }
 
@@ -34,8 +34,8 @@ const DayRow = (props) => {
     };
 
     return (
-        <div className="flex mx-20 mt-2">
-            <div className="min-w-40">
+        <div className="flex mt-2">
+            <div className="w-40 md:min-w-40">
                 <h2
                     className="font-sub uppercase hover:text-pinkHover hover:cursor-pointer"
                     onClick={handleRowToggle}
@@ -43,16 +43,18 @@ const DayRow = (props) => {
                     {props.day}
                 </h2>
             </div>
-            <div className="flex w-full justify-between" id={props.day + "Row"}>
+            <div className="flex w-full justify-between row-day" id={props.day+'Row'}>
+
                 {hours.map((hour) => (
                     <TimeSlotButton
                         className={
                             isActive
-                                ? "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
-                                : "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
+                                ? "bg-cyan rounded-md active checkbox"
+                                : "bg-red rounded-md inactive checkbox"
                         }
                         id={props.day + hour}
                         key={props.day + hour}
+                        hour={hour}
                         handleToggle={handleToggle}
                     />
                 ))}
