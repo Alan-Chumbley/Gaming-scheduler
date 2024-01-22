@@ -1,5 +1,5 @@
 import { useState } from 'react'
-// import Navbar from "./Navbar.jsx";
+import Navbar from "./Navbar.jsx";
 import './App.css'
 import Home from './pages/Home/Home.jsx';
 import Player1 from './pages/Players/Player1.jsx'
@@ -16,7 +16,7 @@ function App() {
   return (
   
     <>
-    {/* <Navbar /> */}
+    <Navbar />
     <div className='container mx-auto'> 
     <Routes>
       <Route path='/' element={<Home />}/>
