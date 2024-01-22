@@ -26,6 +26,11 @@ input:focus {
     color: var(--darkGrey);
 }
 
+input:focus::placeholder {
+    color: var(--darkGrey) !important;
+    opacity: 0.5 !important;
+}
+
 
 #error-msg-pl {
     font-family: var(--smallText);

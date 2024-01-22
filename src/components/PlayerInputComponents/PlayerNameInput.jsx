@@ -2,7 +2,7 @@ import React from "react";
 
 const PlayerNameInput = (props) => {
     return (
-        <div className='flex flex-col items-center px-0 md:flex-row md:py-20'>
+        <div className='flex flex-col items-center px-0 md:flex-row md:pt-20 md:pb-10'>
 
             <div className="pb-10 pt-20 md:pt-0 md:pb-0">
                 <h1 className="font-main text-5xl text-nowrap uppercase whitespace-nowrap">
