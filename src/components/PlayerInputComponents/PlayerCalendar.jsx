@@ -16,20 +16,20 @@ const dayRows = days.map((day) => <DayRow day={day} key={day} />);
 const PlayerCalendar = () => {
     return (
         <>
-            <div className="mx-20 pl-40 mt-5">
+            <div className="pl-0 items-center my-10 md:my-5 md:items-left md:pl-40">
                 <h2
                     id="calendar-header"
-                    className="font-sub text-white uppercase pb-1"
+                    className="text-center md:text-left font-sub text-white uppercase pb-1"
                 >
                     Select Your Availability
                 </h2>
-                <p className="text-smallText text-sm">
+                <p className="text-center md:text-left text-smallText text-sm">
                     Choose your available hours by selecting each time slot
                     individually, or simplify the process by clicking on the
                     day's name to toggle all hours at once
                 </p>
             </div>
-            <HourRow />
+            <HourRow classList="flex mx-20 ml-60 mt-4 mb-2 justify-between"/>
             {dayRows}
         </>
     );

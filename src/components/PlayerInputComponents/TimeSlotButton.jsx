@@ -6,7 +6,8 @@ const TimeSlotButton = (props) => {
             className={props.className}
             id={props.id}
             onClick={props.handleToggle}
-        ></button>
+            hour={props.hour}
+        >{props.hour}</button>
     );
 };
 

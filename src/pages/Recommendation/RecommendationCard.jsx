@@ -29,7 +29,7 @@ useEffect(() => {
             {/* refer back to gameCard and pass through props? */}
 <GameCard key ={game.slug} url={game.background_image} name={game.name} />
 
-}))
+})}
                 
       </div>
 
