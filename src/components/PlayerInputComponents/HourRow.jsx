@@ -5,14 +5,14 @@ const hours = [
 ];
 
 const hourHeaders = hours.map((hour) => (
-    <div className="w-5 h-5 text-center" key={hour}>
+    <div className="hidden md:block w-5 h-5 text-center" key={hour}>
         <h2 className="font-sub">{hour}</h2>
     </div>
 ));
 
 const HourRow = () => {
     return (
-        <div className="flex mx-20 ml-60 mt-4 mb-2 justify-between">
+        <div className="flex ml-40 mt-4 mb-2 justify-between">
             {hourHeaders}
         </div>
     );

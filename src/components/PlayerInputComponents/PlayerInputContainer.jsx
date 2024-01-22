@@ -74,7 +74,7 @@ const PlayerInputContainer = (props) => {
 
     //** Render components **/
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col mx-10 md:mx-30 lg:mx-40">
             <PlayerNameInput id='player-name-input'
                 handleInputChange={handleInputChange}
                 value={playerName}
@@ -83,7 +83,7 @@ const PlayerInputContainer = (props) => {
             <PlayerCalendar />
             <div className='flex flex-col items-center self-end'>
                 <button
-                    className="uppercase rounded-full border-cyan outline-2 bg-cyan/70 mx-20 mt-5 px-5 py-1 flex hover:bg-cyan/100 actionBtn"
+                    className="uppercase rounded-full border-cyan outline-2 bg-cyan/70 mx-0 text-sm md:text-lg mt-5 px-5 py-1 flex hover:bg-cyan/100 actionBtn"
                     onClick={handleAddPlayer}
                 >
                     {props.button}
