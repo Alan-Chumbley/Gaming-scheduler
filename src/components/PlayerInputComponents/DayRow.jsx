@@ -21,12 +21,12 @@ const DayRow = (props) => {
         if (selectedButton.classList.contains('inactive')) {
             selectedButton.setAttribute(
                 "class",
-                "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
+                "bg-cyan w-5 h-5 rounded-md active checkbox"
             );
         } else {
             selectedButton.setAttribute(
                 "class",
-                "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
+                "bg-red w-5 h-5 rounded-md inactive checkbox"
             );
         }
         
@@ -48,8 +48,8 @@ const DayRow = (props) => {
                     <TimeSlotButton
                         className={
                             isActive
-                                ? "bg-cyan w-5 h-5 rounded-md hover:bg-red active"
-                                : "bg-red w-5 h-5 rounded-md hover:bg-cyan inactive"
+                                ? "bg-cyan w-5 h-5 rounded-md active checkbox"
+                                : "bg-red w-5 h-5 rounded-md inactive checkbox"
                         }
                         id={props.day + hour}
                         key={props.day + hour}
