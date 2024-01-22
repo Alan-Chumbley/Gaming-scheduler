@@ -72,7 +72,7 @@ const PlayerInputContainer = (props) => {
             />
             <PlayerCalendar />
             <button
-                className="self-end text-black uppercase rounded-full border-cyan outline-2 bg-cyan/70 mx-20 mt-5 px-5 py-1 flex hover:bg-cyan/100"
+                className="self-end text-black uppercase rounded-full border-cyan outline-2 bg-cyan/70 mx-20 mt-5 px-5 py-1 flex hover:bg-cyan/100 actionBtn"
                 onClick={handleAddPlayer}
             >
                 {props.button}
