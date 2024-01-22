@@ -21,7 +21,7 @@ function EntryForm() {
         "fighting",
     ];
 
-    let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
+    // let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
 
     const [team, setTeam] = useState("");
     const [game, setGame] = useState("");
@@ -100,8 +100,9 @@ function EntryForm() {
 
     //SAVE TO LOCAL STORAGE
     function saveToLS(object) {
-        storedData.push(object);
-        localStorage.setItem("Teams", JSON.stringify(storedData));
+        // storedData.push(object);
+        // localStorage.setItem("Teams", JSON.stringify(storedData));
+        localStorage.setItem("CurrentTeam", JSON.stringify(object)); // Kane: I added this to keep track of the current team
     }
 
     function toggleBtns(state) {
