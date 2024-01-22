@@ -1,4 +1,4 @@
-{/* import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameCard from '../../components/GameCard/GameCard';
 import './Recommendation.css'; // Import your CSS file
 
@@ -34,19 +34,19 @@ const Recommendation = () => {
       <div className='overlay'></div>
       <div>
        {/**data coming from RecommendSearch but is still needing to be linked */}
-          // <>
-          //   {/*attach game image to gamecard */}
-          //   <GameCard url={data.image} />
-          //   <div>
-          //     {/* add summary and game title */}
-          //     <h2>{data.title}</h2>
-          //     <p>{data.text}</p>
-          //   </div>
-          // </>
+          <>
+            {/*attach game image to gamecard */}
+            <GameCard url={data.image} />
+            <div>
+              {/* add summary and game title */}
+              <h2>{data.title}</h2>
+              <p>{data.text}</p>
+            </div>
+          </>
     
-//       </div>
-//     </div>
-//   );
-// };
+      </div>
+    </div>
+  );
+};
 
-// export default Recommendation;
+export default Recommendation;

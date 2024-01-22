@@ -1,0 +1,84 @@
+// [{ id: 231577 },
+//   { id: 147666 },
+//   { id: 44711 },
+//   { id: 85450 },
+//   { id: 95080 },
+//   { id: 104748 },
+//   { id: 89616 },
+//   { id: 91579 },
+//   { id: 263822 },
+//   { id: 124961 }
+// ]
+// above is what I was getting from undefined API request
+
+[
+  {
+      "id": 147666,
+      "age_ratings": [
+          39395,
+          54394
+      ],
+      "artworks": [
+          14195
+      ],
+      "category": 0,
+      "cover": 247255,
+      "created_at": 1621112209,
+      "external_games": [
+          2011978
+      ],
+      "first_release_date": 1610928000,
+      "genres": [
+          4,
+          31,
+          33
+      ],
+      "name": "Shinobi Blade",
+      "platforms": [
+          130
+      ],
+      "release_dates": [
+          249798,
+          340666
+      ],
+      "screenshots": [
+          447897,
+          447898,
+          447899,
+          447900,
+          447901
+      ],
+      "similar_games": [
+          10605,
+          56033,
+          87622,
+          96217,
+          101608,
+          103292,
+          103369,
+          111130,
+          114145,
+          117533
+      ],
+      "slug": "shinobi-blade",
+      "summary": "Shinobi Blade is an action-packed game, lets you play the role of a teenage ninja who sneaked out of the Dojo, before mastering all the ninja skills. You'll learn what it is to truly be a ninja, be silent, agile and smart to outwit your opponents in 30 gorgeous missions. You need to be agile to avoid meat grinders/poison traps, street smart to solve puzzles/unlock gates. You possess skills such as jump, climb, deadly Katana slashes, lightning-fast shuriken to carve up hordes of gruesome monsters. Upgrade these great skills to overcome all dangers and challenges to complete all the missions. Final showdown with the demon bosses Charybdis, Minotaur and Vampire Kid to become the true master ninja demon slayer!!!",
+      "tags": [
+          1,
+          268435460,
+          268435487,
+          268435489
+      ],
+      "themes": [
+          1
+      ],
+      "updated_at": 1698219001,
+      "url": "https://www.igdb.com/games/shinobi-blade",
+      "websites": [
+          455726
+      ],
+      "checksum": "00e38d21-91cd-3082-4737-7978c44e33e2",
+      "language_supports": [
+          504844
+      ]
+  }
+]
