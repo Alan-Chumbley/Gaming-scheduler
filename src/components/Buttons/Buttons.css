@@ -53,3 +53,26 @@
     color: var(--cyan) !important;
     fill: var(--cyan) !important;
 }
+
+@media only screen and (max-width: 800px) {
+
+    .saveBtn, .startBtn {
+        font-family: var(--sub) !important;
+        font-size: 14px !important;
+        padding-top: 6px !important;
+    }
+
+    #fa-heart-icon, #fa-refresh-icon {
+        color: var(--cyan);
+        fill: var(--cyan);
+        margin: 5px 10px 0 0 !important;
+    }
+    
+    #fa-heart-icon{
+        width: 10px;
+    }
+    
+    #fa-refresh-icon {
+        width: 18px;
+    }
+    }
