@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import "./Summary.css";
 import SummaryCal from "./SummaryCal";
 import { FaHeart } from "react-icons/fa";
-// import SaveBtn from "../../components/Buttons/SaveBtn";
 import { IoMdRefresh } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
 
 const Summary = () => {
+    const navigate = useNavigate();
     const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"));
     const sharedDates = currentTeam.player1.availability.filter((date) =>
         currentTeam.player2.availability.includes(date)
@@ -54,9 +55,11 @@ const Summary = () => {
                     <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 mr-4 uppercase text-cyan text-xl hover:text-black hover:bg-cyan">
                         {<FaHeart className="mr-3 mt-1" />}Save Session
                     </button>
+                    <Link to="/">
                     <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 uppercase text-cyan text-xl hover:text-black hover:bg-cyan">
                         {<IoMdRefresh className="mr-3 mt-1" />}Start Again
                     </button>
+                    </Link> 
                 </div>
                 {/* <SaveBtn name="Save Session" id="save-session-btn"/> */}
             </div>
