@@ -7,6 +7,9 @@ const Recommendation = () => {
   const genreParsed = JSON.parse(genreTitle).genre;
   console.log(genreParsed);
 
+  const genreDetails = JSON.parse(Genre);
+  console.log(genreDetails)
+
   return (
     <div className='recommendations'>
 
@@ -14,6 +17,7 @@ const Recommendation = () => {
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
 
       {/* genre cards */}
+      console.log()
 
 
       
