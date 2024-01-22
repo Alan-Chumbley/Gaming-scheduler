@@ -66,6 +66,12 @@ input:focus::placeholder {
         height: 1rem;
         border-radius: 4px !important;
     }
+
+    .checkbox.active {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 4px !important;
+    }
 }
 
 
