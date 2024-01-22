@@ -29,6 +29,8 @@ const Summary = () => {
       storedData.push(currentTeam);
       localStorage.setItem("Teams", JSON.stringify(storedData));
       e.target.setAttribute('disabled', true)
+      const sessionMsg = document.querySelector('#session-msg')
+      sessionMsg.classList.remove('hidden') 
   }
 
     //** Renders components */
@@ -37,7 +39,7 @@ const Summary = () => {
             <div className="w-full sm:p-12 md:w-1/3 p-5 lg:p-20 image-container">
                 <img className="w-full bg-no-repeat bg-cover bg-center" src={tlou} alt={currentTeam.game + ", the selected game's cover"} />
             </div>
-            <div className="w-full sm:p-12 md:w-2/3 p-5 lg:p-20 flex-col">
+            <div className="w-full sm:p-12 md:w-2/3 p-5 lg:p-20 lg:pb-10 flex-col">
                 <h1 className="font-main text-6xl text-cyan pb-3">
                     {currentTeam.teamName}
                 </h1>
@@ -58,7 +60,7 @@ const Summary = () => {
                     </button>
                     </Link> 
                 </div>
-                {/* <SaveBtn name="Save Session" id="save-session-btn"/> */}
+                <p className="text-smallText text-end text-cyan mt-2 mr-[17rem] hidden" id="session-msg">Session Saved!</p>
             </div>
         </div>
     );

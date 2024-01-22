@@ -14,7 +14,7 @@ const SummaryCal = () => {
     ];
 
     const dayRows = days.map((day) => (
-        <StaticRow shortenedDay={day.short} day={day.long} key={day} />
+        <StaticRow shortenedDay={day.short} day={day.long} key={day.short} />
     ));
 
     return (
