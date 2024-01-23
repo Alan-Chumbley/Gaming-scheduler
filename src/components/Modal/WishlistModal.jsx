@@ -79,6 +79,7 @@ const WishlistModal = (props) => {
                                 <div>
                                     <Dropdown />
                                 </div>
+                                
                                 {/* Submit button */}
                                 <button
                                 type="submit"
