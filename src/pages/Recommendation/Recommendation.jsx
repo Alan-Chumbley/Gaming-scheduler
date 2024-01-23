@@ -7,14 +7,14 @@ const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
-
+  console.log("HELLO : ", genreData)
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.rawg.io/api/genres?key=0d78e57ce6444308b0caeb836b9cf165');
+        const response = await axios.get('https://api.rawg.io/api/genres?key=8ca11e61a56948f49820e06bdf9d968b');
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -34,7 +34,7 @@ const Recommendation = () => {
   */
   const fetchGameDetails = async (gameId) => {
     try {
-      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=8ca11e61a56948f49820e06bdf9d968b`);
       const { background_image, description, slug } = response.data; // Destructure additional details
   
       setDetailedGameData((prevData) => ({

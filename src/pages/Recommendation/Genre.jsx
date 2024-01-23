@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_KEY = '0d78e57ce6444308b0caeb836b9cf165';
+const API_KEY = '8ca11e61a56948f49820e06bdf9d968b';
 const genreUrl = 'https://api.rawg.io/api/genre?key=';
 
 const genre = () => {
   const [genreData, setGenreData] = useState(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

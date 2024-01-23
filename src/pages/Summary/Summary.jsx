@@ -8,6 +8,7 @@ import StartAgainBtn from "../../components/Buttons/StartAgainBtn";
 import SummaryCard from "../../components/SummaryCard/SummaryCard";
 import axios from 'axios';
 import noImage from '../../assets/no-image.png';
+import summerize from "./X";
 
 const Summary = () => {
     const [detailedGameData, setDetailedGameData] = useState({});
@@ -93,7 +94,7 @@ const Summary = () => {
                     Your optimal gaming schedule for {currentTeam.game} is set!
                 </h2>
                 <p className="pb-6">
-                    Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!
+                    Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan"> this in `${summerize()}` Weeks </span>!
                 </p>
                 <SummaryCal />
                 <div className="w-full flex justify-end mt-10">
