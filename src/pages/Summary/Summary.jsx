@@ -80,7 +80,7 @@ const Summary = () => {
 
     //** Renders components */
     return (
-        <div className="main-container flex flex-col md:flex-row md:mt-5">
+        <div className="main-container mx-10 md:mx-0 flex flex-col items-center lg:flex-row md:mt-5">
             <div className="md:pl-10 image-container my-10">
                 {/* <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} /> */}
                 <SummaryCard imageUrl={detailedGameData[gameNameDetail]?.background_image || noImage} alt={gameNameDetail} />
@@ -96,8 +96,8 @@ const Summary = () => {
                     Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!
                 </p>
                 <SummaryCal />
-                <div className="w-full flex justify-end mt-10">
-                    <div id="button-msg">
+                <div className="flex flex-col items-center md:flex-row md:w-full md:justify-end mt-10">
+                    <div id="button-msg" className="mb-5 md:mb-0">
                     <SaveBtn id="session-btn" name="Save Session" onClick={saveToLS} />
                     <p className="text-smallText text-center text-cyan mt-2 hidden" id="session-msg">Session Saved!</p>
                     </div>

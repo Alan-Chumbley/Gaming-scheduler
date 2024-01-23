@@ -19,7 +19,7 @@ const SummaryCal = () => {
 
     return (
         <div>
-            <HourRow classList="flex mt-4 mb-4 ml-14 justify-between hour-list" />
+            <HourRow classList="hidden lg:flex text-xs lg:ml-12 xl:text-base mt-4 mb-4 xl:ml-14 justify-between hour-list" />
             {dayRows}
         </div>
     );
