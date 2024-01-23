@@ -36,16 +36,16 @@ export default function Example() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start md:justify-between">
                 <div className="flex flex-shrink-0 items-center">
-                    <NavLink to="/">
+                  <NavLink to="/">
                     <img
-                        className="h-8 w-auto"
-                        src={Logo}
-                        alt="GameSync logo"
-                        id="logo"
+                      className="h-8 w-auto"
+                      src={Logo}
+                      alt="GameSync logo"
+                      id="logo"
                     />
-                    </NavLink>
+                  </NavLink>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden md:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <NavLink
@@ -66,7 +66,7 @@ export default function Example() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2 flex flex-col justify-start">
               {navigation.map((item) => (
                 <Disclosure.Button>
