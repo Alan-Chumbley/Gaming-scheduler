@@ -8,8 +8,6 @@ const Recommendation = () => {
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
 
-  let counter = 0; // for handleSelectClick - to avoid selection of more than one game
-
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
     const fetchData = async () => {
@@ -28,18 +26,18 @@ const Recommendation = () => {
 
   /*
     Passing through the gameID into the second API call, we will object destructure
-    the response data for the background image, description and website url.
+    the response data for the background image, slug and description.
     We then want to make a copy of the previous data and set the state to
     setDetailedGamesData, with the gameID being the key.
   */
   const fetchGameDetails = async (gameId) => {
     try {
       const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
-      const { background_image, description, website } = response.data; // Destructure additional details
+      const { background_image, description, slug } = response.data; // Destructure additional details
   
       setDetailedGameData((prevData) => ({
         ...prevData,
-        [gameId]: { background_image, description, website }, // Store all details in an object
+        [gameId]: { background_image, description, slug }, // Store all details in an object
       }));
     } catch (error) {
       console.error('Error fetching game details:', error);
@@ -56,7 +54,7 @@ const Recommendation = () => {
   }
 
   // testing this genre
-  // console.log(genreData.results)
+  console.log(genreData.results)
   const action = genreData.results[0]?.games || []; // safely chain properties
   const indie = genreData.results[1]?.games || [];
   const adventure = genreData.results[2]?.games || [];
@@ -149,7 +147,6 @@ const Recommendation = () => {
     }
   }
 
-
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
@@ -166,8 +163,6 @@ const Recommendation = () => {
             fetchGameDetails(game.id);
           }
 
-
-
           return (
             <GameCard
               key={game.id}
@@ -175,8 +170,8 @@ const Recommendation = () => {
               imageUrl={gameDetails.background_image || ''}
               name={game.name}
               description={truncateDesc || ''}
-              website={gameDetails.website || ''}
-              onClick={handleSelectClick}
+              website={`https://rawg.io/games/${gameDetails.slug || ''}`}
+		          onClick={handleSelectClick}
             />
           );
         })}
