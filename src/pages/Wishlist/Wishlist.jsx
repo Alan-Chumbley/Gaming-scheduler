@@ -10,8 +10,20 @@ const Wishlist = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
 
+  // pass through the game and set it to state on opening modal
+  const openModal = (game) => {
+    setSelectedGame(game);
+    setModalOpen(true);
+  };
+
+  // closing the modal
+  const closeModal = () => {
+    setSelectedGame(null);
+    setModalOpen(false);
+  };
+
   const gameCards = storedGames.map((game)=>(
-    <div className='w-52 mx-5 relative cursor-pointer' onClick={() => {}}>
+    <div className='w-52 mx-5 relative cursor-pointer' onClick={() => openModal(game)}>
       <img className='rounded-xl w-52 h-72 object-cover object-center' src={game.url} alt={game.name}/>
       <div class="absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl">
         <h1 className='uppercase h-72 top-32 left-8 absolute text-main text-3xl text-cyan'>Schedule</h1>
@@ -36,6 +48,10 @@ const Wishlist = () => {
       <div className='mt-20 flex flex-row flex-wrap w-full justify-center'>
           {gameCards}
       </div>
+
+      {/* WishlistModal */}
+      {isModalOpen && <WishlistModal game={selectedGame} onClose={closeModal} />}
+      
     </div>
   )
 }
