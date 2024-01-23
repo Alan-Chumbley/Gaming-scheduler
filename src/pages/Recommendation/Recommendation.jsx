@@ -60,6 +60,10 @@ const Recommendation = () => {
     return <p className='font-sub text-red text-center'>Loading...</p>;
   }
 
+  const truncateText = (text, maxLength) => {
+    return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  }
+
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
@@ -69,6 +73,7 @@ const Recommendation = () => {
         {/* testing adventure genre to see if code works */}
         {adventureGames.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
+          const truncateDesc = truncateText(gameDetails.description, 250);
 
           if (!gameDetails.background_image) {
 
@@ -82,7 +87,7 @@ const Recommendation = () => {
               id={game.id}
               imageUrl={gameDetails.background_image || ''}
               name={game.name}
-              description={gameDetails.description || ''}
+              description={truncateDesc || ''}
               website={gameDetails.website || ''}
             />
           );

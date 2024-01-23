@@ -16,9 +16,8 @@
     background-size: cover;
 }
 
-
 .select {
-    height: 53px;
+    height: 50px;
     background-color: var(--select);
 }
 
@@ -28,4 +27,13 @@
 
 .select-text {
     font-size: 1.75rem;
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: var(--pinkHover) !important;
+}
+
+.text-size {
+    font-size: 1.2rem !important;
 }
