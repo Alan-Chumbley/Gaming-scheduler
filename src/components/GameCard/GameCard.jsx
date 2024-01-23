@@ -6,7 +6,7 @@ const GameCard = (props) => {
   return (
     <div className='flex flex-row'>
       <div className='rounded-xl relative'>
-          <img src={props.url} alt={props.name} />
+          <img src={props.imageUrl} alt={props.name} />
           <div className='bg-cyan h-6 absolute inset-x-0 bottom-0'>
               <p className='font-main text-black'>Select</p>
           </div>
