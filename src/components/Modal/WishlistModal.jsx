@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
+import { useNavigate } from 'react-router-dom';
 
 const WishlistModal = (props) => {
     const [ isWishlistModalOpen, setIsWishlistModalOpen ] = useState(false);
@@ -13,6 +14,16 @@ const WishlistModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // save the squad name, name of the game and go to player 1 page
+        const wishTeam = {
+            teamName: name,
+            game: game,
+        }
+
+        saveToLS(wishTeam); // save to local storage
+
+        // navigate to player 1 page
+        navigate('/player1');
     };
 
     return (
@@ -79,7 +90,7 @@ const WishlistModal = (props) => {
                                 <div>
                                     <Dropdown />
                                 </div>
-                                
+
                                 {/* Submit button */}
                                 <button
                                 type="submit"
