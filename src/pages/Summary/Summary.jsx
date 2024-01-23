@@ -28,8 +28,19 @@ const Summary = () => {
 
     //** Aleks's local storage code to save a session under "Teams" to local storage */
     function saveToLS(e) {
-        storedData.push(currentTeam);
-        localStorage.setItem("Teams", JSON.stringify(storedData));
+        let isSaved = false;
+        for (let i = 0; i < storedData.length; i++) {
+            if (currentTeam.teamName == storedData[i].teamName && currentTeam.player1.name == storedData[i].player1.name && currentTeam.player2.name == storedData[i].player2.name) {
+                isSaved = true
+            }        
+        }
+
+        if (!isSaved) {
+            console.log("saved");
+            storedData.push(currentTeam);
+            localStorage.setItem("Teams", JSON.stringify(storedData));
+        }
+
         e.target.setAttribute('disabled', true)
         const sessionMsg = document.querySelector('#session-msg')
         sessionMsg.classList.remove('hidden')
@@ -54,7 +65,7 @@ const Summary = () => {
                 <SummaryCal />
                 <div className="w-full flex justify-end mt-10">
                     <div id="button-msg">
-                    <SaveBtn name="Save Session" onClick={saveToLS} />
+                    <SaveBtn id="session-btn" name="Save Session" onClick={saveToLS} />
                     <p className="text-smallText text-center text-cyan mt-2 hidden" id="session-msg">Session Saved!</p>
                     </div>
                     <Link to="/">
