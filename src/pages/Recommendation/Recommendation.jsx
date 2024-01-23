@@ -64,7 +64,7 @@ const Recommendation = () => {
   const simulation = genreData.results[7]?.games || [];
   const puzzle = genreData.results[8]?.games || [];
   const platform = genreData.results[10]?.games || [];
-  const sport = genreData.results[12]?.games || [];
+  const sports = genreData.results[12]?.games || [];
   const racing = genreData.results[13]?.games || [];
   const fighting = genreData.results[14]?.games || [];
 
@@ -99,8 +99,8 @@ const Recommendation = () => {
     case 'platform':
       selectedGenre = platform;
       break;
-    case 'sport':
-      selectedGenre = sport;
+    case 'sports':
+      selectedGenre = sports;
       break;
     case 'racing':
       selectedGenre = racing;
