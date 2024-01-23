@@ -7,8 +7,6 @@ const Sessions = () => {
   const navigate = useNavigate()
   const teamData = localStorage.getItem('Teams');
   const teams = JSON.parse(teamData) || [];
-  console.log(teams);
-  console.log(teams[0].id);
 
   const retrieveTeamSummary = (e) => {
     const selectedSession = teams[e.target.getAttribute('data-index')];

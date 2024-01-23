@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import "./Summary.css";
 import SummaryCal from "./SummaryCal";
-import { FaHeart } from "react-icons/fa";
-import { IoMdRefresh } from "react-icons/io";
 import { Link } from "react-router-dom";
 import tlou from "../../assets/tlou.jpg"
 import SaveBtn from "../../components/Buttons/SaveBtn";
@@ -36,7 +34,6 @@ const Summary = () => {
         }
 
         if (!isSaved) {
-            console.log("saved");
             storedData.push(currentTeam);
             localStorage.setItem("Teams", JSON.stringify(storedData));
         }
