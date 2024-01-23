@@ -117,6 +117,7 @@ const Recommendation = () => {
     return <p className='font-sub text-red text-center'>Loading...</p>;
   }
 
+  // truncate syntax from MDN web docs
   const truncateText = (text, maxLength) => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
