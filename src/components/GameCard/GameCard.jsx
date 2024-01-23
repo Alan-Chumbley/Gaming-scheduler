@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { TfiNewWindow } from "react-icons/tfi";
 import './GameCard.css'
 import WishlistBtn from '../Buttons/WishlistBtn';
+import MoreBtn from '../Buttons/MoreBtn';
 
 const GameCard = (props) => {
   const [isToggled, setIsToggled] = React.useState(false);
@@ -28,7 +29,7 @@ const GameCard = (props) => {
         <p className='font-smallText text-white mt-4'>{props.description}</p>
         <div className='flex flex-row text-pinkHover mt-4'>
           <WishlistBtn name="Add to Wishlist" id='wishlist-button' onClick={handleWishlistClick} />
-          <button><a href={props.website} target='_blank' className='font-smallText flex text-size pl-5'>{<TfiNewWindow className='icon' />} &nbsp; Read more</a></button>
+          <a href={props.website} target='_blank' className='font-smallText flex text-size pl-5'><MoreBtn name="Read More" /></a>
         </div>
       </div>
     </div>

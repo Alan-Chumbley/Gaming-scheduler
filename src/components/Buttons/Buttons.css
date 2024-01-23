@@ -30,15 +30,20 @@
     padding-top: 10px !important;
 }
 
-.wishlistBtn {
+.wishlistBtn, .moreBtn {
     font-family: var(--smallText) !important;
     font-size: 14px !important;
-    padding-top: 10px !important;
 }
 
-.wishlistBtn:active {
+.moreBtn:hover {
     color: var(--red);
 }
+
+.moreBtn:hover #fa-link-icon {
+    color: var(--red);
+    fill: var(--red);
+}
+
 
 .smallBtn-toggled {
     color: var(--red);
@@ -92,6 +97,15 @@
     fill: var(--red);
     stroke: none;
 }
+
+#fa-link-icon {
+    color: var(--pink);
+    fill: var(--pink);
+    margin: 4px 10px 0 0 !important;
+    width: 16px;
+}
+
+
 
 
 @media only screen and (max-width: 800px) {
