@@ -10,10 +10,38 @@ const GameCard = (props) => {
   function handleWishlistClick(e) {
     setIsToggled(prevIsToggled => {
       const newIsToggled = !prevIsToggled;
-      e.target.classList.toggle('wishlist-toggled', newIsToggled);
+      let button = "";
+
+      if (e.target.matches('button')) {
+        button = e.target
+      } else {
+        button = e.target.parentElement
+      }
+
+      button.classList.toggle('wishlist-toggled', newIsToggled);
+      saveToWishlist(button)
       return newIsToggled;
     });
   }
+
+  const saveToWishlist = (button) => {
+    
+    const game = button.getAttribute('data-game-name')
+    const url = button.getAttribute('data-game-url')
+
+    const newGame = {
+      name: game,
+      url: url
+    }
+
+    saveToLS(newGame)
+  }
+
+  function saveToLS(object) {
+    const storedGames = JSON.parse(localStorage.getItem("Wishlist")) || []; // retrieves existing wishlist
+    storedGames.push(object);
+    localStorage.setItem("Wishlist", JSON.stringify(storedGames)); // Kane: I added this to keep track of the current team
+}
 
 
   return (
@@ -34,7 +62,7 @@ const GameCard = (props) => {
         <h2 className='font-sub text-cyan text-2xl'>{props.name}</h2>
         <p className='font-smallText text-white mt-4'>{props.description}</p>
         <div className='flex flex-row text-pinkHover mt-4'>
-          <WishlistBtn name="Add to Wishlist" id='wishlist-button' onClick={handleWishlistClick} />
+          <WishlistBtn name="Add to Wishlist" id='wishlist-button' onClick={handleWishlistClick} dataName={props.name} dataUrl={props.imageUrl}/>
           <a href={props.website} target='_blank' className='font-smallText flex pl-5'><MoreBtn name="Read More" /></a>
         </div>
       </div>

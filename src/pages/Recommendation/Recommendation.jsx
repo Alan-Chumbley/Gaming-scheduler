@@ -23,7 +23,7 @@ const Recommendation = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.rawg.io/api/genres?key=15dc7ef863d140f8b11adec2cc08a02b');
+        const response = await axios.get('https://api.rawg.io/api/genres?key=0d78e57ce6444308b0caeb836b9cf165');
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -44,7 +44,7 @@ const Recommendation = () => {
   */
   const fetchGameDetails = async (gameId) => {
     try {
-      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=15dc7ef863d140f8b11adec2cc08a02b`);
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
       const { background_image, description, website } = response.data; // Destructure additional details
 
       setDetailedGameData((prevData) => ({
@@ -134,37 +134,6 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
-  const saveToWishlist = (e) => {
-    let button = "";
-
-    if (e.target.matches('button')) {
-      button = e.target
-    } else {
-      button = e.target.parentElement
-    }
-    
-    const gameID = button.getAttribute('data-game-id')
-    const game = button.getAttribute('data-game-name')
-    const url = button.getAttribute('data-game-url')
-
-    const newGame = {
-      id: gameID,
-      name: game,
-      url: url
-    }
-
-    saveToLS(newGame)
-
-    button.setAttribute('disabled', true)
-    button.setAttribute('class', 'font-smallText flex text-size px-11 disabled:opacity-50')
-    button.innerHTML = "Added!"
-  }
-
-  function saveToLS(object) {
-    const storedGames = JSON.parse(localStorage.getItem("Wishlist")) || []; // retrieves existing wishlist
-    storedGames.push(object);
-    localStorage.setItem("Wishlist", JSON.stringify(storedGames)); // Kane: I added this to keep track of the current team
-}
 
   // handle game selection on click (and not allow selection of more than one)
   function handleSelectClick(e) {
