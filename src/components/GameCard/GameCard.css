@@ -1,0 +1,39 @@
+.gameCard {
+    width: 100%;
+}
+
+.imgHolder {
+    min-width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.gameImg {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.select {
+    height: 50px;
+    background-color: var(--select);
+}
+
+.select:hover {
+    height: 250px;
+}
+
+.select-text {
+    font-size: 1.75rem;
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: var(--pinkHover) !important;
+}
+
+.text-size {
+    font-size: 1.2rem !important;
+}
