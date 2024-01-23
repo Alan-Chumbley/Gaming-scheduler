@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Summary.css";
 import SummaryCal from "./SummaryCal";
 import { Link } from "react-router-dom";
 import tlou from "../../assets/tlou.jpg"
 import SaveBtn from "../../components/Buttons/SaveBtn";
 import StartAgainBtn from "../../components/Buttons/StartAgainBtn";
+import SummaryCard from "../../components/SummaryCard/SummaryCard";
+import axios from 'axios';
 
 const Summary = () => {
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
@@ -43,11 +45,16 @@ const Summary = () => {
         sessionMsg.classList.remove('hidden')
     }
 
+    // console.log(currentTeam.game);
+    const gameNameDetail = currentTeam.game;
+    fetchGamePhoto(gameNameDetail);
+
     //** Renders components */
     return (
         <div className="main-container flex flex-col md:flex-row md:mt-5">
             <div className="md:pl-10 image-container my-10">
-                <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} />
+                {/* <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} /> */}
+                <SummaryCard imageUrl={''} alt={''} />
             </div>
             <div className="sm:p-12 md:w-9/12 lg:w-8/12 lg:flex-col">
                 <h1 className="font-main text-6xl text-cyan pb-3">
