@@ -36,7 +36,7 @@ const Recommendation = () => {
     try {
       const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
       const { background_image, description, slug } = response.data; // Destructure additional details
-  
+
       setDetailedGameData((prevData) => ({
         ...prevData,
         [gameId]: { background_image, description, slug }, // Store all details in an object
@@ -112,7 +112,7 @@ const Recommendation = () => {
       break;
     default:
       break;
-}
+  }
 
   // if the screen takes a while to load the data, the below will render
   if (loading) {
@@ -121,6 +121,9 @@ const Recommendation = () => {
 
   // truncate syntax from MDN web docs
   const truncateText = (text, maxLength) => {
+    if (text) {
+      text = text.replace('<p>', '').replace('</p>', '');
+    }
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
@@ -153,7 +156,7 @@ const Recommendation = () => {
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
-      
+
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
       <div className='game-cards-container mt-10 block xl:grid grid-cols-2'>
         {/* testing adventure genre to see if code works */}
