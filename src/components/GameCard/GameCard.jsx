@@ -6,7 +6,6 @@ import MoreBtn from '../Buttons/MoreBtn';
 import { FaStar } from 'react-icons/fa';
 
 const GameCard = (props) => {
-  const [SelectedGame, setSelectedGame] = React.useState(false);
   const [isToggled, setIsToggled] = React.useState(false);
 
   function handleWishlistClick(e) {
@@ -17,28 +16,15 @@ const GameCard = (props) => {
     });
   }
 
-  const handleSelectClick = (e) => {
-    setSelectedGame(prevSelectedGame => {
-      const newSelectedGame = !prevSelectedGame;
-      
-      if(newSelectedGame){
-        e.target.classList.add('selected-card');
-        e.target.children[0].children[0].removeAttribute('hidden');
-      } else if (!newSelectedGame) {
-        e.target.classList.remove('selected-card');
-        e.target.children[0].children[0].setAttribute('hidden', true);
-      }
-      return newSelectedGame;
-    });
-  }
-
-
   return (
     <div className='flex flex-row gameCard p-10'>
       <div className='rounded-xl relative imgHolder'>
         <img src={props.imageUrl} alt={props.name} className='gameImg' />
-        <div className='absolute inset-x-0 bottom-0 select flex justify-center items-center' onClick={handleSelectClick}>
-          <p className='font-main text-black select-text'> <FaStar id='fa-star-icon' hidden /> Select</p>
+        <div className='absolute inset-x-0 bottom-0 select flex justify-center items-center'>
+          <div className='flex flex-col justify-center items-center select-icon-container'>
+            <FaStar id='fa-star-icon' />
+            <p className='font-main text-black select-text'>Select</p>
+          </div>
         </div>
       </div>
       <div className='flex flex-col ml-10'>

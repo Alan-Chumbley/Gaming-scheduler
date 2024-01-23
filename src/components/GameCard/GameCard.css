@@ -18,13 +18,24 @@
     background-size: cover;
 }
 
+
+/* SELECT OVERLAY */
+
 .select {
     height: 50px;
     background-color: var(--select);
+    position: relative;
 }
 
 .select:hover {
     height: 250px;
+}
+
+.select-icon-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .selected-card {
@@ -33,7 +44,17 @@
 
 .select-text {
     font-size: 1.75rem;
+    position: relative;
 }
+
+#fa-star-icon {
+    display: none;
+}
+
+.select:hover #fa-star-icon {
+    display: block;
+}
+
 
 .icon {
     font-size: 1.2rem;
@@ -49,7 +70,11 @@
 }
 
 .smallBtn-toggled #fa-heart-solid-icon {
+    display: block;
     color: var(--red);
     fill: var(--red);
-    stroke: none;
+}
+
+.smallBtn-toggled #fa-heart-outline-icon {
+    display: none;
 }
