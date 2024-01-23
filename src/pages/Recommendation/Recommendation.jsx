@@ -26,18 +26,18 @@ const Recommendation = () => {
 
   /*
     Passing through the gameID into the second API call, we will object destructure
-    the response data for the background image, description and website url.
+    the response data for the background image, slug and description.
     We then want to make a copy of the previous data and set the state to
     setDetailedGamesData, with the gameID being the key.
   */
   const fetchGameDetails = async (gameId) => {
     try {
       const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
-      const { background_image, description, website } = response.data; // Destructure additional details
+      const { background_image, description, slug } = response.data; // Destructure additional details
   
       setDetailedGameData((prevData) => ({
         ...prevData,
-        [gameId]: { background_image, description, website }, // Store all details in an object
+        [gameId]: { background_image, description, slug }, // Store all details in an object
       }));
     } catch (error) {
       console.error('Error fetching game details:', error);
@@ -146,7 +146,7 @@ const Recommendation = () => {
               imageUrl={gameDetails.background_image || ''}
               name={game.name}
               description={truncateDesc || ''}
-              website={gameDetails.website || ''}
+              website={`https://rawg.io/games/${gameDetails.slug}`}
             />
           );
         })}
