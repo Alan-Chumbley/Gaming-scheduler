@@ -7,13 +7,14 @@ const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
+
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.allorigins.win/raw?url=https://api.rawg.io/api/genres?key=0d78e57ce6444308b0caeb836b9cf165');
+        const response = await axios.get('https://api.rawg.io/api/genres?key=15dc7ef863d140f8b11adec2cc08a02b');
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,7 +22,6 @@ const Recommendation = () => {
         setLoading(false);
       }
     };
-
 
     fetchData();
   }, []);
@@ -34,9 +34,9 @@ const Recommendation = () => {
   */
   const fetchGameDetails = async (gameId) => {
     try {
-      const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
       const { background_image, description, website } = response.data; // Destructure additional details
-
+  
       setDetailedGameData((prevData) => ({
         ...prevData,
         [gameId]: { background_image, description, website }, // Store all details in an object
@@ -56,7 +56,7 @@ const Recommendation = () => {
   }
 
   // testing this genre
-  console.log(genreData.results)
+  // console.log(genreData.results)
   const action = genreData.results[0]?.games || []; // safely chain properties
   const indie = genreData.results[1]?.games || [];
   const adventure = genreData.results[2]?.games || [];
@@ -112,7 +112,7 @@ const Recommendation = () => {
       break;
     default:
       break;
-  }
+}
 
   // if the screen takes a while to load the data, the below will render
   if (loading) {
@@ -127,7 +127,6 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
-  // handle game selection on click (and not allow selection of more than one)
   function handleSelectClick(e) {
     const gameEl = e.target.parentElement.parentElement.parentElement.children;
 
@@ -154,7 +153,7 @@ const Recommendation = () => {
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
-
+      
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
       <div className='game-cards-container mt-10 block xl:grid lg:grid-cols-2'>
         {/* testing adventure genre to see if code works */}
@@ -167,6 +166,8 @@ const Recommendation = () => {
             fetchGameDetails(game.id);
           }
 
+
+
           return (
             <GameCard
               key={game.id}
@@ -176,7 +177,6 @@ const Recommendation = () => {
               description={truncateDesc || ''}
               website={gameDetails.website || ''}
               onClick={handleSelectClick}
-            // isSelected={selectedGameId === game.id}
             />
           );
         })}

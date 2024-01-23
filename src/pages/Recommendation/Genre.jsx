@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_KEY = '15dc7ef863d140f8b11adec2cc08a02b';
+const API_KEY = '0d78e57ce6444308b0caeb836b9cf165';
 const genreUrl = 'https://api.rawg.io/api/genre?key=';
 
 const genre = () => {
