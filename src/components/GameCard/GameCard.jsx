@@ -15,7 +15,7 @@ const GameCard = (props) => {
       if (e.target.matches('button')) {
         button = e.target
       } else {
-        button = e.target.parentElement
+        button = e.target.parentElement.parentElement
       }
 
       button.classList.toggle('wishlist-toggled', newIsToggled);
