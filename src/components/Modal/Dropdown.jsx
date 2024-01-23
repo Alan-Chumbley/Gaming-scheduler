@@ -8,13 +8,20 @@ const Dropdown = () => {
     }
 
     const squadNames = localStorage.getItem('Teams');
+    const [selectedTeam, setSelectedTeam] = useState(null);
 
+    // retrieve squad names if available
     if (squadNames !== null) {
     const squadNamesJSON = JSON.parse(squadNames);
     console.log(squadNamesJSON);
+
+    // selected team will always be the first team in the local storage array. e.g. team[0]
+    setSelectedTeam(squadNamesJSON[0])
     } else {
     console.log('No data found in local storage for key "Teams".');
     }
+
+    
 
     return (
         <Menu as="div" className="relative inline-block text-left">
