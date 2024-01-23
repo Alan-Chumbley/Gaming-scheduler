@@ -25,7 +25,7 @@
     background-color: var(--select);
     justify-content: center;
     align-items: center;
-    /* position: relative; */
+    transition: height 0.4s ease;
 }
 
 .select:hover {

@@ -13,7 +13,7 @@ const Recommendation = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.rawg.io/api/genres?key=15dc7ef863d140f8b11adec2cc08a02b');
+        const response = await axios.get('https://api.allorigins.win/raw?url=https://api.rawg.io/api/genres?key=0d78e57ce6444308b0caeb836b9cf165');
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -34,7 +34,7 @@ const Recommendation = () => {
   */
   const fetchGameDetails = async (gameId) => {
     try {
-      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=15dc7ef863d140f8b11adec2cc08a02b`);
+      const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
       const { background_image, description, website } = response.data; // Destructure additional details
 
       setDetailedGameData((prevData) => ({
@@ -121,13 +121,17 @@ const Recommendation = () => {
 
   // truncate syntax from MDN web docs
   const truncateText = (text, maxLength) => {
+    if (text) {
+      text = text.replace('<p>', '').replace('</p>', '');
+    }
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
   // handle game selection on click (and not allow selection of more than one)
   function handleSelectClick(e) {
     const gameEl = e.target.parentElement.parentElement.parentElement.children;
-    if (counter !== 0) {
+
+    if (counter !== 0 && !e.target.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
         let currentGameEl = gameEl[i].children[0].children[1];
         if (currentGameEl.classList.contains('selected-card')) {
@@ -136,6 +140,10 @@ const Recommendation = () => {
         e.target.classList.add('selected-card');
         counter++;
       }
+    } else if (e.target.classList.contains('selected-card')) {
+      console.log('it does');
+      e.target.classList.remove('selected-card');
+      counter = 0;
     } else {
       e.target.classList.add('selected-card');
       counter++;
@@ -152,10 +160,9 @@ const Recommendation = () => {
         {/* testing adventure genre to see if code works */}
         {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
-          const truncateDesc = truncateText(gameDetails.description, 250);
+          const truncateDesc = truncateText(gameDetails.description, 250);         
 
           if (!gameDetails.background_image) {
-
             // If the detailed game data is not available, fetch it
             fetchGameDetails(game.id);
           }
