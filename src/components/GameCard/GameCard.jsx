@@ -17,7 +17,7 @@ const GameCard = (props) => {
 
 
   return (
-    <div className='flex flex-row gameCard p-10'>
+    <div className='flex flex-col md:flex-row gameCard p-10'>
       <div className='rounded-xl relative imgHolder'>
         <img src={props.imageUrl} alt={props.name} className='gameImg' />
 
@@ -30,7 +30,7 @@ const GameCard = (props) => {
         </div>
 
       </div>
-      <div className='flex flex-col ml-10'>
+      <div className='flex flex-col mt-8 md:mt-0 md:ml-10'>
         <h2 className='font-sub text-cyan text-2xl'>{props.name}</h2>
         <p className='font-smallText text-white mt-4'>{props.description}</p>
         <div className='flex flex-row text-pinkHover mt-4'>

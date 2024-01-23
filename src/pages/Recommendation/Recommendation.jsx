@@ -156,7 +156,7 @@ const Recommendation = () => {
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
 
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
-      <div className='game-cards-container mt-10 grid grid-cols-2'>
+      <div className='game-cards-container mt-10 block xl:grid lg:grid-cols-2'>
         {/* testing adventure genre to see if code works */}
         {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
