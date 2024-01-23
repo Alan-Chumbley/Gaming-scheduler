@@ -32,7 +32,6 @@
 
 .wishlistBtn, .moreBtn {
     font-family: var(--smallText) !important;
-    font-size: 14px !important;
 }
 
 .moreBtn:hover {
