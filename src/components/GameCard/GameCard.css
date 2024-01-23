@@ -42,7 +42,6 @@
 
 .smallBtn-toggled {
     color: var(--pink);
-    /* fill: var(--red); */
 }
 
 .smallBtn-toggled #fa-heart-solid-icon {
