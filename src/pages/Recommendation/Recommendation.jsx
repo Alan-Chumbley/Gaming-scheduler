@@ -7,7 +7,7 @@ const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
-  let counter = 0;
+  let counter = 0; // for handleSelectClick - to avoid selection of more than one game
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
@@ -124,7 +124,7 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
-  // handle game selection on click
+  // handle game selection on click (and not allow selection of more than one)
   function handleSelectClick(e) {
     const gameEl = e.target.parentElement.parentElement.parentElement.children;
     if (counter !== 0) {
