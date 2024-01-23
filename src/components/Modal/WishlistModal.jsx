@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Dropdown from './Dropdown';
 
 const WishlistModal = (props) => {
     const [ isWishlistModalOpen, setIsWishlistModalOpen ] = useState(false);
@@ -69,7 +70,15 @@ const WishlistModal = (props) => {
                             {/* Modal body */}
                             <form className="p-4 md:p-5" onSubmit={handleSubmit}>
                                 {/* Form inputs */}
-
+                                {/* Game image card */}
+                                <div>
+                                    <img src={props.imageUrl} alt={props.name} className='rounded-[16px] w-100 h-100 object-cover'/>
+                                </div>
+                                
+                                {/* Squad selection */}
+                                <div>
+                                    <Dropdown />
+                                </div>
                                 {/* Submit button */}
                                 <button
                                 type="submit"
