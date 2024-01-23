@@ -9,6 +9,8 @@ import SummaryCard from "../../components/SummaryCard/SummaryCard";
 import axios from 'axios';
 
 const Summary = () => {
+    const [detailedGameData, setDetailedGameData] = useState({});
+
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
     const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"));
     const sharedDates = currentTeam.player1.availability.filter((date) =>
@@ -24,6 +26,15 @@ const Summary = () => {
                 "bg-cyan w-5 h-5 rounded-md active cursor-default"
             );
         }
+    }, []);
+
+    const gameNameDetail = currentTeam.game;
+
+    // call this function once to prevent an infinite loop
+    useEffect(() => {
+        const gameNameDetail = currentTeam.game;
+        console.log(gameNameDetail)
+        fetchGamePhoto(gameNameDetail);
     }, []);
 
     //** Aleks's local storage code to save a session under "Teams" to local storage */
@@ -45,16 +56,33 @@ const Summary = () => {
         sessionMsg.classList.remove('hidden')
     }
 
-    // console.log(currentTeam.game);
-    const gameNameDetail = currentTeam.game;
-    fetchGamePhoto(gameNameDetail);
+    /*
+        Passing through the gameName into the API call, we will object destructure
+        the response data for the background image. We then want to make a copy
+        of the previous data and set the state to setDetailedGamesData, with the
+        gameName being the key.
+    */
+    const fetchGamePhoto = async (gameName) => {
+        try {
+        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=0d78e57ce6444308b0caeb836b9cf165`);
+        const { background_image } = response.data; // Destructure game cover image
+        console.log(response.data)
+
+        setDetailedGameData((prevData) => ({
+            ...prevData,
+            [gameName]: { background_image }, // Store all details in an object
+        }));
+        } catch (error) {
+        console.error('Error fetching game details:', error);
+        }
+    };
 
     //** Renders components */
     return (
         <div className="main-container flex flex-col md:flex-row md:mt-5">
             <div className="md:pl-10 image-container my-10">
                 {/* <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} /> */}
-                <SummaryCard imageUrl={''} alt={''} />
+                <SummaryCard imageUrl={detailedGameData[gameNameDetail]?.background_image || ''} alt={gameNameDetail} />
             </div>
             <div className="sm:p-12 md:w-9/12 lg:w-8/12 lg:flex-col">
                 <h1 className="font-main text-6xl text-cyan pb-3">
