@@ -141,12 +141,14 @@ const Recommendation = () => {
       e.target.classList.add('selected-card');
       counter++;
     }
-    console.log(currentTeam);
-    console.log(e.target.parentElement.parentElement.children[1].children[0].innerHTML);
     currentTeam.game = e.target.parentElement.parentElement.children[1].children[0].innerHTML
     localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
-
+  
+  const linkTo = () => {
+    const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
+    return !currentTeam.game ? null : "/player1"
+  }
 
   return (
     <div className='recommendations'>
@@ -179,7 +181,7 @@ const Recommendation = () => {
         })}
       </div>
 
-      <Link to='/player1'><button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button></Link>
+      <Link to={linkTo()}><button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button></Link>
     </div>
   );
 };
