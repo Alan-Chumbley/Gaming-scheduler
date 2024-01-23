@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './Wishlist.css'
+import WishlistModal from '../../components/Modal/WishlistModal';
 
 const Wishlist = () => {
   const storedGames = JSON.parse(localStorage.getItem('Wishlist')) || [];
   console.log(storedGames);
 
+  // check if the wishlist modal is open via state management
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
+
   const gameCards = storedGames.map((game)=>(
-    <div className='w-52 mx-5 relative'>
+    <div className='w-52 mx-5 relative cursor-pointer' onClick={() => {}}>
       <img className='rounded-xl w-52 h-72 object-cover object-center' src={game.url} alt={game.name}/>
       <div class="absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl">
         <h1 className='uppercase h-72 top-32 left-8 absolute text-main text-3xl text-cyan'>Schedule</h1>
