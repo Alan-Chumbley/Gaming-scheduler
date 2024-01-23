@@ -24,7 +24,7 @@ const Summary = () => {
             const selectTimeSlot = document.querySelector("#" + sharedDates[i]);
             selectTimeSlot.setAttribute(
                 "class",
-                "bg-cyan w-5 h-5 rounded-md active cursor-default"
+                "bg-cyan w-5 h-5 rounded-md active cursor-default active-checkbox"
             );
         }
     }, []);

@@ -26,13 +26,19 @@
 
 /* this */
 
-.inactive-checkbox {
+.inactive-checkbox, .active-checkbox {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
     text-indent: -9999px;
     font-family: var(--smallText);
 }
 
+.inactive-checkbox {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.active-checkbox {
+    color: rgba(0, 0, 0, 0.4);
+}
 
 @media only screen and (max-width: 1440px) {
 
@@ -41,7 +47,7 @@
             flex-wrap: wrap;
     }
 
-    .inactive-checkbox{
+    .inactive-checkbox, .active-checkbox {
         width: 0.8rem !important;
         height: 0.8rem !important;
         border-radius: 4px !important;
@@ -67,7 +73,7 @@
         object-position: 50% 50%;
     } 
 
-    .inactive-checkbox {
+    .inactive-checkbox, .active-checkbox {
         text-indent: 0;
         margin: 4px 2px;
         width: 1.25rem;
@@ -75,7 +81,7 @@
         flex: 0 0 calc(16.6% - 10px) !important;
     }
 
-    .inactive-checkbox {
+    .inactive-checkbox, .active-checkbox {
         text-indent: 0;
         margin: 4px 2px;
         width: 1.25rem !important;
@@ -88,7 +94,7 @@
 
 
 @media only screen and (max-width: 480px) {
-    .inactive-checkbox {
+    .inactive-checkbox, .active-checkbox {
         text-indent: 0;
         margin: 4px 2px;
         width: 1.25rem !important;
