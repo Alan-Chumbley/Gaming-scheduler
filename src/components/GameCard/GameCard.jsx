@@ -10,21 +10,25 @@ const GameCard = (props) => {
   function handleWishlistClick(e) {
     setIsToggled(prevIsToggled => {
       const newIsToggled = !prevIsToggled;
-      e.target.classList.toggle('smallBtn-toggled', newIsToggled);
+      e.target.classList.toggle('wishlist-toggled', newIsToggled);
       return newIsToggled;
     });
   }
+
 
   return (
     <div className='flex flex-row gameCard p-10'>
       <div className='rounded-xl relative imgHolder'>
         <img src={props.imageUrl} alt={props.name} className='gameImg' />
-        <div className='absolute inset-x-0 bottom-0 select flex justify-center items-center'>
-          <div className='flex flex-col justify-center items-center select-icon-container'>
+
+        {/* container with overlay */}
+        <div className='absolute inset-x-0 bottom-0 flex flex-col justify-center items-center select' onClick={props.onClick}>
+            <div id='container-sel-star'>
             <FaStar id='fa-star-icon' />
             <p className='font-main text-black select-text'>Select</p>
-          </div>
+            </div>
         </div>
+
       </div>
       <div className='flex flex-col ml-10'>
         <h2 className='font-sub text-cyan text-2xl'>{props.name}</h2>

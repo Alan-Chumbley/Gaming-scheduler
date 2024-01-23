@@ -13,61 +13,75 @@
 .gameImg {
     width: 100%;
     height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    object-fit: cover;
 }
 
 
-/* SELECT OVERLAY */
+/* ************************************** SELECTION OVERLAY ************************************************ */
 
 .select {
-    height: 50px;
+    display: flex;
+    height: 25%;
     background-color: var(--select);
-    position: relative;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
 }
 
 .select:hover {
-    height: 250px;
-}
-
-.select-icon-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.selected-card {
-    height: 250px;
+    /* height: 250px; */
+    height: 100%;
 }
 
 .select-text {
     font-size: 1.75rem;
-    position: relative;
+    justify-self: baseline;
 }
 
+/* display star icon on hover only */
 #fa-star-icon {
     display: none;
 }
 
 .select:hover #fa-star-icon {
     display: block;
+    color: var(--darkgrey);
+    fill: var(--darkgrey);
+}
+
+#container-sel-star {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: 50% 50%;
+    transition: transform 0.3s ease;
+}
+
+/* when selected */
+.selected-card {
+    height: 100%;
+}
+
+.selected-card #fa-star-icon {
+    display: block;
+    color: var(--darkgrey);
+    fill: var(--darkgrey);
+}
+
+.selected-card #container-sel-star{
+    transform: scale(1.3);
 }
 
 
 
+/* ************************************** WISHLIST BUTTON TOGGLE STATE ************************************************ */
 
-.smallBtn-toggled {
-    color: var(--pink);
-}
-
-.smallBtn-toggled #fa-heart-solid-icon {
+.wishlist-toggled #fa-heart-solid-icon {
     display: block;
     color: var(--red);
     fill: var(--red);
 }
 
-.smallBtn-toggled #fa-heart-outline-icon {
+.wishlist-toggled #fa-heart-outline-icon {
     display: none;
 }

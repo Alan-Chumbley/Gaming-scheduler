@@ -7,6 +7,7 @@ const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
+  // let counter = 0;
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
@@ -123,6 +124,29 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
+  // handle game selection on click
+  // function handleSelectClick(e) {
+    // const gameEl = e.target.parentElement.parentElement.parentElement.children;
+
+    // if(counter === 0) {
+    //   e.target.classList.add('selected-card');
+    //   counter++;
+    //   console.log(counter);
+    // } else {
+    //   for(let i=0; i < gameEl.length; i++){
+
+    //     if(gameEl[i].classList.hasAttribute('selected-card')){
+    //       gameEl[i].classList.remove('selected-card');
+    //       console.log(gameEl[i])
+    //     }
+    //   }
+    //   e.target.classList.add('.selected.card');
+    //   console.log('or this')
+    //   counter = 1;
+    // }
+  // }
+
+
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
@@ -148,6 +172,8 @@ const Recommendation = () => {
               name={game.name}
               description={truncateDesc || ''}
               website={gameDetails.website || ''}
+              onClick={handleSelectClick}
+              // isSelected={selectedGameId === game.id}
             />
           );
         })}
