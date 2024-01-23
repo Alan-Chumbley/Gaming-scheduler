@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GameCard from '../../components/GameCard/GameCard';
 import ActionBtn from '../../components/Buttons/ActionBtn';
+import { Link } from 'react-router-dom';
 
 const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
@@ -132,7 +133,7 @@ const Recommendation = () => {
   function handleSelectClick(e) {
     const clickedEl = e.currentTarget;
     const gameEl = clickedEl.parentElement.parentElement.parentElement.children;
-
+    const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
     if (counter !== 0 && !clickedEl.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
         let currentGameEl = gameEl[i].children[0].children[1];
@@ -150,8 +151,14 @@ const Recommendation = () => {
       clickedEl.classList.add('selected-card');
       counter++;
     }
+    currentTeam.game = e.target.parentElement.parentElement.children[1].children[0].innerHTML
+    localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
-
+  
+  const linkTo = () => {
+    const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
+    return !currentTeam.game ? null : "/player1"
+  }
 
   return (
     <div className='recommendations'>
@@ -184,7 +191,7 @@ const Recommendation = () => {
         })}
       </div>
 
-      <button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button>
+      <Link to={linkTo()}><button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button></Link>
     </div>
   );
 };
