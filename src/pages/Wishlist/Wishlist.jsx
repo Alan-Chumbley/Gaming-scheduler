@@ -2,7 +2,7 @@ import React from 'react'
 import './Wishlist.css'
 
 const Wishlist = () => {
-  const storedGames = JSON.parse(localStorage.getItem('Wishlist'))
+  const storedGames = JSON.parse(localStorage.getItem('Wishlist')) || [];
   console.log(storedGames);
 
   const gameCards = storedGames.map((game)=>(
