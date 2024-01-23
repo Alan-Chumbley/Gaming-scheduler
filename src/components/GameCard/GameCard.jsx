@@ -12,7 +12,6 @@ const GameCard = (props) => {
   function handleWishlistClick(e) {
     setIsToggled(prevIsToggled => {
       const newIsToggled = !prevIsToggled;
-      console.log(newIsToggled)
       e.target.classList.toggle('smallBtn-toggled', newIsToggled);
       return newIsToggled;
     });
@@ -21,18 +20,17 @@ const GameCard = (props) => {
   const handleSelectClick = (e) => {
     setSelectedGame(prevSelectedGame => {
       const newSelectedGame = !prevSelectedGame;
-      console.log(newSelectedGame);
+      
       if(newSelectedGame){
         e.target.classList.add('selected-card');
-      } else if (!newSelectedGame && e.target.hasAttribute('selected-card')) {
+        e.target.children[0].children[0].removeAttribute('hidden');
+      } else if (!newSelectedGame) {
         e.target.classList.remove('selected-card');
+        e.target.children[0].children[0].setAttribute('hidden', true);
       }
       return newSelectedGame;
     });
   }
-
-  useEffect(() => {
-  }, [isToggled]);
 
 
   return (
@@ -40,7 +38,7 @@ const GameCard = (props) => {
       <div className='rounded-xl relative imgHolder'>
         <img src={props.imageUrl} alt={props.name} className='gameImg' />
         <div className='absolute inset-x-0 bottom-0 select flex justify-center items-center' onClick={handleSelectClick}>
-          <p className='font-main text-black select-text'> <FaStar hidden /> Select</p>
+          <p className='font-main text-black select-text'> <FaStar id='fa-star-icon' hidden /> Select</p>
         </div>
       </div>
       <div className='flex flex-col ml-10'>

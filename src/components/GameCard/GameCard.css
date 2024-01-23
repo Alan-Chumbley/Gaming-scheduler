@@ -27,6 +27,10 @@
     height: 250px;
 }
 
+.selected-card {
+    height: 250px;
+}
+
 .select-text {
     font-size: 1.75rem;
 }
