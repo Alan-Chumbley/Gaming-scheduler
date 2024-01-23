@@ -133,14 +133,11 @@ const Recommendation = () => {
 
   function handleSelectClick(e) {
     const clickedEl = e.currentTarget;
-    const isClickedSelected = clickedEl.classList.contains('selected-card');
 
     const grandpaEl = clickedEl.parentElement.parentElement.parentElement;
     const gameEl = grandpaEl.querySelectorAll('.gameCard');
 
     const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
-
-    clickedEl.querySelector(`.select-text`).textContent = isClickedSelected ? 'Selected' : 'Select';
 
     if (counter !== 0 && !clickedEl.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
@@ -158,6 +155,8 @@ const Recommendation = () => {
       clickedEl.classList.add('selected-card');
       counter++;
     }
+    const isClickedSelected = clickedEl.classList.contains('selected-card');
+    clickedEl.querySelector(`.select-text`).textContent = isClickedSelected ? 'Selected' : 'Select';
     currentTeam.game = clickedEl.parentElement.parentElement.children[1].children[0].innerHTML
     localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
