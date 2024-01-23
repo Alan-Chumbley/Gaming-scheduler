@@ -30,6 +30,29 @@
     padding-top: 10px !important;
 }
 
+.wishlistBtn, .moreBtn {
+    font-family: var(--smallText) !important;
+}
+
+.moreBtn:hover {
+    color: var(--red);
+}
+
+.moreBtn:hover #fa-link-icon {
+    color: var(--red);
+    fill: var(--red);
+}
+
+
+.smallBtn-toggled {
+    color: var(--red);
+    fill: var(--red);
+}
+
+.wishlistBtn:active {
+    color: var(--red);
+}
+
 #fa-heart-icon, #fa-refresh-icon {
     color: var(--cyan);
     fill: var(--cyan);
@@ -54,6 +77,47 @@
     fill: var(--cyan) !important;
 }
 
+
+
+#fa-heart-solid-icon {
+    color: var(--red);
+    display: none;
+    margin: 2px 10px 0 0 !important;
+    width: 16px;
+}
+
+#fa-heart-outline-icon {
+    color: var(--red);
+    fill: var(--red);
+    margin: 2px 10px 0 0 !important;
+    width: 16px;
+}
+
+.wishlistBtn:hover {
+    color: var(--red);
+}
+
+.wishlistBtn:hover #fa-heart-solid-icon {
+    display: block;
+    color: var(--red);
+    fill: var(--red);
+}
+
+.wishlistBtn:hover #fa-heart-outline-icon {
+    display: none;
+}
+
+
+#fa-link-icon {
+    color: var(--pink);
+    fill: var(--pink);
+    margin: 4px 10px 0 0 !important;
+    width: 16px;
+}
+
+
+
+
 @media only screen and (max-width: 800px) {
 
     .saveBtn, .startBtn {
@@ -76,3 +140,4 @@
         width: 18px;
     }
     }
+    
