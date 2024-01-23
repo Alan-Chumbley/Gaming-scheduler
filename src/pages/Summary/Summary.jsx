@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import "./Summary.css";
 import SummaryCal from "./SummaryCal";
-import { FaHeart } from "react-icons/fa";
-import { IoMdRefresh } from "react-icons/io";
 import { Link } from "react-router-dom";
 import tlou from "../../assets/tlou.jpg"
+import SaveBtn from "../../components/Buttons/SaveBtn";
+import StartAgainBtn from "../../components/Buttons/StartAgainBtn";
 
 const Summary = () => {
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
@@ -26,20 +26,30 @@ const Summary = () => {
 
     //** Aleks's local storage code to save a session under "Teams" to local storage */
     function saveToLS(e) {
-      storedData.push(currentTeam);
-      localStorage.setItem("Teams", JSON.stringify(storedData));
-      e.target.setAttribute('disabled', true)
-      const sessionMsg = document.querySelector('#session-msg')
-      sessionMsg.classList.remove('hidden') 
-  }
+        let isSaved = false;
+        for (let i = 0; i < storedData.length; i++) {
+            if (currentTeam.teamName == storedData[i].teamName && currentTeam.player1.name == storedData[i].player1.name && currentTeam.player2.name == storedData[i].player2.name) {
+                isSaved = true
+            }        
+        }
+
+        if (!isSaved) {
+            storedData.push(currentTeam);
+            localStorage.setItem("Teams", JSON.stringify(storedData));
+        }
+
+        e.target.setAttribute('disabled', true)
+        const sessionMsg = document.querySelector('#session-msg')
+        sessionMsg.classList.remove('hidden')
+    }
 
     //** Renders components */
     return (
-        <div className="main-container flex flex-col md:flex-row">
-            <div className="w-full sm:p-12 md:w-1/3 p-5 lg:p-20 image-container">
-                <img className="w-full bg-no-repeat bg-cover bg-center" src={tlou} alt={currentTeam.game + ", the selected game's cover"} />
+        <div className="main-container flex flex-col md:flex-row md:mt-5">
+            <div className="md:pl-10 image-container my-10">
+                <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} />
             </div>
-            <div className="w-full sm:p-12 md:w-2/3 p-5 lg:p-20 lg:pb-10 flex-col">
+            <div className="sm:p-12 md:w-9/12 lg:w-8/12 lg:flex-col">
                 <h1 className="font-main text-6xl text-cyan pb-3">
                     {currentTeam.teamName}
                 </h1>
@@ -51,16 +61,15 @@ const Summary = () => {
                 </p>
                 <SummaryCal />
                 <div className="w-full flex justify-end mt-10">
-                    <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 mr-4 uppercase text-cyan text-xl hover:text-black hover:bg-cyan disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-cyan" onClick={saveToLS}>
-                        {<FaHeart className="mr-3 mt-1" />}Save Session
-                    </button>
+                    <div id="button-msg">
+                    <SaveBtn id="session-btn" name="Save Session" onClick={saveToLS} />
+                    <p className="text-smallText text-center text-cyan mt-2 hidden" id="session-msg">Session Saved!</p>
+                    </div>
                     <Link to="/">
-                    <button className="bg-transparent border-cyan border-2 rounded-full flex w-fit px-6 p-1 uppercase text-cyan text-xl hover:text-black hover:bg-cyan">
-                        {<IoMdRefresh className="mr-3 mt-1" />}Start Again
-                    </button>
-                    </Link> 
+                        <StartAgainBtn name="Start Again" />
+                    </Link>
                 </div>
-                <p className="text-smallText text-end text-cyan mt-2 mr-[17rem] hidden" id="session-msg">Session Saved!</p>
+                
             </div>
         </div>
     );
