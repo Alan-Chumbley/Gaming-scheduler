@@ -10,6 +10,7 @@ const Recommendation = () => {
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
 
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
+  let btnName = 'Select';
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
@@ -132,8 +133,15 @@ const Recommendation = () => {
 
   function handleSelectClick(e) {
     const clickedEl = e.currentTarget;
-    const gameEl = clickedEl.parentElement.parentElement.parentElement.children;
+    const isClickedSelected = clickedEl.classList.contains('selected-card');
+
+    const grandpaEl = clickedEl.parentElement.parentElement.parentElement;
+    const gameEl = grandpaEl.querySelectorAll('.gameCard');
+
     const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
+
+    clickedEl.querySelector(`.select-text`).textContent = isClickedSelected ? 'Selected' : 'Select';
+
     if (counter !== 0 && !clickedEl.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
         let currentGameEl = gameEl[i].children[0].children[1];
@@ -144,17 +152,16 @@ const Recommendation = () => {
         counter++;
       }
     } else if (clickedEl.classList.contains('selected-card')) {
-      console.log('it does');
       clickedEl.classList.remove('selected-card');
       counter = 0;
     } else {
       clickedEl.classList.add('selected-card');
       counter++;
     }
-    currentTeam.game = e.target.parentElement.parentElement.children[1].children[0].innerHTML
+    currentTeam.game = clickedEl.parentElement.parentElement.children[1].children[0].innerHTML
     localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
-  
+
   const linkTo = () => {
     const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
     return !currentTeam.game ? null : "/player1"
