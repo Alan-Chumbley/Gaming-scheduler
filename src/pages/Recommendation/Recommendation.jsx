@@ -54,7 +54,7 @@ const Recommendation = () => {
   }
 
   // testing this genre
-  console.log(genreData.results)
+  // console.log(genreData.results)
   const action = genreData.results[0]?.games || []; // safely chain properties
   const indie = genreData.results[1]?.games || [];
   const adventure = genreData.results[2]?.games || [];
@@ -122,6 +122,36 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
+  const saveToWishlist = (e) => {
+    let button = "";
+
+    if (e.target.matches('button')) {
+      button = e.target
+    } else {
+      button = e.target.parentElement
+    }
+    
+    const gameID = button.getAttribute('data-game-id')
+    const game = button.getAttribute('data-game-name')
+    const url = button.getAttribute('data-game-url')
+
+    const newGame = {
+      id: gameID,
+      name: game,
+      url: url
+    }
+
+    saveToLS(newGame)
+
+    button.setAttribute('disabled', true)
+  }
+
+  function saveToLS(object) {
+    const storedGames = JSON.parse(localStorage.getItem("Wishlist")) || []; // retrieves existing wishlist
+    storedGames.push(object);
+    localStorage.setItem("Wishlist", JSON.stringify(storedGames)); // Kane: I added this to keep track of the current team
+}
+
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
@@ -139,6 +169,8 @@ const Recommendation = () => {
             fetchGameDetails(game.id);
           }
 
+
+
           return (
             <GameCard
               key={game.id}
@@ -147,6 +179,7 @@ const Recommendation = () => {
               name={game.name}
               description={truncateDesc || ''}
               website={gameDetails.website || ''}
+              onClick={saveToWishlist}
             />
           );
         })}
