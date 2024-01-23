@@ -12,7 +12,7 @@ const Recommendation = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.rawg.io/api/genres?key=0d78e57ce6444308b0caeb836b9cf165');
+        const response = await axios.get('https://api.rawg.io/api/genres?key=15dc7ef863d140f8b11adec2cc08a02b');
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -119,7 +119,32 @@ const Recommendation = () => {
 
   // truncate syntax from MDN web docs
   const truncateText = (text, maxLength) => {
+    if (text) {
+      text = text.replace('<p>', '').replace('</p>', '');
+    }
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  }
+
+  function handleSelectClick(e) {
+    const gameEl = e.target.parentElement.parentElement.parentElement.children;
+
+    if (counter !== 0 && !e.target.classList.contains('selected-card')) {
+      for (let i = 0; i < gameEl.length; i++) {
+        let currentGameEl = gameEl[i].children[0].children[1];
+        if (currentGameEl.classList.contains('selected-card')) {
+          currentGameEl.classList.remove('selected-card');
+        }
+        e.target.classList.add('selected-card');
+        counter++;
+      }
+    } else if (e.target.classList.contains('selected-card')) {
+      console.log('it does');
+      e.target.classList.remove('selected-card');
+      counter = 0;
+    } else {
+      e.target.classList.add('selected-card');
+      counter++;
+    }
   }
 
   return (
@@ -127,14 +152,13 @@ const Recommendation = () => {
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
       
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
-      <div className='game-cards-container mt-10 grid grid-cols-2'>
+      <div className='game-cards-container mt-10 block xl:grid lg:grid-cols-2'>
         {/* testing adventure genre to see if code works */}
         {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
-          const truncateDesc = truncateText(gameDetails.description, 250);
+          const truncateDesc = truncateText(gameDetails.description, 250);         
 
           if (!gameDetails.background_image) {
-
             // If the detailed game data is not available, fetch it
             fetchGameDetails(game.id);
           }
