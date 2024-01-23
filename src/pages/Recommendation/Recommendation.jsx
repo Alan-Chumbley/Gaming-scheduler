@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GameCard from '../../components/GameCard/GameCard';
+import ActionBtn from '../../components/Buttons/ActionBtn';
 
 const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
@@ -69,7 +70,7 @@ const Recommendation = () => {
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
       
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
-      <div className='game-cards-container mt-20 grid grid-cols-2'>
+      <div className='game-cards-container mt-10 grid grid-cols-2'>
         {/* testing adventure genre to see if code works */}
         {adventureGames.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
@@ -93,6 +94,8 @@ const Recommendation = () => {
           );
         })}
       </div>
+
+      <button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button>
     </div>
   );
 };
