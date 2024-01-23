@@ -8,6 +8,8 @@ const Recommendation = () => {
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
 
+  let counter = 0; // for handleSelectClick - to avoid selection of more than one game
+
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +56,7 @@ const Recommendation = () => {
   }
 
   // testing this genre
-  console.log(genreData.results)
+  // console.log(genreData.results)
   const action = genreData.results[0]?.games || []; // safely chain properties
   const indie = genreData.results[1]?.games || [];
   const adventure = genreData.results[2]?.games || [];
@@ -122,6 +124,24 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
+  function handleSelectClick(e) {
+    const gameEl = e.target.parentElement.parentElement.parentElement.children;
+    if (counter !== 0) {
+      for (let i = 0; i < gameEl.length; i++) {
+        let currentGameEl = gameEl[i].children[0].children[1];
+        if (currentGameEl.classList.contains('selected-card')) {
+          currentGameEl.classList.remove('selected-card');
+        }
+        e.target.classList.add('selected-card');
+        counter++;
+      }
+    } else {
+      e.target.classList.add('selected-card');
+      counter++;
+    }
+  }
+
+
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
@@ -139,6 +159,8 @@ const Recommendation = () => {
             fetchGameDetails(game.id);
           }
 
+
+
           return (
             <GameCard
               key={game.id}
@@ -147,6 +169,7 @@ const Recommendation = () => {
               name={game.name}
               description={truncateDesc || ''}
               website={gameDetails.website || ''}
+              onClick={handleSelectClick}
             />
           );
         })}
