@@ -144,6 +144,8 @@ const Recommendation = () => {
     saveToLS(newGame)
 
     button.setAttribute('disabled', true)
+    button.setAttribute('class', 'font-smallText flex text-size px-11 disabled:opacity-50')
+    button.innerHTML = "Added!"
   }
 
   function saveToLS(object) {

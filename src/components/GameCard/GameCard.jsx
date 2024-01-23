@@ -16,7 +16,7 @@ const GameCard = (props) => {
         <h2 className='font-sub text-cyan text-2xl'>{props.name}</h2>
         <p className='font-smallText text-white mt-4'>{props.description}</p>
         <div className='flex flex-row text-pinkHover mt-4'>
-          <button className='font-smallText flex text-size' data-game-id={props.id} data-game-name={props.name} data-game-url={props.imageUrl} onClick={props.onClick}>{<CiHeart className='icon'/>} &nbsp; Add to wishlist</button>
+          <button className='font-smallText flex text-size disabled:opacity-50' data-game-id={props.id} data-game-name={props.name} data-game-url={props.imageUrl} onClick={props.onClick}>{<CiHeart className='icon'/>} &nbsp; Add to wishlist</button>
           <button><a href={props.website} target='_blank' className='font-smallText flex text-size pl-5'>{<TfiNewWindow className='icon'/>} &nbsp; Read more</a></button>
         </div>
       </div>
