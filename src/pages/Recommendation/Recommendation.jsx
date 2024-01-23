@@ -12,7 +12,7 @@ const Recommendation = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.rawg.io/api/genres?key=15dc7ef863d140f8b11adec2cc08a02b');
+        const response = await axios.get('https://api.allorigins.win/raw?url=https://api.rawg.io/api/genres?key=15dc7ef863d140f8b11adec2cc08a02b');
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,6 +21,7 @@ const Recommendation = () => {
       }
     };
 
+    
     fetchData();
   }, []);
 
@@ -32,7 +33,7 @@ const Recommendation = () => {
   */
   const fetchGameDetails = async (gameId) => {
     try {
-      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=15dc7ef863d140f8b11adec2cc08a02b`);
+      const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameId}?key=15dc7ef863d140f8b11adec2cc08a02b`);
       const { background_image, description, website } = response.data; // Destructure additional details
   
       setDetailedGameData((prevData) => ({

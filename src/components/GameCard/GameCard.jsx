@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CiHeart } from "react-icons/ci";
 import { TfiNewWindow } from "react-icons/tfi";
 import './GameCard.css'
+import WishlistBtn from '../Buttons/WishlistBtn';
 
 const GameCard = (props) => {
+  const [isToggled, setIsToggled] = React.useState(false);
+
+  // useEffect(() => {
+  //   console.log(isToggled);
+  // }, [isToggled]);
+
+  function handleWishlistClick(e){
+    setIsToggled(prevState => !prevState);
+    const firstChild = e.target;
+    firstChild.classList.toggle('smallBtn-toggled', isToggled);
+  }
+
+
+
+
   return (
     <div className='flex flex-row gameCard p-10'>
       <div className='rounded-xl relative imgHolder'>
@@ -16,7 +32,7 @@ const GameCard = (props) => {
         <h2 className='font-sub text-cyan text-2xl'>{props.name}</h2>
         <p className='font-smallText text-white mt-4'>{props.description}</p>
         <div className='flex flex-row text-pinkHover mt-4'>
-          <button className='font-smallText flex text-size'>{<CiHeart className='icon'/>} &nbsp; Add to wishlist</button>
+          <WishlistBtn name="Add to Wishlist" id='wishlist-button' onClick={handleWishlistClick} /> 
           <button><a href={props.website} target='_blank' className='font-smallText flex text-size pl-5'>{<TfiNewWindow className='icon'/>} &nbsp; Read more</a></button>
         </div>
       </div>
