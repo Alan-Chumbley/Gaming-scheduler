@@ -7,6 +7,7 @@ import SaveBtn from "../../components/Buttons/SaveBtn";
 import StartAgainBtn from "../../components/Buttons/StartAgainBtn";
 import SummaryCard from "../../components/SummaryCard/SummaryCard";
 import axios from 'axios';
+import noImage from '../../assets/no-image.png';
 
 const Summary = () => {
     const [detailedGameData, setDetailedGameData] = useState({});
@@ -82,7 +83,7 @@ const Summary = () => {
         <div className="main-container flex flex-col md:flex-row md:mt-5">
             <div className="md:pl-10 image-container my-10">
                 {/* <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} /> */}
-                <SummaryCard imageUrl={detailedGameData[gameNameDetail]?.background_image || ''} alt={gameNameDetail} />
+                <SummaryCard imageUrl={detailedGameData[gameNameDetail]?.background_image || noImage} alt={gameNameDetail} />
             </div>
             <div className="sm:p-12 md:w-9/12 lg:w-8/12 lg:flex-col">
                 <h1 className="font-main text-6xl text-cyan pb-3">
