@@ -55,18 +55,62 @@ const Recommendation = () => {
 
   // testing this genre
   console.log(genreData.results)
-  const actionGames = genreData.results[0]?.games || []; // safely chain properties
-  const indieGames = genreData.results[1]?.games || [];
-  const adventureGames = genreData.results[2]?.games || [];
-  const strategyGames = genreData.results[4]?.games || [];
-  const shooterGames = genreData.results[5]?.games || [];
-  const casualGames = genreData.results[6]?.games || [];
-  const simulationGames = genreData.results[7]?.games || [];
-  const puzzleGames = genreData.results[8]?.games || [];
-  const platformGames = genreData.results[10]?.games || [];
-  const sportGames = genreData.results[12]?.games || [];
-  const racingGames = genreData.results[13]?.games || [];
-  const fightingGames = genreData.results[14]?.games || [];
+  const action = genreData.results[0]?.games || []; // safely chain properties
+  const indie = genreData.results[1]?.games || [];
+  const adventure = genreData.results[2]?.games || [];
+  const strategy = genreData.results[4]?.games || [];
+  const shooter = genreData.results[5]?.games || [];
+  const casual = genreData.results[6]?.games || [];
+  const simulation = genreData.results[7]?.games || [];
+  const puzzle = genreData.results[8]?.games || [];
+  const platform = genreData.results[10]?.games || [];
+  const sport = genreData.results[12]?.games || [];
+  const racing = genreData.results[13]?.games || [];
+  const fighting = genreData.results[14]?.games || [];
+
+  // switch statement to parse through the genre name from local storage
+  // which will then display the corresponding games
+  let selectedGenre = [];
+  switch (genreParsed) {
+    case 'action':
+      selectedGenre = action;
+      break;
+    case 'indie':
+      selectedGenre = indie;
+      break;
+    case 'adventure':
+      selectedGenre = adventure;
+      break;
+    case 'strategy':
+      selectedGenre = strategy;
+      break;
+    case 'shooter':
+      selectedGenre = shooter;
+      break;
+    case 'casual':
+      selectedGenre = casual;
+      break;
+    case 'simulation':
+      selectedGenre = simulation;
+      break;
+    case 'puzzle':
+      selectedGenre = puzzle;
+      break;
+    case 'platform':
+      selectedGenre = platform;
+      break;
+    case 'sport':
+      selectedGenre = sport;
+      break;
+    case 'racing':
+      selectedGenre = racing;
+      break;
+    case 'fighting':
+      selectedGenre = fighting;
+      break;
+    default:
+      break;
+}
 
   // if the screen takes a while to load the data, the below will render
   if (loading) {
@@ -84,7 +128,7 @@ const Recommendation = () => {
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
       <div className='game-cards-container mt-10 grid grid-cols-2'>
         {/* testing adventure genre to see if code works */}
-        {adventureGames.map((game) => {
+        {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
           const truncateDesc = truncateText(gameDetails.description, 250);
 
