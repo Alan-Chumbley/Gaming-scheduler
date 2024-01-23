@@ -10,6 +10,8 @@ const WishlistModal = (props) => {
         setIsWishlistModalOpen(!isWishlistModalOpen);
     };
 
+    const navigate = useNavigate();
+    
     // handle submit function for form
     const handleSubmit = (e) => {
         e.preventDefault();
