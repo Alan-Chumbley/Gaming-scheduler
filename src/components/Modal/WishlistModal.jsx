@@ -7,26 +7,34 @@ const WishlistModal = (props) => {
 
     // toggle function for modal
     const toggleWishlistModal = () => {
-        setIsWishlistModalOpen(!isWishlistModalOpen);
+        props.onClose();
     };
 
     const navigate = useNavigate();
-    
+
     // handle submit function for form
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         // save the squad name, name of the game and go to player 1 page
-        const wishTeam = {
-            teamName: name,
-            game: game,
+        const { teamName, game } = props.game || {};
+    
+        if (teamName && game) {
+            const wishTeam = {
+                teamName: teamName,
+                game: game,
+            };
+    
+            saveToLS(wishTeam); // save to local storage
+    
+            // navigate to player 1 page
+            navigate('/player1');
         }
-
-        saveToLS(wishTeam); // save to local storage
-
-        // navigate to player 1 page
-        navigate('/player1');
     };
+
+    const saveToLS = (object) => {
+        localStorage.setItem("CurrentTeam", JSON.stringify(object));
+    }
 
     return (
         <div>
@@ -42,7 +50,7 @@ const WishlistModal = (props) => {
             </button>
 
             {/* modal body */}
-            {isWishlistModalOpen && (
+            {props.isOpen && (
                 <div
                     id="crud-modal"
                     tabIndex="-1"
