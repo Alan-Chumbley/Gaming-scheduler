@@ -124,19 +124,27 @@ const Recommendation = () => {
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
+  // handle game selection on click (and not allow selection of more than one)
+
   function handleSelectClick(e) {
-    const gameEl = e.target.parentElement.parentElement.parentElement.children;
-    if (counter !== 0) {
+    const clickedEl = e.currentTarget;
+    const gameEl = clickedEl.parentElement.parentElement.parentElement.children;
+
+    if (counter !== 0 && !clickedEl.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
         let currentGameEl = gameEl[i].children[0].children[1];
         if (currentGameEl.classList.contains('selected-card')) {
           currentGameEl.classList.remove('selected-card');
         }
-        e.target.classList.add('selected-card');
+        clickedEl.classList.add('selected-card');
         counter++;
       }
+    } else if (clickedEl.classList.contains('selected-card')) {
+      console.log('it does');
+      clickedEl.classList.remove('selected-card');
+      counter = 0;
     } else {
-      e.target.classList.add('selected-card');
+      clickedEl.classList.add('selected-card');
       counter++;
     }
   }
@@ -147,7 +155,7 @@ const Recommendation = () => {
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
       
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
-      <div className='game-cards-container mt-10 grid grid-cols-2'>
+      <div className='game-cards-container mt-10 block xl:grid grid-cols-2'>
         {/* testing adventure genre to see if code works */}
         {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};

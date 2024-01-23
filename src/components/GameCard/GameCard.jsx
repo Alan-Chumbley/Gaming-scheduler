@@ -52,7 +52,7 @@ const GameCard = (props) => {
         {/* container with overlay */}
         <div className='absolute inset-x-0 bottom-0 flex flex-col justify-center items-center select' onClick={props.onClick}>
             <div id='container-sel-star'>
-            <FaStar id='fa-star-icon' />
+            <FaStar id='fa-star-icon'/>
             <p className='font-main text-black select-text'>Select</p>
             </div>
         </div>
