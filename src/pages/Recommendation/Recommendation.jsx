@@ -54,7 +54,19 @@ const Recommendation = () => {
   }
 
   // testing this genre
+  console.log(genreData.results)
+  const actionGames = genreData.results[0]?.games || []; // safely chain properties
+  const indieGames = genreData.results[1]?.games || [];
   const adventureGames = genreData.results[2]?.games || [];
+  const strategyGames = genreData.results[4]?.games || [];
+  const shooterGames = genreData.results[5]?.games || [];
+  const casualGames = genreData.results[6]?.games || [];
+  const simulationGames = genreData.results[7]?.games || [];
+  const puzzleGames = genreData.results[8]?.games || [];
+  const platformGames = genreData.results[10]?.games || [];
+  const sportGames = genreData.results[12]?.games || [];
+  const racingGames = genreData.results[13]?.games || [];
+  const fightingGames = genreData.results[14]?.games || [];
 
   // if the screen takes a while to load the data, the below will render
   if (loading) {
