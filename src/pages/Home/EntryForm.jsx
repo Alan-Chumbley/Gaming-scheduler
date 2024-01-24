@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
 function EntryForm() {
@@ -69,6 +69,9 @@ function EntryForm() {
     const handleSubmit = ({ target }) => {
 
         errorEl = document.querySelector('#error-msg-hp');
+        // const doesexist = getData();
+        returnResult();
+        // console.log(getData())
 
         if (!team && !game && !genre || !game && !genre || !team) {
             errorEl.removeAttribute('hidden');
@@ -140,6 +143,34 @@ function EntryForm() {
     const handleErrors = () => !team && !game && !genre ? 'Complete the form to unlock the next level!' : !game && !genre ? 'Type your game title or pick a genre to venture forth!' : !team ? 'Summon your team! Add a team name to proceed.' : null;
 
 
+    /* *************************************** API FUNCTION *************************************** */
+    const id = '1007';
+    const title = game;
+    const searchTitle = game.toLowerCase().replace(' ', '-');
+    const apiKey = '0d78e57ce6444308b0caeb836b9cf165';
+    const apiURL = `https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${searchTitle}`;
+
+    async function findTitle() {
+        try {
+            const response = await axios.get(`${apiURL}?key=${apiKey}`);
+            const gameData = response.data;
+            if(gameData && !gameData.detail){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.log('Error fetching data: ', error.message);
+            return false;
+        }
+    }
+
+    async function returnResult() {
+        const result = await findTitle();
+        console.log(result);
+        return result;
+    }
+
     /* *************************************** RENDER *************************************** */
 
     return (
@@ -166,7 +197,7 @@ function EntryForm() {
                         type the game title if known
                     </p>
                 </div>
-                <input type='text'  placeholder="E.g. Elden Ring" id="game-input" value={game} onChange={handleChange(setGame)} maxLength="58" />
+                <input type='text' placeholder="E.g. Elden Ring" id="game-input" value={game} onChange={handleChange(setGame)} maxLength="58" />
             </div>
 
             <div id="genre-quest">
@@ -178,7 +209,9 @@ function EntryForm() {
                 </div>
                 <ul id="genresBtn">{genresBtns}</ul>
             </div>
-            <Link to={sendToLink()} ><ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" /></Link>
+            {/* <Link to={sendToLink()} > */}
+            <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
+            {/* </Link> */}
             <p id='error-msg-hp' className='italic' hidden>{handleErrors()}</p>
         </div>
     );
