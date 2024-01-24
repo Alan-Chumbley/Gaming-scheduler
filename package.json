@@ -23,6 +23,7 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.2",
     "require": "^2.4.20",
+    "rollup": "^4.9.6",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
