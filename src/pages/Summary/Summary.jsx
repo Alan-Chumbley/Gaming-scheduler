@@ -9,9 +9,11 @@ import SummaryCard from "../../components/SummaryCard/SummaryCard";
 import axios from 'axios';
 import noImage from '../../assets/no-image.png';
 
+
+
 const Summary = () => {
     const [detailedGameData, setDetailedGameData] = useState({});
-
+    const vKEY = import.meta.env.VITE_OUR_API ;
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
     const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"));
     const sharedDates = currentTeam.player1.availability.filter((date) =>
@@ -65,7 +67,7 @@ const Summary = () => {
     */
     const fetchGamePhoto = async (gameName) => {
         try {
-        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=0d78e57ce6444308b0caeb836b9cf165`);
+        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=${vKEY}`);
         const { background_image } = response.data; // Destructure game cover image
         console.log(response.data)
         // console.log(background_image);
