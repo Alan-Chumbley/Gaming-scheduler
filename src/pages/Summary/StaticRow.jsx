@@ -19,13 +19,14 @@ const StaticRow = (props) => {
             <div className="min-w-14">
                 <h2 className="font-sub uppercase">{props.shortenedDay} </h2>
             </div>
-            <div className="flex w-full justify-between" id={props.day + "Row"}>
+            <div className="flex w-full justify-between inactive-day-row" id={props.day + "Row"}>
                 {hours.map((hour) => (
                     <TimeSlotButton
-                        className={"bg-red w-5 h-5 rounded-md cursor-default inactive"}
+                        className={"bg-red lg:w-5 lg:h-5 rounded-md cursor-default inactive inactive-checkbox"}
                         id={props.day + hour}
                         key={props.day + hour}
                         handleToggle={handleToggle}
+                        hour={hour}
                     />
                 ))}
             </div>

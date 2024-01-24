@@ -1,5 +1,7 @@
 @import '../../index.css';
 
+/* ********************************************** ACTION BUTTON **************************************************** */
+
 .actionBtn {
     display: flex;
     opacity: 0.7;
@@ -24,11 +26,15 @@
     width: 16px;
 }
 
+/* ********************************************** SAVE AND START BUTTONS **************************************************** */
+
 .saveBtn, .startBtn {
     font-family: var(--sub) !important;
     font-size: 18px !important;
     padding-top: 10px !important;
 }
+
+/* ********************************************** WISHLIST AND READ MORE BUTTONS **************************************************** */
 
 .wishlistBtn, .moreBtn {
     font-family: var(--smallText) !important;
@@ -114,8 +120,6 @@
     margin: 4px 10px 0 0 !important;
     width: 16px;
 }
-
-
 
 
 @media only screen and (max-width: 800px) {
