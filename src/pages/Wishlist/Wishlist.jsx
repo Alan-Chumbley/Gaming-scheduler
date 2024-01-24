@@ -20,6 +20,10 @@ const Wishlist = () => {
     setModalOpen(false);
   };
 
+  const schedule = () => {
+
+  }
+
   const gameCards = storedGames.map((game)=>(
     <div className='w-52 mx-5 relative cursor-pointer' key={game.name} onClick={() => openModal(game)}>
       <img className='rounded-xl w-52 h-72 object-cover object-center' src={game.url} alt={game.name} />
@@ -58,10 +62,10 @@ const Wishlist = () => {
               <button onClick={closeModal} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
                 &times;
               </button>
-              <h1 className='text-3xl mb-4 font-sub text-black'>{selectedGame.name}</h1>
+              <h1 className='text-3xl mb-4 font-sub text-black uppercase'>Ready to play:<br /><span className='text-red'>{selectedGame.name}</span></h1>
               {/* Add more modal content here */}
-              <button onClick={closeModal} className='bg-red text-white px-4 py-2 rounded-md'>
-                Close
+              <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
+                Schedule game
               </button>
             </div>
           </div>
