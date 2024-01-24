@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GameCard from '../../components/GameCard/GameCard';
 import ActionBtn from '../../components/Buttons/ActionBtn';
+import { Link } from 'react-router-dom';
 
 const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
@@ -9,6 +10,7 @@ const Recommendation = () => {
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
   console.log("HELLO : ", genreData)
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
+  let btnName = 'Select';
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
@@ -36,7 +38,7 @@ const Recommendation = () => {
     try {
       const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=8ca11e61a56948f49820e06bdf9d968b`);
       const { background_image, description, slug } = response.data; // Destructure additional details
-  
+
       setDetailedGameData((prevData) => ({
         ...prevData,
         [gameId]: { background_image, description, slug }, // Store all details in an object
@@ -112,7 +114,7 @@ const Recommendation = () => {
       break;
     default:
       break;
-}
+  }
 
   // if the screen takes a while to load the data, the below will render
   if (loading) {
@@ -121,33 +123,55 @@ const Recommendation = () => {
 
   // truncate syntax from MDN web docs
   const truncateText = (text, maxLength) => {
+    if (text) {
+      text = text.replace('<p>', '').replace('</p>', '');
+    }
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
+  // handle game selection on click (and not allow selection of more than one)
+
   function handleSelectClick(e) {
-    const gameEl = e.target.parentElement.parentElement.parentElement.children;
-    if (counter !== 0) {
+    const clickedEl = e.currentTarget;
+
+    const grandpaEl = clickedEl.parentElement.parentElement.parentElement;
+    const gameEl = grandpaEl.querySelectorAll('.gameCard');
+
+    const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
+
+    if (counter !== 0 && !clickedEl.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
         let currentGameEl = gameEl[i].children[0].children[1];
         if (currentGameEl.classList.contains('selected-card')) {
           currentGameEl.classList.remove('selected-card');
         }
-        e.target.classList.add('selected-card');
+        clickedEl.classList.add('selected-card');
         counter++;
       }
+    } else if (clickedEl.classList.contains('selected-card')) {
+      clickedEl.classList.remove('selected-card');
+      counter = 0;
     } else {
-      e.target.classList.add('selected-card');
+      clickedEl.classList.add('selected-card');
       counter++;
     }
+    const isClickedSelected = clickedEl.classList.contains('selected-card');
+    clickedEl.querySelector(`.select-text`).textContent = isClickedSelected ? 'Selected' : 'Select';
+    currentTeam.game = clickedEl.parentElement.parentElement.children[1].children[0].innerHTML
+    localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
 
+  const linkTo = () => {
+    const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
+    return !currentTeam.game ? null : "/player1"
+  }
 
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
-      
+
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
-      <div className='game-cards-container mt-10 grid grid-cols-2'>
+      <div className='game-cards-container mt-10 block xl:grid grid-cols-2'>
         {/* testing adventure genre to see if code works */}
         {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
@@ -173,7 +197,7 @@ const Recommendation = () => {
         })}
       </div>
 
-      <button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button>
+      <Link to={linkTo()}><button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button></Link>
     </div>
   );
 };

@@ -2,14 +2,14 @@ import React from 'react'
 import './Wishlist.css'
 
 const Wishlist = () => {
-  const storedGames = JSON.parse(localStorage.getItem('Wishlist'))
+  const storedGames = JSON.parse(localStorage.getItem('Wishlist')) || [];
   console.log(storedGames);
 
   const gameCards = storedGames.map((game)=>(
     <div className='w-52 mx-5 relative'>
       <img className='rounded-xl w-52 h-72 object-cover object-center' src={game.url} alt={game.name}/>
-      <div class="absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl">
-        <h1 className='uppercase h-72 top-32 left-8 absolute text-main text-3xl text-cyan'>Schedule</h1>
+      <div class="flex items-center justify-center absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl schedule-container">
+        <h1 className='uppercase absolute text-5xl text-cyan schedule-btn'>Schedule</h1>
       </div>  
       <h2 className='text-white text-3xl text-center mt-3 mb-10'>{game.name}</h2>
     </div>

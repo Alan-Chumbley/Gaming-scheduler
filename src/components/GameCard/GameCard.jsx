@@ -19,30 +19,39 @@ const GameCard = (props) => {
       }
 
       button.classList.toggle('wishlist-toggled', newIsToggled);
-      saveToWishlist(button)
+      console.log(newIsToggled);
+      if (newIsToggled) {
+        saveToWishlist(button)
+      } else {
+        deleteFromWishlist(button)
+      }
+
       return newIsToggled;
     });
   }
 
   const saveToWishlist = (button) => {
     
-    const game = button.getAttribute('data-game-name')
+    const name = button.getAttribute('data-game-name')
     const url = button.getAttribute('data-game-url')
 
     const newGame = {
-      name: game,
+      name: name,
       url: url
     }
-
-    saveToLS(newGame)
+    const storedGames = JSON.parse(localStorage.getItem("Wishlist")) || []; // retrieves existing wishlist
+    const results = storedGames.filter(game => game.name !== name);
+    results.push(newGame);
+    localStorage.setItem("Wishlist", JSON.stringify(results));
   }
 
-  function saveToLS(object) {
-    const storedGames = JSON.parse(localStorage.getItem("Wishlist")) || []; // retrieves existing wishlist
-    storedGames.push(object);
-    localStorage.setItem("Wishlist", JSON.stringify(storedGames)); // Kane: I added this to keep track of the current team
-}
-
+  
+  const deleteFromWishlist= (button) => {
+    const name = button.getAttribute('data-game-name')
+    const storedGames = JSON.parse(localStorage.getItem("Wishlist"))
+    const results = storedGames.filter(game => game.name !== name);
+    localStorage.setItem("Wishlist", JSON.stringify(results));
+  }
 
   return (
     <div className='flex flex-col md:flex-row gameCard p-10'>
@@ -52,7 +61,7 @@ const GameCard = (props) => {
         {/* container with overlay */}
         <div className='absolute inset-x-0 bottom-0 flex flex-col justify-center items-center select' onClick={props.onClick}>
             <div id='container-sel-star'>
-            <FaStar id='fa-star-icon' />
+            <FaStar id='fa-star-icon'/>
             <p className='font-main text-black select-text'>Select</p>
             </div>
         </div>

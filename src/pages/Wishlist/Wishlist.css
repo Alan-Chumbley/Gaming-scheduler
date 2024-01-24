@@ -1,0 +1,11 @@
+@import '../../index.css';
+
+.schedule-container{
+    height: 100%;
+    width: 100%;
+}
+
+.schedule-btn{
+    font-family: var(--main);
+    text-align: center;
+}
