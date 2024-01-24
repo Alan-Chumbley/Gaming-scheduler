@@ -76,10 +76,16 @@ const Summary = () => {
 const weeklyHours = sharedDates.length;
 
 const weeks = Math.ceil(playtime/weeklyHours);
-
+let timeMessage = "";
+if (weeks === 1 ){
+     timeMessage = weeks + " week"
+    
+} else{
+    timeMessage = weeks + " weeks"
+}
 if (playtime!== undefined) {
     const summaryTime = document.querySelector('#time')
- summaryTime.innerHTML= weeks + " weeks"
+ summaryTime.innerHTML= timeMessage;
 console.log("T",summaryTime);
   
 }
@@ -97,6 +103,7 @@ console.log("T",summaryTime);
             summaryIMG.setAttribute('src', background_image) 
         }
 
+        
         } catch (error) {
         console.error('Error fetching game details:', error);
         }
