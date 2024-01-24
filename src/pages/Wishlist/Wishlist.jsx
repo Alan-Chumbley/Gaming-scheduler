@@ -49,18 +49,21 @@ const Wishlist = () => {
 
       {/* Overlay */}
       {modalOpen && selectedGame && (
-        <div className='fixed inset-0 bg-black opacity-50'></div>
-      )}
-
-      {/* Modal */}
-      {modalOpen && selectedGame && (
-        <div className='fixed inset-0 flex items-center justify-center z-50'>
-          <div className='bg-white p-8 rounded-lg'>
-            <h1 className='text-3xl mb-4 font-sub text-black'>{selectedGame.name}</h1>
-            {/* Add more modal content here */}
-            <button onClick={closeModal} className='bg-red text-white px-4 py-2 rounded-md'>
-              Close
-            </button>
+        <div>
+          <div className='fixed inset-0 bg-black opacity-50'></div>
+          {/* Modal */}
+          <div className='fixed inset-0 flex items-center justify-center z-50'>
+            <div className='bg-white p-8 rounded-lg relative w-96 h-96'>
+              {/* modal close button */}
+              <button onClick={closeModal} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
+                &times;
+              </button>
+              <h1 className='text-3xl mb-4 font-sub text-black'>{selectedGame.name}</h1>
+              {/* Add more modal content here */}
+              <button onClick={closeModal} className='bg-red text-white px-4 py-2 rounded-md'>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
