@@ -7,13 +7,14 @@
     position: relative;
     flex: 1;
     overflow: hidden;
+    align-items: flex-start !important;
 }
 
 .game-cover {
     display: flex;
     position: relative;
-    height: 450px !important;
-    /* width: 100% !important; */
+    height: 450px !important; 
+    width: 100% !important;
     object-fit: cover;
     border-radius: 20px;
     object-position: 50% 50%;
@@ -56,7 +57,7 @@
 
 
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 768px) {
     .image-container {
         position: relative;
         flex: 1;
