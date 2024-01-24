@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Wishlist.css'
 
 const Wishlist = () => {
@@ -8,11 +8,17 @@ const Wishlist = () => {
   // add modal states
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
+  const [selectedSquad, setSelectedSquad] = useState('');
+  const [availableSquads, setAvailableSquads] = useState([]);
 
   // open and close the modal functionality
   const openModal = (game) => {
     setSelectedGame(game);
     setModalOpen(true);
+
+    // when the modal opens, set the squad/team names from local storage
+    const squads = JSON.parse(localStorage.getItem('Teams')) || [];
+    setAvailableSquads(squads);
   };
 
   const closeModal = () => {
@@ -23,6 +29,12 @@ const Wishlist = () => {
   const schedule = () => {
 
   }
+
+  // if the user's squad names list changes, the list within the modal will also update
+  useEffect(() => {
+    const squads = JSON.parse(localStorage.getItem('Teams')) || [];
+    setAvailableSquads(squads);
+  }, [modalOpen]);
 
   const gameCards = storedGames.map((game)=>(
     <div className='w-52 mx-5 relative cursor-pointer' key={game.name} onClick={() => openModal(game)}>
