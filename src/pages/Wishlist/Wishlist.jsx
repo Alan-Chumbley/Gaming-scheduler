@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Wishlist.css'
+import { useNavigate } from 'react-router-dom';
 
 const Wishlist = () => {
+  const navigate = useNavigate();
+
   const storedGames = JSON.parse(localStorage.getItem('Wishlist')) || [];
   console.log(storedGames);
 
@@ -27,7 +30,7 @@ const Wishlist = () => {
   };
 
   const schedule = () => {
-
+    navigate('/player1');
   }
 
   // if the user's squad names list changes, the list within the modal will also update
