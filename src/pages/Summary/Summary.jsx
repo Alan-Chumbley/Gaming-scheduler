@@ -79,6 +79,7 @@ const Summary = () => {
     };
 
     //** Renders components */
+
     return (
         <div className="main-container flex flex-col lg:flex-row">
             <div className="w-full sm:py-12 lg:w-4/12 p-5 lg:py-20 lg:px-0 image-container">
@@ -92,11 +93,9 @@ const Summary = () => {
                     {currentTeam.teamName}
                 </h1>
                 <h2 className="font-main text-4xl text-white pb-3">
-                    Your optimal gaming schedule for {currentTeam.game} is set!
+                    {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game} is set!`}
                 </h2>
-                <p className="pb-6">
-                    Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!
-                </p>
+                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!`</p>}
                 <SummaryCal />
                 <div className="flex flex-row justify-end w-full mt-10">
                     <div id="button-msg" className="mb-5 md:mb-0">
