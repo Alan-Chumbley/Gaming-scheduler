@@ -4,6 +4,8 @@ import GameCard from '../../components/GameCard/GameCard';
 import ActionBtn from '../../components/Buttons/ActionBtn';
 import { Link } from 'react-router-dom';
 
+
+
 const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
@@ -12,11 +14,15 @@ const Recommendation = () => {
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
   let btnName = 'Select';
 
+  //env
+const vKEY = import.meta.env.VITE_OUR_API ;
+
+
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.rawg.io/api/genres?key=8ca11e61a56948f49820e06bdf9d968b');
+        const response = await axios.get(`https://api.rawg.io/api/genres?key=${vKEY}`);
         setGenreData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -36,7 +42,7 @@ const Recommendation = () => {
   */
   const fetchGameDetails = async (gameId) => {
     try {
-      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=8ca11e61a56948f49820e06bdf9d968b`);
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=${vKEY}`);
       const { background_image, description, slug } = response.data; // Destructure additional details
 
       setDetailedGameData((prevData) => ({
