@@ -33,7 +33,7 @@ const Summary = () => {
 
     // call this function once to prevent an infinite loop
     useEffect(() => {
-        const gameNameDetail = currentTeam.game;
+        const gameNameDetail = currentTeam.game.replace(/\s+/g, '-').toLowerCase();
         console.log(gameNameDetail)
         fetchGamePhoto(gameNameDetail);
     }, []);
@@ -68,11 +68,18 @@ const Summary = () => {
         const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=0d78e57ce6444308b0caeb836b9cf165`);
         const { background_image } = response.data; // Destructure game cover image
         console.log(response.data)
+        // console.log(background_image);
+        
+        // setDetailedGameData((prevData) => ({
+        //     ...prevData,
+        //     [gameName]: { background_image }, // Store all details in an object
+        // }));
+        // console.log(detailedGameData);
+        if (background_image !== undefined) {
+            const summaryIMG = document.querySelector('#summary-img')
+            summaryIMG.setAttribute('src', background_image) 
+        }
 
-        setDetailedGameData((prevData) => ({
-            ...prevData,
-            [gameName]: { background_image }, // Store all details in an object
-        }));
         } catch (error) {
         console.error('Error fetching game details:', error);
         }
@@ -84,7 +91,7 @@ const Summary = () => {
         <div className="main-container flex flex-col lg:flex-row">
             <div className="w-full sm:py-12 lg:w-4/12 p-5 lg:py-20 lg:px-0 image-container">
                 {/* <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} /> */}
-                <SummaryCard imageUrl={detailedGameData[gameNameDetail]?.background_image || noImage} alt={gameNameDetail} />
+                <SummaryCard imageUrl={noImage} alt={gameNameDetail}/>
             </div>
             {/* w-full sm:p-12 md:w-1/2 p-5 lg:p-20 button-container */}
             {/* <div className="sm:p-12 md:w-9/12 lg:w-8/12 lg:flex-col"> */}
