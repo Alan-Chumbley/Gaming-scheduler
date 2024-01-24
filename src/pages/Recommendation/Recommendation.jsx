@@ -10,6 +10,7 @@ const Recommendation = () => {
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
 
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
+  let btnName = 'Select';
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
@@ -37,7 +38,7 @@ const Recommendation = () => {
     try {
       const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=0d78e57ce6444308b0caeb836b9cf165`);
       const { background_image, description, slug } = response.data; // Destructure additional details
-  
+
       setDetailedGameData((prevData) => ({
         ...prevData,
         [gameId]: { background_image, description, slug }, // Store all details in an object
@@ -113,7 +114,7 @@ const Recommendation = () => {
       break;
     default:
       break;
-}
+  }
 
   // if the screen takes a while to load the data, the below will render
   if (loading) {
@@ -122,29 +123,44 @@ const Recommendation = () => {
 
   // truncate syntax from MDN web docs
   const truncateText = (text, maxLength) => {
+    if (text) {
+      text = text.replace('<p>', '').replace('</p>', '');
+    }
     return text && text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
+  // handle game selection on click (and not allow selection of more than one)
+
   function handleSelectClick(e) {
-    const gameEl = e.target.parentElement.parentElement.parentElement.children;
+    const clickedEl = e.currentTarget;
+
+    const grandpaEl = clickedEl.parentElement.parentElement.parentElement;
+    const gameEl = grandpaEl.querySelectorAll('.gameCard');
+
     const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
-    if (counter !== 0) {
+
+    if (counter !== 0 && !clickedEl.classList.contains('selected-card')) {
       for (let i = 0; i < gameEl.length; i++) {
         let currentGameEl = gameEl[i].children[0].children[1];
         if (currentGameEl.classList.contains('selected-card')) {
           currentGameEl.classList.remove('selected-card');
         }
-        e.target.classList.add('selected-card');
+        clickedEl.classList.add('selected-card');
         counter++;
       }
+    } else if (clickedEl.classList.contains('selected-card')) {
+      clickedEl.classList.remove('selected-card');
+      counter = 0;
     } else {
-      e.target.classList.add('selected-card');
+      clickedEl.classList.add('selected-card');
       counter++;
     }
-    currentTeam.game = e.target.parentElement.parentElement.children[1].children[0].innerHTML
+    const isClickedSelected = clickedEl.classList.contains('selected-card');
+    clickedEl.querySelector(`.select-text`).textContent = isClickedSelected ? 'Selected' : 'Select';
+    currentTeam.game = clickedEl.parentElement.parentElement.children[1].children[0].innerHTML
     localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
-  
+
   const linkTo = () => {
     const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
     return !currentTeam.game ? null : "/player1"
@@ -153,9 +169,9 @@ const Recommendation = () => {
   return (
     <div className='recommendations'>
       <h1 className='font-main text-cyan text-center mt-10 pageTitle'>Recommendations for {genreParsed} Games</h1>
-      
+
       {/* mapping through each genre's games and their unique IDs are passed through to the second API to get image, description and URL */}
-      <div className='game-cards-container mt-10 grid grid-cols-2'>
+      <div className='game-cards-container mt-10 block xl:grid grid-cols-2'>
         {/* testing adventure genre to see if code works */}
         {selectedGenre.map((game) => {
           const gameDetails = detailedGameData[game.id] || {};
