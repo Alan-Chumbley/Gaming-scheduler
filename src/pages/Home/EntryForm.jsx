@@ -4,7 +4,7 @@ import axios from "axios";
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
 function EntryForm() {
-    /* ************************************** VARIABLES ********************************************** */
+    /* *********************************************** VARIABLES ******************************************************************* */
 
     const genres = [
         "action",
@@ -21,18 +21,24 @@ function EntryForm() {
         "fighting",
     ];
 
-    // let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
-
-    const [team, setTeam] = useState("");
-    const [game, setGame] = useState("");
-    const [genre, setGenre] = useState("");
+    const [team, setTeam] = useState(""); // team name
+    const [game, setGame] = useState(""); // game title
+    const [genre, setGenre] = useState(""); // genre
+    const [isLoading, setIsLoading] = useState(false); // is loading api?
+    const [isValid, setIsValid] = useState(true); // is the game title valid?
+    const [link, setLink] = useState(null); // link: recommendation or player?
 
     let genresBtns;
     let errorEl;
 
-    /* ************************************** HANDLING EVENTS *************************************** */
+    // API related
+    const searchTitle = game.toLowerCase().replace(' ', '-');
+    const apiKey = '0d78e57ce6444308b0caeb836b9cf165';
+    const apiURL = `https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${searchTitle}`;
 
-    // INPUT (GAME TITLE AND SQUAD ALIAS)
+    /* ********************************************** HANDLING EVENTS *********************************************************** */
+
+    // INPUT: GAME TITLE AND SQUAD ALIAS
     const handleChange = (setState) => ({ target }) => {
         errorEl = document.querySelector('#error-msg-hp');
         errorEl.setAttribute('hidden', true);
@@ -42,7 +48,7 @@ function EntryForm() {
         toggleBtns(inputBtn ? 'disable' : 'enable'); // if input has value: disable buttons, otherwise enable
     }
 
-    // GENRE QUEST: BUTTONS
+    // BUTTONS: GENRE QUEST
     const handleClick = (setState) => ({ target }) => {
         errorEl = document.querySelector('#error-msg-hp');
         errorEl.setAttribute('hidden', true);
@@ -58,36 +64,67 @@ function EntryForm() {
             target.classList.add('selectedBtn');
             toggleInput('disable');
             setState(selectedBtn);
+            setLink('/recommendation');
         } else {
             target.classList.remove('selectedBtn');
             toggleInput('enable');
             setState(null);
+            setLink(null);
         }
     }
 
-    // SUBMIT (LETS GO BUTTON)
-    const handleSubmit = ({ target }) => {
 
+
+    // SUBMIT BUTTON: LET'S GO
+    const handleSubmit = async ({ target }) => {
         errorEl = document.querySelector('#error-msg-hp');
-        // const doesexist = getData();
-        returnResult();
-        // console.log(getData())
+        // load API data and verify
 
-        if (!team && !game && !genre || !game && !genre || !team) {
-            errorEl.removeAttribute('hidden');
-        } else {
+        if (game) {
+            validateTitle();            
+        }
 
+        errorEl.removeAttribute('hidden', !isValid || !team || (!game && !genre));
+
+        if (isValid && team && (game || genre)) {
+            if(game){
+                setLink('/player1');
+            }
             const newTeam = {
                 teamName: team,
                 game: game,
-                genre: genre,
-            }
-
-            saveToLS(newTeam); // save to local storage
-
+                genre: genre
+            };
+    
+            saveToLS(newTeam);
         }
     };
 
+/* **************************************************** API ***************************************************** */
+    async function validateTitle() {
+        setIsLoading(true);
+
+            try {
+                const response = await axios.get(`${apiURL}?key=${apiKey}`);
+                const gameData = response.data;
+                if (gameData && !gameData.detail) {
+                    setIsValid(true);
+                    setLink('/player1');
+                } else {
+                    setIsValid(false);
+                }
+            } catch (error) {
+                console.log('Error fetching data: ', error.message);
+                setIsValid(false);
+            }
+            setIsLoading(false);
+    }
+
+
+
+    /* **************************************************** BUILDING ELEMENTS ***************************************************** */
+
+    // CREATE BUTTON FOR EACH GENRE
     genresBtns = genres.map((genre) => (
         <button
             key={genre}
@@ -97,17 +134,17 @@ function EntryForm() {
         >
             {genre}
         </button>
-    )); // create buttons for each genre
+    ));
 
-    /* *************************************** FUNCTIONS *************************************** */
+
+    /* ******************************************************** FUNCTIONS ***************************************************** */
 
     //SAVE TO LOCAL STORAGE
     function saveToLS(object) {
-        // storedData.push(object);
-        // localStorage.setItem("Teams", JSON.stringify(storedData));
-        localStorage.setItem("CurrentTeam", JSON.stringify(object)); // Kane: I added this to keep track of the current team
+        localStorage.setItem("CurrentTeam", JSON.stringify(object)); // keep track of the current team
     }
 
+    // TOGGLE BUTTONS: disable when game title is added
     function toggleBtns(state) {
         const buttons = document.querySelector('#genresBtn');
         const btnChildren = buttons.children;
@@ -126,6 +163,7 @@ function EntryForm() {
         }
     }
 
+    // TOGGLE INPUT: disable when genre is selected
     function toggleInput(state) {
         const gameInput = document.querySelector('#game-input');
 
@@ -138,40 +176,15 @@ function EntryForm() {
         }
     }
 
-    const sendToLink = () => !team ? null : genre ? '/recommendation' : game ? '/player1' : null;
 
-    const handleErrors = () => !team && !game && !genre ? 'Complete the form to unlock the next level!' : !game && !genre ? 'Type your game title or pick a genre to venture forth!' : !team ? 'Summon your team! Add a team name to proceed.' : null;
+    // HANDLE ERRORS
+    const handleErrors = () => !team && !game && !genre ? 'Complete the form to unlock the next level!'
+        : !game && !genre ? 'Type your game title or pick a genre to venture forth!'
+            : !team ? 'Summon your team! Add a team name to proceed.'
+                : !isValid && !genre && game ? 'Game title not found. Type a valid one to continue.'
+                    : null;
 
-
-    /* *************************************** API FUNCTION *************************************** */
-    const id = '1007';
-    const title = game;
-    const searchTitle = game.toLowerCase().replace(' ', '-');
-    const apiKey = '0d78e57ce6444308b0caeb836b9cf165';
-    const apiURL = `https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${searchTitle}`;
-
-    async function findTitle() {
-        try {
-            const response = await axios.get(`${apiURL}?key=${apiKey}`);
-            const gameData = response.data;
-            if(gameData && !gameData.detail){
-                return true;
-            } else {
-                return false;
-            }
-        } catch (error) {
-            console.log('Error fetching data: ', error.message);
-            return false;
-        }
-    }
-
-    async function returnResult() {
-        const result = await findTitle();
-        console.log(result);
-        return result;
-    }
-
-    /* *************************************** RENDER *************************************** */
+    /* **************************************************** RENDER ********************************************************* */
 
     return (
         <div id="container">
@@ -209,9 +222,10 @@ function EntryForm() {
                 </div>
                 <ul id="genresBtn">{genresBtns}</ul>
             </div>
-            {/* <Link to={sendToLink()} > */}
-            <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
-            {/* </Link> */}
+            <Link to={link} >
+                <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
+            </Link>
+            {isLoading ? <p className='italic' id='loading-msg'>Verifying data...</p> : null}
             <p id='error-msg-hp' className='italic' hidden>{handleErrors()}</p>
         </div>
     );
