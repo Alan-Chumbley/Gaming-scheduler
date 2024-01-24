@@ -47,6 +47,11 @@ const Wishlist = () => {
           {gameCards}
       </div>
 
+      {/* Overlay */}
+      {modalOpen && selectedGame && (
+        <div className='fixed inset-0 bg-black opacity-50'></div>
+      )}
+
       {/* Modal */}
       {modalOpen && selectedGame && (
         <div className='fixed inset-0 flex items-center justify-center z-50'>
