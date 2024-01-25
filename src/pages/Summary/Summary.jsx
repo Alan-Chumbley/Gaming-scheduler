@@ -72,7 +72,7 @@ const Summary = () => {
     */
     const fetchGamePhoto = async (gameName) => {
         try {
-        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=${vKEY}`);
+        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=0d78e57ce6444308b0caeb836b9cf165`);
         const { background_image, playtime } = response.data; // Destructure game cover image
         console.log(response.data)
         console.log("P:",playtime)
@@ -81,17 +81,17 @@ const Summary = () => {
 const weeklyHours = sharedDates.length;
 
 const weeks = Math.ceil(playtime/weeklyHours);
-let timeMessage = "";
-if (weeks === 1 ){
-    timeMessage = weeks + " week"
-    
-} else{
-    timeMessage = weeks + " weeks"
-}
-if (playtime!== undefined) {
-    const summaryTime = document.querySelector('#time')
-    summaryTime.innerHTML= timeMessage;
-}
+    let timeMessage = "";
+    if (weeks === 1 ){
+        timeMessage = weeks + " week"
+        
+    } else{
+        timeMessage = weeks + " weeks"
+    }
+    if (playtime!== undefined) {
+        const summaryTime = document.querySelector('#time-span')
+        summaryTime.innerHTML= timeMessage;
+    }   
 
         if (background_image !== undefined) {
             const summaryIMG = document.querySelector('#summary-img')
@@ -121,7 +121,7 @@ if (playtime!== undefined) {
                 <h2 className="font-main text-4xl text-white pb-3">
                     {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game} is set!`}
                 </h2>
-                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">a few weeks</span>!</p>}
+                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan" id="time-span">a few weeks</span>!</p>}
                 <SummaryCal />
                 <div className="flex flex-row justify-end w-full mt-10">
                     <div id="button-msg" className="mb-5 md:mb-0">
