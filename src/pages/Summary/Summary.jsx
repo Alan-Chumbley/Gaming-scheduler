@@ -123,7 +123,7 @@ const weeks = Math.ceil(playtime/weeklyHours);
                 </h2>
                 {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan" id="time-span">a few weeks</span>!</p>}
                 <SummaryCal />
-                <div className="flex flex-row justify-end w-full mt-10">
+                <div className="flex flex-col items-end md:items-start md:flex-row justify-center md:justify-end w-full mt-10">
                     <div id="button-msg" className="mb-5 md:mb-0">
                     <SaveBtn id="session-btn" name="Save Session" onClick={saveToLS} />
                     <p className="text-smallText text-center text-cyan mt-2 hidden" id="session-msg">Session Saved!</p>

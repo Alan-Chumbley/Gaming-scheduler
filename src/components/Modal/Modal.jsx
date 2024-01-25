@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import SummaryCal from '../../pages/Summary/SummaryCal';
+import './Modal.css';
+import { FaTimes } from 'react-icons/fa';
+import RemoveBtn from '../Buttons/ModalBtn';
+import CloseBtn from '../Buttons/CloseBtn';
 
 const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) => {
-  const modalContainerClasses = `fixed inset-0 overflow-hidden transition-opacity ${
+  const modalContainerClasses = `fixed inset-0 overflow-auto transition-opacity ${
     isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
   }`;
 
@@ -18,21 +22,23 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
   return (
     <div className={modalContainerClasses} id="player-modal">
       {/* Modal Overlay */}
-      <div className="fixed inset-0 bg-black opacity-50"></div>
+      <div className="fixed inset-0 bg-black opacity-90"></div>
 
       {/* Modal Container */}
-      <div className="bg-white rounded shadow-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3">
+      <div className="modal-container bg-opacity-20 rounded shadow-lg absolute w-full flex flex-col mt-20 md:mt-0 md:justify-center">
         {/* Modal Close Button */}
-        <button onClick={onClose} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
-          &times;
-        </button>
+        {/* <button onClick={onClose} className="absolute text-white-600 text-3xl z-10 close-btn">
+          <FaTimes />
+        </button> */}
 
         {/* Modal Body Content */}
         <div>
           <div className="border-0 relative flex flex-col w-full outline-none focus:outline-none">
             {/*header*/}
-            <div className="flex items-start justify-between p-5 rounded-t">
-              <h3 className="text-3xl font-sub uppercase">{playerName}'s Schedule</h3>
+            <div className="modal-header flex items-center justify-between p-5 rounded-t">
+              <h3 className="text-2xl md:text-3xl font-sub uppercase whitespace-nowrap">{playerName}'s Schedule</h3>
+              {/* Close Button */}
+              <CloseBtn onClick={onClose} />
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
@@ -43,13 +49,7 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 rounded-b">
-              <button
-                className="bg-red text-white active:bg-red font-bold font-sub uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => removePlayer()}
-              >
-                Remove Player
-              </button>
+              <RemoveBtn name='Remove Player' color='red' onClick={() => removePlayer()} />
             </div>
           </div>
         </div>

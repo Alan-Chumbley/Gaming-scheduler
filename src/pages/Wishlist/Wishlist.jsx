@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Wishlist.css'
 import { useNavigate } from 'react-router-dom';
+import CloseBtn from '../../components/Buttons/CloseBtn';
+import ModalBtn from '../../components/Buttons/ModalBtn';
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -136,29 +138,30 @@ const Wishlist = () => {
           <div className='fixed inset-0 bg-black opacity-50'></div>
           {/* Modal */}
           <div className='fixed inset-0 flex items-center justify-center z-50'>
-            <div className='bg-white p-8 rounded-lg relative min-h-80 w-[30%]'>
+            <div className='wishlist-modal-container bg-black p-8 rounded-lg relative w-full h-full'>
               
               {/* modal close button */}
-              <button onClick={closeModal} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
-                &times;
-              </button>
-              <h1 className='text-3xl mb-4 font-sub text-black uppercase'>Ready to play:<br /><span className='text-red'>{selectedGame.name}</span></h1>
-              
+              <div className="flex items-start justify-between py-5 rounded-t">
+              <h1 className='text-3xl mb-4 font-sub text-white uppercase'>
+                Ready to play:<p><span className='text-red'>{selectedGame.name}</span></p></h1>
+              <CloseBtn onClick={closeModal} />
+              </div>
               {/* modal body */}
-              <h2 className='font-smallText text-black'>Your current squad <span className='text-black'>{storedTeam ? 'is ' + currentTeam : 'has not been chosen yet'}</span></h2>
+              <h2 className='font-smallText text-white'>Your current squad <span className='text-white'>{storedTeam ? 'is ' + currentTeam : 'has not been chosen yet'}</span></h2>
               <hr className='my-5'/>
-              <h3>If you don't have a squad name or want to play with a different squad, choose an option from below:</h3>
+              <h3>Choose your gaming crew from the list below and schedule the new session</h3>
               
               {/* dropdown of available squad names from local storage */}
+
               <select
                 value={selectedSquad}
                 onChange={(e) => handleSquadSelection(e.target.value)}
-                className='border rounded-md px-2 py-1 w-full text-black uppercase mt-3'
+                className='select-dropdown'
               >
                 <option value='' disabled>Select squad</option>
                 {availableSquads.map((squad, index) => (
                   <option key={index} value={squad}>
-                    {squad}
+                    {squad.toUpperCase()}
                   </option>
                 ))}
                 {/* add the original squad name to the default option */}
@@ -168,15 +171,12 @@ const Wishlist = () => {
                   </option>
                 )}
               </select>
+
               <hr className='my-5'/>
-              <p className='mb-10'>You've chosen to play {selectedGame?.name} with {currentTeam}. If you're happy with your choice, click "Schedule game".</p>
-              <div className='flex flex-row justify-between'>
-                <button onClick={onRemove} className='bg-red uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 left-6'>
-                  Remove from wishlist
-                </button>
-                <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
-                  Schedule game
-                </button>
+              <p className='mb-10 text-grey'>You're all set to conquer <span className='text-cyan'>{selectedGame?.name}</span> with <span className='text-cyan'>{currentTeam}</span>. If you are happy with your choice, click "Schedule game".</p>
+              <div className='flex flex-col md:flex-row justify-end'>
+                <ModalBtn name='Remove Game from wishlist' color='red' fontcolor='white' onClick={onRemove} />
+                <ModalBtn name='Schedule Game' color='cyan' fontcolor='overlay' onClick={schedule} />
               </div>
               
             </div>

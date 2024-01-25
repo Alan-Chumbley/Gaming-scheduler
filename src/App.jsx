@@ -11,7 +11,6 @@ import Summary from './pages/Summary/Summary.jsx'
 import Wishlist from './pages/Wishlist/Wishlist.jsx';
 import {Route, Routes} from 'react-router-dom';
 function App() {
- 
 
   return (
   

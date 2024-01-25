@@ -115,22 +115,6 @@ input:focus {
     margin-top: -20px;
 }
 
-@media only screen and (max-width: 1536px) {
-
-    .genreBtn {
-        width: calc(30% - 10px);
-    }
-
-    .button-container {
-        margin-left: -2%;
-    }
-
-    .hero-container {
-        margin-right: -2%;
-    }
-
-}
-
 
 @media only screen and (max-width: 1432px) {
 

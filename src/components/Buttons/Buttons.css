@@ -34,6 +34,30 @@
     padding-top: 10px !important;
 }
 
+/* *************************************************** CLOSE BUTTON ********************************************************* */
+
+.close-btn:hover #fa-times-icon {
+    transform: scale(1.2);
+    color: var(--red) !important;
+    fill: var(--red) !important;
+}
+
+
+#fa-times-icon {
+    transition: all 0.3s ease-in-out;
+}
+
+/* *************************************************** REMOVE BUTTON ********************************************************* */
+
+.remove-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.remove-btn:hover {
+    transform: scale(0.9);
+    opacity: 0.8;
+}
+
 /* ********************************************** WISHLIST AND READ MORE BUTTONS **************************************************** */
 
 .wishlistBtn, .moreBtn {
@@ -82,8 +106,6 @@
     color: var(--cyan) !important;
     fill: var(--cyan) !important;
 }
-
-
 
 #fa-heart-solid-icon {
     color: var(--red);
@@ -144,4 +166,3 @@
         width: 18px;
     }
     }
-    

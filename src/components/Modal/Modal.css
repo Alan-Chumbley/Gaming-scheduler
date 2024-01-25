@@ -1,0 +1,16 @@
+@import '../../index.css';
+
+.modal-container {
+    height: 100vh;
+    width: 100vw;
+    padding: 0 20%;
+}
+
+
+@media only screen and (max-width: 1280px) {
+
+    .modal-container {
+        padding: 0 10%;
+    }
+
+}
