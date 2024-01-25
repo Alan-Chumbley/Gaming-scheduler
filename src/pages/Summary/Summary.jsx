@@ -9,9 +9,11 @@ import SummaryCard from "../../components/SummaryCard/SummaryCard";
 import axios from 'axios';
 import noImage from '../../assets/no-image.png';
 
+
+
 const Summary = () => {
     const [detailedGameData, setDetailedGameData] = useState({});
-
+    const vKEY = import.meta.env.VITE_OUR_API ;
     let storedData = JSON.parse(localStorage.getItem("Teams")) || [];
     const currentTeam = JSON.parse(localStorage.getItem("CurrentTeam"));
     const sharedDates = currentTeam.player1.availability.filter((date) =>
@@ -33,7 +35,12 @@ const Summary = () => {
 
     // call this function once to prevent an infinite loop
     useEffect(() => {
-        const gameNameDetail = currentTeam.game;
+        let gameNameDetail = ""
+        if (currentTeam.slug !== undefined) {
+            gameNameDetail = currentTeam.slug
+        } else {
+            gameNameDetail = currentTeam.game.replace(/\s+/g, '-').toLowerCase();
+        }
         console.log(gameNameDetail)
         fetchGamePhoto(gameNameDetail);
     }, []);
@@ -65,14 +72,33 @@ const Summary = () => {
     */
     const fetchGamePhoto = async (gameName) => {
         try {
-        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=0d78e57ce6444308b0caeb836b9cf165`);
-        const { background_image } = response.data; // Destructure game cover image
+        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=${vKEY}`);
+        const { background_image, playtime } = response.data; // Destructure game cover image
         console.log(response.data)
+        console.log("P:",playtime)
 
-        setDetailedGameData((prevData) => ({
-            ...prevData,
-            [gameName]: { background_image }, // Store all details in an object
-        }));
+        
+const weeklyHours = sharedDates.length;
+
+const weeks = Math.ceil(playtime/weeklyHours);
+    let timeMessage = "";
+    if (weeks === 1 ){
+        timeMessage = weeks + " week"
+        
+    } else{
+        timeMessage = weeks + " weeks"
+    }
+    if (playtime!== undefined && sharedDates.length > 0) {
+        const summaryTime = document.querySelector('#time-span')
+        summaryTime.innerHTML= timeMessage;
+    }   
+
+        if (background_image !== undefined) {
+            const summaryIMG = document.querySelector('#summary-img')
+            summaryIMG.setAttribute('src', background_image) 
+        }
+
+        
         } catch (error) {
         console.error('Error fetching game details:', error);
         }
@@ -84,7 +110,7 @@ const Summary = () => {
         <div className="main-container flex flex-col lg:flex-row">
             <div className="w-full sm:py-12 lg:w-4/12 p-5 lg:py-20 lg:px-0 image-container">
                 {/* <img className="bg-no-repeat bg-cover bg-center game-cover" src={tlou} alt={currentTeam.game + ", the selected game's cover"} /> */}
-                <SummaryCard imageUrl={detailedGameData[gameNameDetail]?.background_image || noImage} alt={gameNameDetail} />
+                <SummaryCard imageUrl={noImage} alt={gameNameDetail}/>
             </div>
             {/* w-full sm:p-12 md:w-1/2 p-5 lg:p-20 button-container */}
             {/* <div className="sm:p-12 md:w-9/12 lg:w-8/12 lg:flex-col"> */}
@@ -93,9 +119,9 @@ const Summary = () => {
                     {currentTeam.teamName}
                 </h1>
                 <h2 className="font-main text-4xl text-white pb-3">
-                    {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game.split("-").join(" ")}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game.split("-").join(" ")} is set!`}
+                    {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game} is set!`}
                 </h2>
-                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game.split("-").join(" ")}</span> in <span className="text-cyan">X weeks</span>!</p>}
+                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan" id="time-span">a few weeks</span>!</p>}
                 <SummaryCal />
                 <div className="flex flex-row justify-end w-full mt-10">
                     <div id="button-msg" className="mb-5 md:mb-0">

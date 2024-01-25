@@ -34,7 +34,7 @@ export default function Example() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch lg:justify-start lg:justify-between">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch lg:justify-between">
                 <div className="flex flex-shrink-0 items-center">
                   <NavLink to="/">
                     <img
@@ -69,7 +69,7 @@ export default function Example() {
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2 flex flex-col justify-start">
               {navigation.map((item) => (
-                <Disclosure.Button>
+                <Disclosure.Button key={item.name}>
                   <NavLink
                     key={item.name}
                     to={item.to}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ActionBtn from '../../components/Buttons/ActionBtn';
 
@@ -26,7 +26,8 @@ function EntryForm() {
     const [genre, setGenre] = useState(""); // genre
     const [isLoading, setIsLoading] = useState(false); // is loading api?
     const [isValid, setIsValid] = useState(true); // is the game title valid?
-    const [link, setLink] = useState(null); // link: recommendation or player?
+    // const [link, setLink] = useState(null); // link: recommendation or player?
+    const navigate = useNavigate();
 
     let genresBtns;
     let errorEl;
@@ -64,12 +65,12 @@ function EntryForm() {
             target.classList.add('selectedBtn');
             toggleInput('disable');
             setState(selectedBtn);
-            setLink('/recommendation');
+            // setLink('/recommendation');
         } else {
             target.classList.remove('selectedBtn');
             toggleInput('enable');
             setState(null);
-            setLink(null);
+            // setLink(null);
         }
     }
 
@@ -86,10 +87,8 @@ function EntryForm() {
 
         errorEl.removeAttribute('hidden', !isValid || !team || (!game && !genre));
 
-        if (isValid && team && (game || genre)) {
-            if(game){
-                setLink('/player1');
-            }
+        if (team && genre) {
+
             const newTeam = {
                 teamName: team,
                 game: game,
@@ -97,6 +96,7 @@ function EntryForm() {
             };
     
             saveToLS(newTeam);
+            navigate('/recommendation')
         }
     };
 
@@ -109,7 +109,18 @@ function EntryForm() {
                 const gameData = response.data;
                 if (gameData && !gameData.detail) {
                     setIsValid(true);
-                    setLink('/player1');
+                    // console.log(gameData.slug);
+                    // console.log(gameData.name);
+                    const newTeam = {
+                        teamName: team,
+                        game: gameData.name === undefined ? game : gameData.name,
+                        slug: gameData.slug,
+                        genre: genre
+                    };
+                    
+                    console.log(newTeam);
+                    saveToLS(newTeam);
+                    navigate('/player1')
                 } else {
                     setIsValid(false);
                 }
@@ -222,9 +233,7 @@ function EntryForm() {
                 </div>
                 <ul id="genresBtn">{genresBtns}</ul>
             </div>
-            <Link to={link} >
                 <ActionBtn name="Let's go" onClick={handleSubmit} id="bigBtn" />
-            </Link>
             {isLoading ? <p className='italic' id='loading-msg'>Verifying data...</p> : null}
             <p id='error-msg-hp' className='italic' hidden>{handleErrors()}</p>
         </div>
