@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import SummaryCal from '../../pages/Summary/SummaryCal';
+import './Modal.css';
+import { FaTimes } from 'react-icons/fa';
+import RemoveBtn from '../Buttons/RemoveBtn';
 
 const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) => {
   const modalContainerClasses = `fixed inset-0 overflow-hidden transition-opacity ${
@@ -21,18 +24,22 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
       <div className="fixed inset-0 bg-black opacity-50"></div>
 
       {/* Modal Container */}
-      <div className="bg-white rounded shadow-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3">
+      <div className="modal-container bg-opacity-20 rounded shadow-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3 overflow-y-auto flex flex-col justify-center">
         {/* Modal Close Button */}
-        <button onClick={onClose} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
-          &times;
-        </button>
+        {/* <button onClick={onClose} className="absolute text-white-600 text-3xl z-10 close-btn">
+          <FaTimes />
+        </button> */}
 
         {/* Modal Body Content */}
         <div>
           <div className="border-0 relative flex flex-col w-full outline-none focus:outline-none">
             {/*header*/}
-            <div className="flex items-start justify-between p-5 rounded-t">
+            <div className="modal-header flex items-center justify-between p-5 rounded-t">
               <h3 className="text-3xl font-sub uppercase">{playerName}'s Schedule</h3>
+              {/* Close Button */}
+              <button onClick={onClose} className="text-white-600 text-3xl z-10 close-btn">
+          <FaTimes />
+        </button>
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
