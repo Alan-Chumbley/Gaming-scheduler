@@ -3,6 +3,7 @@ import SummaryCal from '../../pages/Summary/SummaryCal';
 import './Modal.css';
 import { FaTimes } from 'react-icons/fa';
 import RemoveBtn from '../Buttons/RemoveBtn';
+import CloseBtn from '../Buttons/CloseBtn';
 
 const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) => {
   const modalContainerClasses = `fixed inset-0 overflow-auto transition-opacity ${
@@ -37,9 +38,7 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             <div className="modal-header flex items-center justify-between p-5 rounded-t">
               <h3 className="text-2xl md:text-3xl font-sub uppercase whitespace-nowrap">{playerName}'s Schedule</h3>
               {/* Close Button */}
-              <button onClick={onClose} className="text-2xl md:text-3xl z-10 close-btn">
-          <FaTimes id='fa-times-icon' />
-        </button>
+              <CloseBtn onClick={onClose} />
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">

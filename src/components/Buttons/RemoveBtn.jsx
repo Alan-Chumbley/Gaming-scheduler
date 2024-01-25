@@ -1,6 +1,5 @@
 import React from 'react';
 import './Buttons.css';
-import { FaTimes } from 'react-icons/fa';
 
 const RemoveBtn = (props) => {
 

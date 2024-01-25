@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Wishlist.css'
 import { useNavigate } from 'react-router-dom';
+import { FaTimes } from 'react-icons/fa';
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -136,7 +137,7 @@ const Wishlist = () => {
           <div className='fixed inset-0 bg-black opacity-50'></div>
           {/* Modal */}
           <div className='fixed inset-0 flex items-center justify-center z-50'>
-            <div className='bg-white p-8 rounded-lg relative min-h-80 w-[30%]'>
+            <div className='bg-black p-8 rounded-lg relative w-full h-full p-40'>
               
               {/* modal close button */}
               <button onClick={closeModal} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
