@@ -62,6 +62,26 @@ const Wishlist = () => {
     localStorage.setItem("CurrentTeam", JSON.stringify(object)); // Kane: I added this to keep track of the current team
   }
 
+  const onRemove = () => {
+    // retrieve wishlist from local storage
+    const currentWishlist = JSON.parse(localStorage.getItem('Wishlist')) || [];
+    console.log(currentWishlist);
+
+    // find the game you want to remove using findIndex
+    const gameIndex = currentWishlist.findIndex((game) => game.name === selectedGame.name);
+
+    if (gameIndex !== -1) {
+      // remove the selected game from the wishlist array
+      currentWishlist.splice(gameIndex, 1);
+  
+      // update local storage with the modified wishlist
+      localStorage.setItem('Wishlist', JSON.stringify(currentWishlist));
+  
+      // close modal
+      closeModal();
+    }
+  }
+
   // if the user's squad names list changes, the list within the modal will also update
   useEffect(() => {
     const squads = JSON.parse(localStorage.getItem('Teams')) || [];
@@ -86,7 +106,7 @@ const Wishlist = () => {
   const gameCards = storedGames.map((game)=>(
     <div className='w-52 mx-5 relative cursor-pointer' key={game.name} onClick={() => openModal(game)}>
       <img className='rounded-xl w-52 h-72 object-cover object-center' src={game.url} alt={game.name} />
-      <div class="flex items-center justify-center absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl schedule-container">
+      <div className="flex items-center justify-center absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl schedule-container">
         <h1 className='uppercase absolute text-5xl text-cyan schedule-btn'>Schedule</h1>
       </div>  
       <h2 className='text-white text-3xl text-center mt-3 mb-10'>{game.name}</h2>
@@ -116,7 +136,7 @@ const Wishlist = () => {
           <div className='fixed inset-0 bg-black opacity-50'></div>
           {/* Modal */}
           <div className='fixed inset-0 flex items-center justify-center z-50'>
-            <div className='bg-white p-8 rounded-lg relative w-96 min-h-80'>
+            <div className='bg-white p-8 rounded-lg relative min-h-80 w-[30%]'>
               
               {/* modal close button */}
               <button onClick={closeModal} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
@@ -150,9 +170,15 @@ const Wishlist = () => {
               </select>
               <hr className='my-5'/>
               <p className='mb-10'>You've chosen to play {selectedGame?.name} with {currentTeam}. If you're happy with your choice, click "Schedule game".</p>
-              <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
-                Schedule game
-              </button>
+              <div className='flex flex-row justify-between'>
+                <button onClick={onRemove} className='bg-red uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 left-6'>
+                  Remove from wishlist
+                </button>
+                <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
+                  Schedule game
+                </button>
+              </div>
+              
             </div>
           </div>
         </div>
