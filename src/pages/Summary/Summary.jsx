@@ -72,7 +72,7 @@ const Summary = () => {
     */
     const fetchGamePhoto = async (gameName) => {
         try {
-        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=0d78e57ce6444308b0caeb836b9cf165`);
+        const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=${vKEY}`);
         const { background_image, playtime } = response.data; // Destructure game cover image
         console.log(response.data)
         console.log("P:",playtime)
