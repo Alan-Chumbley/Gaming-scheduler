@@ -73,8 +73,29 @@ const Summary = () => {
     const fetchGamePhoto = async (gameName) => {
         try {
         const response = await axios.get(`https://api.allorigins.win/raw?url=https://api.rawg.io/api/games/${gameName}?key=${vKEY}`);
-        const { background_image } = response.data; // Destructure game cover image
+        const { background_image, playtime } = response.data; // Destructure game cover image
         console.log(response.data)
+        console.log("P:",playtime)
+
+        
+const weeklyHours = sharedDates.length;
+
+const weeks = Math.ceil(playtime/weeklyHours);
+let timeMessage = "";
+if (weeks === 1 ){
+     timeMessage = weeks + " week"
+    
+} else{
+    timeMessage = weeks + " weeks"
+}
+if (playtime!== undefined) {
+    const summaryTime = document.querySelector('#time')
+ summaryTime.innerHTML= timeMessage;
+console.log("T",summaryTime);
+  
+}
+
+
         // console.log(background_image);
         
         // setDetailedGameData((prevData) => ({
@@ -87,6 +108,7 @@ const Summary = () => {
             summaryIMG.setAttribute('src', background_image) 
         }
 
+        
         } catch (error) {
         console.error('Error fetching game details:', error);
         }
