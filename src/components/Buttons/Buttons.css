@@ -107,8 +107,6 @@
     fill: var(--cyan) !important;
 }
 
-
-
 #fa-heart-solid-icon {
     color: var(--red);
     display: none;
@@ -168,4 +166,3 @@
         width: 18px;
     }
     }
-    
