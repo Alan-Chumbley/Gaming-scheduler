@@ -161,7 +161,7 @@ const Wishlist = () => {
                 <option value='' disabled>Select squad</option>
                 {availableSquads.map((squad, index) => (
                   <option key={index} value={squad}>
-                    {squad}
+                    {squad.toUpperCase()}
                   </option>
                 ))}
                 {/* add the original squad name to the default option */}
@@ -175,7 +175,7 @@ const Wishlist = () => {
               <hr className='my-5'/>
               <p className='mb-10 text-grey'>You're all set to conquer <span className='text-cyan'>{selectedGame?.name}</span> with <span className='text-cyan'>{currentTeam}</span>. If you are happy with your choice, click "Schedule game".</p>
               <div className='flex flex-col md:flex-row justify-end'>
-                <ModalBtn name='Remove from wishlist' color='red' fontcolor='white' onClick={onRemove} />
+                <ModalBtn name='Remove Game from wishlist' color='red' fontcolor='white' onClick={onRemove} />
                 <ModalBtn name='Schedule Game' color='cyan' fontcolor='overlay' onClick={schedule} />
               </div>
               
