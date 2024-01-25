@@ -62,6 +62,26 @@ const Wishlist = () => {
     localStorage.setItem("CurrentTeam", JSON.stringify(object)); // Kane: I added this to keep track of the current team
   }
 
+  const onRemove = () => {
+    // retrieve wishlist from local storage
+    const currentWishlist = JSON.parse(localStorage.getItem('Wishlist')) || [];
+    console.log(currentWishlist);
+
+    // find the game you want to remove using findIndex
+    const gameIndex = currentWishlist.findIndex((game) => game.name === selectedGame.name);
+
+    if (gameIndex !== -1) {
+      // remove the selected game from the wishlist array
+      currentWishlist.splice(gameIndex, 1);
+  
+      // update local storage with the modified wishlist
+      localStorage.setItem('Wishlist', JSON.stringify(currentWishlist));
+  
+      // close modal
+      closeModal();
+    }
+  }
+
   // if the user's squad names list changes, the list within the modal will also update
   useEffect(() => {
     const squads = JSON.parse(localStorage.getItem('Teams')) || [];
@@ -93,26 +113,6 @@ const Wishlist = () => {
     </div>
   )
   )
-
-  const onRemove = () => {
-    // retrieve wishlist from local storage
-    const currentWishlist = JSON.parse(localStorage.getItem('Wishlist')) || [];
-    console.log(currentWishlist);
-
-    // find the game you want to remove using findIndex
-    const gameIndex = currentWishlist.findIndex((game) => game.name === selectedGame.name);
-
-    if (gameIndex !== -1) {
-      // remove the selected game from the wishlist array
-      currentWishlist.splice(gameIndex, 1);
-  
-      // update local storage with the modified wishlist
-      localStorage.setItem('Wishlist', JSON.stringify(currentWishlist));
-  
-      // close modal
-      closeModal();
-    }
-  }
 
   console.log(gameCards);
   return (
