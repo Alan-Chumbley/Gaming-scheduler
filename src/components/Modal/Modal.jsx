@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SummaryCal from '../../pages/Summary/SummaryCal';
 
 const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) => {
   const modalContainerClasses = `fixed inset-0 overflow-hidden transition-opacity ${
@@ -12,15 +13,15 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
     onClose();
   };
 
-  console.log(`Availability for ${playerName}:`, availability);
+  // console.log(`Availability for ${playerName}:`, availability);
 
   return (
-    <div className={modalContainerClasses}>
+    <div className={modalContainerClasses} id="player-modal">
       {/* Modal Overlay */}
       <div className="fixed inset-0 bg-black opacity-50"></div>
 
       {/* Modal Container */}
-      <div className="bg-white rounded shadow-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-96">
+      <div className="bg-white rounded shadow-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3">
         {/* Modal Close Button */}
         <button onClick={onClose} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
           &times;
@@ -36,9 +37,9 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             {/*body*/}
             <div className="relative p-6 flex-auto">
               <p className="my-4 text-darkGrey text-lg leading-relaxed">
-                <span className='uppercase text-darkGrey'>{playerName}</span> is available to play:<br />
-                {availability}
+                <span className='uppercase text-darkGrey'>{playerName}</span> is available to play:
               </p>
+              <SummaryCal />
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 rounded-b">
