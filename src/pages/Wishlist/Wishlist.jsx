@@ -152,6 +152,7 @@ const Wishlist = () => {
               <h3>Choose your gaming crew from the list below and schedule the new session</h3>
               
               {/* dropdown of available squad names from local storage */}
+
               <select
                 value={selectedSquad}
                 onChange={(e) => handleSquadSelection(e.target.value)}
@@ -170,6 +171,7 @@ const Wishlist = () => {
                   </option>
                 )}
               </select>
+
               <hr className='my-5'/>
               <p className='mb-10 text-grey'>You're all set to conquer <span className='text-cyan'>{selectedGame?.name}</span> with <span className='text-cyan'>{currentTeam}</span>. If you are happy with your choice, click "Schedule game".</p>
               <div className='flex flex-col md:flex-row justify-end'>
