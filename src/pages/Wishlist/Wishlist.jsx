@@ -106,7 +106,7 @@ const Wishlist = () => {
   const gameCards = storedGames.map((game)=>(
     <div className='w-52 mx-5 relative cursor-pointer' key={game.name} onClick={() => openModal(game)}>
       <img className='rounded-xl w-52 h-72 object-cover object-center' src={game.url} alt={game.name} />
-      <div class="flex items-center justify-center absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl schedule-container">
+      <div className="flex items-center justify-center absolute top-0 w-full h-72 bg-red opacity-0 hover:opacity-90 transition hover:rounded-xl rounded-xl schedule-container">
         <h1 className='uppercase absolute text-5xl text-cyan schedule-btn'>Schedule</h1>
       </div>  
       <h2 className='text-white text-3xl text-center mt-3 mb-10'>{game.name}</h2>
