@@ -1,34 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './SavedPlayers.css'
 import OutlineBtn from '../../components/Buttons/OutlineBtn';
 import Modal from '../../components/Modal/Modal';
 
 const SavedPlayers = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [playerIndex, setPlayerIndex] = useState(null);
-  const playerData = localStorage.getItem('Players');
-  const players = JSON.parse(playerData) || [];
 
-  
-  useEffect(()=>{
-    if (playerIndex !== null) {
-      const playerAvailability = players[playerIndex].availability
-      console.log(players[playerIndex].name, playerAvailability);
-      for (let i = 0; i < playerAvailability.length; i++) {
-        const selectTimeSlot = document.querySelector("#" + playerAvailability[i]);
-        selectTimeSlot.setAttribute(
-            "class",
-            "bg-cyan w-5 h-5 rounded-md active cursor-default active-checkbox"
-        );
-      }
-    }
-  }, [playerIndex])
-
-  const openModal = (playerName, index) => {
+  const openModal = (playerName) => {
     setSelectedPlayer(playerName);
-    setPlayerIndex(index);
-    const playerAvailability = players[index].availability
-    console.log("modal " + playerAvailability);
   };
 
   const closeModal = () => {
@@ -50,7 +29,8 @@ const SavedPlayers = () => {
     closeModal();
   };
 
-
+  const playerData = localStorage.getItem('Players');
+  const players = JSON.parse(playerData) || [];
 
   return (
     <div className='players'>
@@ -66,7 +46,7 @@ const SavedPlayers = () => {
       <div className='w-100 flex flex-col justify-center mt-20'>
         {players.map((player, index) => (
           <div key={index}>
-            <OutlineBtn id={player.id} name={player.name} onClick={() => openModal(player.name, index)} />
+            <OutlineBtn id={player.id} name={player.name} onClick={() => openModal(player.name)} />
             {/* Modal Component for each player */}
             {selectedPlayer === player.name && (
               <Modal

@@ -10,7 +10,7 @@ const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
   const [detailedGameData, setDetailedGameData] = useState({}); // retrieving the detailed game data from second get request
   const [loading, setLoading] = useState(true); // if the data takes too long to load then display a loading message
-  // console.log("HELLO : ", genreData)
+  console.log("HELLO : ", genreData)
   let counter = 0; // for handleSelectClick - to avoid selection of more than one game
   let btnName = 'Select';
 
@@ -163,7 +163,6 @@ const vKEY = import.meta.env.VITE_OUR_API ;
     }
     const isClickedSelected = clickedEl.classList.contains('selected-card');
     clickedEl.querySelector(`.select-text`).textContent = isClickedSelected ? 'Selected' : 'Select';
-    currentTeam.slug = clickedEl.getAttribute('data-slug');
     currentTeam.game = clickedEl.parentElement.parentElement.children[1].children[0].innerHTML
     localStorage.setItem('CurrentTeam', JSON.stringify(currentTeam))
   }
@@ -199,7 +198,6 @@ const vKEY = import.meta.env.VITE_OUR_API ;
               description={truncateDesc || ''}
               website={`https://rawg.io/games/${gameDetails.slug || ''}`}
               onClick={handleSelectClick}
-              slug={gameDetails.slug}
             />
           );
         })}

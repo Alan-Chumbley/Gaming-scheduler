@@ -35,12 +35,7 @@ const Summary = () => {
 
     // call this function once to prevent an infinite loop
     useEffect(() => {
-        let gameNameDetail = ""
-        if (currentTeam.slug !== undefined) {
-            gameNameDetail = currentTeam.slug
-        } else {
-            gameNameDetail = currentTeam.game.replace(/\s+/g, '-').toLowerCase();
-        }
+        const gameNameDetail = currentTeam.game.replace(/\s+/g, '-').toLowerCase();
         console.log(gameNameDetail)
         fetchGamePhoto(gameNameDetail);
     }, []);
@@ -129,13 +124,9 @@ console.log("T",summaryTime);
                     {currentTeam.teamName}
                 </h1>
                 <h2 className="font-main text-4xl text-white pb-3">
-                    {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game} is set!`}
+                    {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game.split("-").join(" ")}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game.split("-").join(" ")} is set!`}
                 </h2>
-
-           //     {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!</p>}
-
                 {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game.split("-").join(" ")}</span> in <span className="text-cyan" id="time"> it eventually</span>!</p>}
-
                 <SummaryCal />
                 <div className="flex flex-row justify-end w-full mt-10">
                     <div id="button-msg" className="mb-5 md:mb-0">
