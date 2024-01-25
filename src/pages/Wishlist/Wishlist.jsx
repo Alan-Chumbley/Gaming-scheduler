@@ -116,7 +116,7 @@ const Wishlist = () => {
           <div className='fixed inset-0 bg-black opacity-50'></div>
           {/* Modal */}
           <div className='fixed inset-0 flex items-center justify-center z-50'>
-            <div className='bg-white p-8 rounded-lg relative w-96 min-h-80'>
+            <div className='bg-white p-8 rounded-lg relative w-96 min-h-80 w-[30%]'>
               
               {/* modal close button */}
               <button onClick={closeModal} className="absolute top-0 right-3 m-4 text-gray-600 hover:text-gray-800 text-4xl z-10">
@@ -150,9 +150,15 @@ const Wishlist = () => {
               </select>
               <hr className='my-5'/>
               <p className='mb-10'>You've chosen to play {selectedGame?.name} with {currentTeam}. If you're happy with your choice, click "Schedule game".</p>
-              <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
-                Schedule game
-              </button>
+              <div className='flex flex-row justify-between'>
+                <button onClick={''} className='bg-red uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 left-6'>
+                  Remove from wishlist
+                </button>
+                <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
+                  Schedule game
+                </button>
+              </div>
+              
             </div>
           </div>
         </div>
