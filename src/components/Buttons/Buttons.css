@@ -34,6 +34,17 @@
     padding-top: 10px !important;
 }
 
+/* *************************************************** REMOVE BUTTON ********************************************************* */
+
+.remove-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.remove-btn:hover {
+    transform: scale(0.9);
+    opacity: 0.8;
+}
+
 /* ********************************************** WISHLIST AND READ MORE BUTTONS **************************************************** */
 
 .wishlistBtn, .moreBtn {

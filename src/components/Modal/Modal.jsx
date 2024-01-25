@@ -37,8 +37,8 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             <div className="modal-header flex items-center justify-between p-5 rounded-t">
               <h3 className="text-2xl md:text-3xl font-sub uppercase whitespace-nowrap">{playerName}'s Schedule</h3>
               {/* Close Button */}
-              <button onClick={onClose} className="text-white-600 text-2xl md:text-3xl z-10 close-btn">
-          <FaTimes />
+              <button onClick={onClose} className="text-2xl md:text-3xl z-10 close-btn">
+          <FaTimes id='fa-times-icon' />
         </button>
             </div>
             {/*body*/}
@@ -50,13 +50,7 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 rounded-b">
-              <button
-                className="bg-red text-white active:bg-red font-bold font-sub uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => removePlayer()}
-              >
-                Remove Player
-              </button>
+              <RemoveBtn name='Remove Player' onClick={() => removePlayer()} />
             </div>
           </div>
         </div>

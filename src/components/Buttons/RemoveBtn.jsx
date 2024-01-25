@@ -5,8 +5,8 @@ import { FaTimes } from 'react-icons/fa';
 const RemoveBtn = (props) => {
 
     return (
-        <button onClick={props.onClick} id={props.id}>
-            <FaTimes id='fa-times-icon' />{props.name}
+        <button className='bg-red active:bg-red font-sub uppercase pt-4 pb-3 text-base px-6 rounded shadow outline-none focus:outline-none mr-1 mb-1 remove-btn' onClick={props.onClick} id={props.id}>
+            {props.name}
         </button>
     )
 }
