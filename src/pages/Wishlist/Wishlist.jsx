@@ -94,6 +94,26 @@ const Wishlist = () => {
   )
   )
 
+  const onRemove = () => {
+    // retrieve wishlist from local storage
+    const currentWishlist = JSON.parse(localStorage.getItem('Wishlist')) || [];
+    console.log(currentWishlist);
+
+    // find the game you want to remove using findIndex
+    const gameIndex = currentWishlist.findIndex((game) => game.name === selectedGame.name);
+
+    if (gameIndex !== -1) {
+      // remove the selected game from the wishlist array
+      currentWishlist.splice(gameIndex, 1);
+  
+      // update local storage with the modified wishlist
+      localStorage.setItem('Wishlist', JSON.stringify(currentWishlist));
+  
+      // close modal
+      closeModal();
+    }
+  }
+
   console.log(gameCards);
   return (
     <div className='wishlist'>
@@ -151,7 +171,7 @@ const Wishlist = () => {
               <hr className='my-5'/>
               <p className='mb-10'>You've chosen to play {selectedGame?.name} with {currentTeam}. If you're happy with your choice, click "Schedule game".</p>
               <div className='flex flex-row justify-between'>
-                <button onClick={''} className='bg-red uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 left-6'>
+                <button onClick={onRemove} className='bg-red uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 left-6'>
                   Remove from wishlist
                 </button>
                 <button onClick={schedule} className='bg-blue uppercase text-white font-sub px-4 py-2 rounded-md absolute bottom-6 right-6'>
