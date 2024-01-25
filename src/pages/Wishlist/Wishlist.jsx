@@ -47,8 +47,9 @@ const Wishlist = () => {
     // add squad name and game name to local storage
     const newTeam = {
       teamName: currentTeam,
-      game: selectedGame.name.split(" ").join("-"),
+      game: selectedGame.name,
       genre: '',
+      slug: selectedGame.slug
     }
 
     saveToLS(newTeam); // save to local storage

@@ -109,10 +109,12 @@ function EntryForm() {
                 const gameData = response.data;
                 if (gameData && !gameData.detail) {
                     setIsValid(true);
-
+                    // console.log(gameData.slug);
+                    // console.log(gameData.name);
                     const newTeam = {
                         teamName: team,
                         game: gameData.name === undefined ? game : gameData.name,
+                        slug: gameData.slug,
                         genre: genre
                     };
                     
