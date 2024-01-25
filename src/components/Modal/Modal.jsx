@@ -42,9 +42,6 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
-              <p className="my-4 text-darkGrey text-lg leading-relaxed">
-                <span className='uppercase text-darkGrey'>{playerName}</span> is available to play:
-              </p>
               <SummaryCal />
             </div>
             {/*footer*/}

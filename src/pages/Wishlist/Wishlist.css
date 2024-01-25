@@ -36,12 +36,16 @@
 }
 
 option {
-    font-size: 1rem;
+    font-size: inherit;
     color: var(--cyan);
 }
 
 .select-dropdown option:disabled {
     color: white !important;
+}
+
+.select-dropdown option:hover {
+    background-color: rgba(0, 226, 252, 0.4) !important;
 }
 
 hr {
