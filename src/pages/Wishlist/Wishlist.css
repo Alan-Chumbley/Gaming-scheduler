@@ -9,3 +9,7 @@
     font-family: var(--main);
     text-align: center;
 }
+
+.wishlist-modal-container {
+    padding: 10% 15% !important;
+}

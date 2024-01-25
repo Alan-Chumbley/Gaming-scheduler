@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import SummaryCal from '../../pages/Summary/SummaryCal';
 import './Modal.css';
 import { FaTimes } from 'react-icons/fa';
-import RemoveBtn from '../Buttons/RemoveBtn';
+import RemoveBtn from '../Buttons/ModalBtn';
 import CloseBtn from '../Buttons/CloseBtn';
 
 const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) => {
