@@ -88,7 +88,7 @@ const weeks = Math.ceil(playtime/weeklyHours);
     } else{
         timeMessage = weeks + " weeks"
     }
-    if (playtime!== undefined) {
+    if (playtime!== undefined && sharedDates.length > 0) {
         const summaryTime = document.querySelector('#time-span')
         summaryTime.innerHTML= timeMessage;
     }   
