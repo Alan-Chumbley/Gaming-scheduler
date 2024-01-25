@@ -81,28 +81,18 @@ const Summary = () => {
 const weeklyHours = sharedDates.length;
 
 const weeks = Math.ceil(playtime/weeklyHours);
-let timeMessage = "";
-if (weeks === 1 ){
-     timeMessage = weeks + " week"
-    
-} else{
-    timeMessage = weeks + " weeks"
-}
-if (playtime!== undefined) {
-    const summaryTime = document.querySelector('#time')
- summaryTime.innerHTML= timeMessage;
-console.log("T",summaryTime);
-  
-}
-
-
-        // console.log(background_image);
+    let timeMessage = "";
+    if (weeks === 1 ){
+        timeMessage = weeks + " week"
         
-        // setDetailedGameData((prevData) => ({
-        //     ...prevData,
-        //     [gameName]: { background_image }, // Store all details in an object
-        // }));
-        // console.log(detailedGameData);
+    } else{
+        timeMessage = weeks + " weeks"
+    }
+    if (playtime!== undefined && sharedDates.length > 0) {
+        const summaryTime = document.querySelector('#time-span')
+        summaryTime.innerHTML= timeMessage;
+    }   
+
         if (background_image !== undefined) {
             const summaryIMG = document.querySelector('#summary-img')
             summaryIMG.setAttribute('src', background_image) 
@@ -131,11 +121,7 @@ console.log("T",summaryTime);
                 <h2 className="font-main text-4xl text-white pb-3">
                     {sharedDates.length < 1 ? `Alert! Your gaming schedules are not aligning, leaving "${currentTeam.game}" in limbo.` : `Your optimal gaming schedule for ${currentTeam.game} is set!`}
                 </h2>
-
-           //     {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan">X weeks</span>!</p>}
-
-                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game.split("-").join(" ")}</span> in <span className="text-cyan" id="time"> it eventually</span>!</p>}
-
+                {sharedDates.length < 1 ? <p className="pb-6">Click <span className="text-cyan">'START AGAIN'</span> to sync up those calendars and get back to gaming together!` </p> : <p className="pb-6">Stick to the schedule and you'll conquer <span className="text-cyan">{currentTeam.game}</span> in <span className="text-cyan" id="time-span">a few weeks</span>!</p>}
                 <SummaryCal />
                 <div className="flex flex-row justify-end w-full mt-10">
                     <div id="button-msg" className="mb-5 md:mb-0">
