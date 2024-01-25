@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GameCard from '../../components/GameCard/GameCard';
 import ActionBtn from '../../components/Buttons/ActionBtn';
-import { Link } from 'react-router-dom';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const Recommendation = () => {
   const [genreData, setGenreData] = useState(null); // finding and setting the genre
@@ -15,8 +13,10 @@ const Recommendation = () => {
   let btnName = 'Select';
 
   //env
-const vKEY = import.meta.env.VITE_OUR_API ;
+  const vKEY = import.meta.env.VITE_OUR_API ;
 
+  //navigate
+  const navigate = useNavigate();
 
   // this call will run once and retrieve the data from RAWG API
   useEffect(() => {
@@ -170,7 +170,7 @@ const vKEY = import.meta.env.VITE_OUR_API ;
 
   const linkTo = () => {
     const currentTeam = JSON.parse(localStorage.getItem('CurrentTeam'))
-    return !currentTeam.game ? null : "/player1"
+    return !currentTeam.game ? null : navigate('/player1')
   }
 
   return (
@@ -205,7 +205,7 @@ const vKEY = import.meta.env.VITE_OUR_API ;
         })}
       </div>
 
-      <Link to={linkTo()}><button className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button></Link>
+      <button onClick={linkTo} className='font-sub text-white bg-red rounded-full text-center flex justify-center mx-auto w-96 h-16 text-2xl uppercase items-center px-10 my-10'>Let's schedule</button>
     </div>
   );
 };
