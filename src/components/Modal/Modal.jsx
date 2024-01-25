@@ -49,7 +49,7 @@ const Modal = ({ isOpen, onClose, playerName, onRemovePlayer, availability }) =>
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 rounded-b">
-              <RemoveBtn name='Remove Player' onClick={() => removePlayer()} />
+              <RemoveBtn name='Remove Player' color='red' onClick={() => removePlayer()} />
             </div>
           </div>
         </div>

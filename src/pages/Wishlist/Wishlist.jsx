@@ -149,13 +149,13 @@ const Wishlist = () => {
               {/* modal body */}
               <h2 className='font-smallText text-white'>Your current squad <span className='text-white'>{storedTeam ? 'is ' + currentTeam : 'has not been chosen yet'}</span></h2>
               <hr className='my-5'/>
-              <h3>If you don't have a squad name or want to play with a different squad, choose an option from below:</h3>
+              <h3>Choose your gaming crew from the list below and schedule the new session</h3>
               
               {/* dropdown of available squad names from local storage */}
               <select
                 value={selectedSquad}
                 onChange={(e) => handleSquadSelection(e.target.value)}
-                className='border rounded-md px-2 py-1 w-full text-black uppercase mt-3'
+                className='select-dropdown'
               >
                 <option value='' disabled>Select squad</option>
                 {availableSquads.map((squad, index) => (
@@ -171,7 +171,7 @@ const Wishlist = () => {
                 )}
               </select>
               <hr className='my-5'/>
-              <p className='mb-10'>You've chosen to play {selectedGame?.name} with {currentTeam}. If you're happy with your choice, click "Schedule game".</p>
+              <p className='mb-10 text-grey'>You're all set to conquer <span className='text-cyan'>{selectedGame?.name}</span> with <span className='text-cyan'>{currentTeam}</span>. If you are happy with your choice, click "Schedule game".</p>
               <div className='flex flex-col md:flex-row justify-end'>
                 <ModalBtn name='Remove from wishlist' color='red' fontcolor='white' onClick={onRemove} />
                 <ModalBtn name='Schedule Game' color='cyan' fontcolor='overlay' onClick={schedule} />
