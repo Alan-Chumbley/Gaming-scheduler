@@ -10,7 +10,8 @@ This collaborative project aims to streamline the process of scheduling gaming s
 - HTML
 - CSS
 - Javascript 
-- React 
+- React
+- Tailwind
 
 
 ## Contributions
@@ -37,4 +38,21 @@ The initial user interface design of our project reflects a modern and intuitive
 ## Support 
 For questions, issues, or collaboration opportunities, please visit our [GitHub repository](https://github.com/Alan-Chumbley/Gaming-scheduler) and feel free to reach out to contributors by creating a new issue or directly contacting them through the platform. 
 
+## Future Contributions
+
+To get started, run the below command to install dependencies.
+
+```bash
+npm i
+```
+
+## Resources
+- [Navigate](https://simplefrontend.com/redirect-to-another-page-in-react/?utm_content=cmp-true)
+- [Tailwind navbar](https://tailwindui.com/components/application-ui/navigation/navbars)
+- [Tailwind modals](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular)
+- [Object destructuring](https://medium.com/@gazzaazhari/destructuring-props-in-react-d8f163d3ef84)
+- [Truncate text](https://www.freecodecamp.org/news/how-to-truncate-text-with-css-javascript/)
+- [Flowbite modal](https://flowbite.com/docs/components/modal/)
+- [Dropdowns in modals](https://tailwindui.com/components/application-ui/elements/dropdowns)
+- [Hide API keys](https://medium.com/@pratyushsingha83/beginner-guide-to-setup-react-with-vite-and-tailwind-css-react-router-and-hiding-api-key-4156421dbef3#:~:text=now%20let's%20learn%20how%20to%20hide%20apikey%20on%20react%2Bvite%20projects.&text=Clone%20that%20repository%20and%20download,and%20start%20your%20development%20server.&text=Now%20go%20to%20VS%20code,key%20as%20an%20environment%20variable.)
 
